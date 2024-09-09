@@ -72,6 +72,8 @@
   networking.hostName = "loganthinkbook";
   networking.networkmanager.enable = true;
 
+  programs.hyprland.enable = true;
+
   users.users = {
    logan = {
       isNormalUser = true;
