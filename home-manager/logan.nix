@@ -51,7 +51,10 @@
   };
 
   # Add stuff for your user as you see fit:
-  home.packages = with pkgs; [ helix ];
+  home.packages = with pkgs; [ 
+  helix 
+  firefox
+  ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
