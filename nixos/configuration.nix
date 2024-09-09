@@ -70,6 +70,7 @@
   };
 
   networking.hostName = "loganthinkbook";
+  networking.networkmanager.enable = true;
 
   users.users = {
    logan = {
