@@ -69,10 +69,8 @@
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
-  # TODO: Set your hostname
   networking.hostName = "loganthinkbook";
 
-  # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
    logan = {
       isNormalUser = true;

@@ -45,14 +45,12 @@
     };
   };
 
-  # TODO: Set your username
   home = {
     username = "logan";
     homeDirectory = "/home/logan";
   };
 
   # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
   home.packages = with pkgs; [ helix ];
 
   # Enable home-manager and git
