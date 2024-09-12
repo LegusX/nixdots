@@ -1,3 +1,5 @@
+@define-color background #0f181f;
+
 *{
     font-family: JetBrainsMono;
     font-size: 13px;
@@ -6,7 +8,8 @@
 }
 
 window#waybar {
-    background-color: alpha(@background, 0.6);
+    /* background-color: alpha(@background, 0.6); */
+    background-color: alpha(#fff, 0);
 }
 
 #workspaces{
@@ -48,5 +51,7 @@ window#waybar {
 #clock,
 .custom-spotify,
 #network {
-        padding: 0px 10px;
+    background-color: alpha(@background, 0.6);
+    padding: 0px 10px;
+    border-radius: 15px;
 }

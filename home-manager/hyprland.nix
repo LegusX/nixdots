@@ -120,7 +120,7 @@
         "$mainMod, mouse:273, resizewindow"
       ];
 
-      blurls = "waybar";
+      # blurls = "waybar";
     };
   };
 }

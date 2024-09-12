@@ -93,6 +93,7 @@
     alejandra
     eza
     helix
+    mosh
   ];
 
   programs.zsh.enable = true;
