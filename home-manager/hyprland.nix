@@ -11,6 +11,16 @@
     size = 12;
   };
 
+  home.packages = with pkgs; [
+    kitty
+    cliphist
+    waybar
+    udiskie
+    swaynotificationcenter
+    firefox
+    udiskie
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
