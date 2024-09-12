@@ -93,10 +93,13 @@
     alejandra
     eza
     helix
-    mosh
   ];
 
   programs.zsh.enable = true;
+  programs.mosh = {
+    enable = true;
+    openFirewall = true;
+  };
 
   users.users = {
     logan = {
