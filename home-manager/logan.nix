@@ -18,6 +18,7 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
+    ./hyprland.nix
   ];
 
   nixpkgs = {
@@ -51,10 +52,35 @@
   };
 
   # Add stuff for your user as you see fit:
-  home.packages = with pkgs; [ 
-  helix 
-  firefox
+  home.packages = with pkgs; [
+    helix
+    firefox
+    #thunar
+    kitty
+    cliphist
+    waybar
+    #wl-paste
+    udiskie
+    dunst
+    eza
+    zsh-powerlevel10k
   ];
+
+  programs.zsh = {
+    enable = true;
+    autosuggestion.enable = true;
+    #promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+    initExtra = ''
+  # Powerlevel10k Zsh theme  
+  source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme  
+  test -f ~/.config/zsh/.p10k.zsh && source ~/.config/zsh/.p10k.zsh  
+'';
+    shellAliases = {
+      rebuild = "cd .config/nixos-config && alejandra . && sudo nixos-rebuild switch --flake .";
+      ls = "exa -hl";
+      lsa = "exa -hal";
+    };
+  };
 
   # Enable home-manager and git
   programs.home-manager.enable = true;

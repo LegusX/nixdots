@@ -69,14 +69,36 @@
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
+  # Networking
   networking.hostName = "loganthinkbook";
   networking.networkmanager.enable = true;
+  #  networking.networkmanager.wifi.backend = "iwd";
 
-  programs.hyprland.enable = true;
+  # systemd.extraConfig = "DefaultLimitNOFILE=2048";
+
+  # Sound
+  sound.enable = true;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
+  environment.systemPackages = with pkgs; [
+    btop
+    wget
+    p7zip
+    alejandra
+  ];
+
+  programs.zsh.enable = true;
 
   users.users = {
-   logan = {
+    logan = {
       isNormalUser = true;
+      shell = pkgs.zsh;
       openssh.authorizedKeys.keys = [
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
@@ -85,7 +107,7 @@
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = {inherit inputs outputs;};
     users = {
       # Import your home-manager configuration
       logan = import ../home-manager/logan.nix;

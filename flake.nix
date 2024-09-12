@@ -58,9 +58,9 @@
           # > Our main nixos configuration file <
           ./nixos/configuration.nix
           ./nixos/loganthinkbook.nix
+          ./nixos/hyprland.nix
         ];
       };
     };
-
   };
 }
