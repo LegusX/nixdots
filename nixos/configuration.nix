@@ -91,6 +91,8 @@
     wget
     p7zip
     alejandra
+    eza
+    helix
   ];
 
   programs.zsh.enable = true;
