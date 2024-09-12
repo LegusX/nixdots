@@ -5,7 +5,7 @@
   ...
 }: {
   boot.loader.systemd-boot.enable = true;
-
+  services.logind.lidSwitch = "hybrid-sleep";
   #imports = [
   #  ./configuration.nix
   #  ./hyprland.nix

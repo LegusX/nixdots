@@ -20,10 +20,10 @@
             critical = 15;
           };
           format = "{icon}&#8239;{capacity}%";
-          format-charging = "&#8239;{capacity}%";
-          format-plugged = "&#8239;{capacity}%";
+          format-charging = "&#db80&#dc84;{capacity}%";
+          format-plugged = "&#db80&#dc84;{capacity}%";
           format-alt = "{icon} {time}";
-          format-icons = ["" "" "" "" "" "" ""];
+          format-icons = ["" "" "" "" ""];
         };
 
         tray = {

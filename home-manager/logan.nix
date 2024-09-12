@@ -77,7 +77,7 @@
       test -f ~/.p10k.zsh && source ~/.p10k.zsh
     '';
     shellAliases = {
-      rebuild = "cd .config/nixos-config && alejandra . && sudo nixos-rebuild switch --flake .";
+      rebuild = "cd ~/.config/nixos-config && alejandra . && sudo nixos-rebuild switch --flake . && git add . && git commit";
       ls = "exa -hl";
       lsa = "exa -hal";
     };
