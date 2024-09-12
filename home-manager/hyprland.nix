@@ -19,6 +19,7 @@
     swaynotificationcenter
     firefox
     udiskie
+    wl-clipboard
   ];
 
   wayland.windowManager.hyprland = {
@@ -27,7 +28,7 @@
       monitor = ",preferred,auto,1";
 
       exec-once = [
-        "waybar & udiskie & dunst"
+        "waybar & udiskie & swaync"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
       ];
