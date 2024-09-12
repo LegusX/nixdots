@@ -23,7 +23,7 @@
           format-charging = "&#db80&#dc84;{capacity}%";
           format-plugged = "&#db80&#dc84;{capacity}%";
           format-alt = "{icon} {time}";
-          format-icons = ["" "" "" "" ""];
+          format-icons = [" " " " " " " " " "];
         };
 
         tray = {
