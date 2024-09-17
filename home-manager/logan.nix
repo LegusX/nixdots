@@ -46,6 +46,9 @@
       allowUnfree = true;
     };
   };
+  home.packages = with pkgs; [
+    obsidian
+  ];
 
   home = {
     username = "logan";
