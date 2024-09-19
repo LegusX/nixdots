@@ -48,6 +48,7 @@
   };
   home.packages = with pkgs; [
     obsidian
+    vscode-fhs
   ];
 
   home = {
