@@ -85,6 +85,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+  hardware.pulseaudio.enable = false;
 
   environment.systemPackages = with pkgs; [
     btop
@@ -110,6 +111,10 @@
       ];
       extraGroups = ["wheel" "networkmanager" "audio"];
     };
+    becca = {
+      isNormalUser = true;
+      initialPassword = "beccababe";
+    };
   };
 
   home-manager = {
@@ -117,6 +122,7 @@
     users = {
       # Import your home-manager configuration
       logan = import ../home-manager/logan.nix;
+      becca = import ../home-manager/becca.nix;
     };
   };
 
@@ -131,6 +137,12 @@
       # Remove if you want to SSH using passwords
       # PasswordAuthentication = false;
     };
+  };
+
+  services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
