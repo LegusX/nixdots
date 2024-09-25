@@ -49,6 +49,7 @@
   home.packages = with pkgs; [
     obsidian
     vscode-fhs
+    spotify
   ];
 
   home = {
@@ -58,7 +59,11 @@
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  programs.git.enable = true;
+  programs.git = {
+    enable = true;
+    userName = "Logan Henrie";
+    userEmail = "loghenrie@gmail.com";
+  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

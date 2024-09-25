@@ -12,24 +12,24 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
+  boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/b427321b-d2e3-4e31-9eea-bceabaf95b9b";
+    device = "/dev/disk/by-uuid/00d8a966-e022-46ee-80e9-8e5ce1ee0723";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/7086-D615";
+    device = "/dev/disk/by-uuid/3B76-7ACE";
     fsType = "vfat";
     options = ["fmask=0077" "dmask=0077"];
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/0c3aac5a-c570-4e72-8be1-d1bf13e66eb6";}
+    {device = "/dev/disk/by-uuid/7bff2469-5c37-459c-bab7-9b85ae2edbf4";}
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -37,9 +37,8 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

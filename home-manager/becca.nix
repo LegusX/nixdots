@@ -49,6 +49,10 @@
   home.packages = with pkgs; [
     obsidian
     firefox
+    p3x-onenote
+    gnome.gnome-software
+    spotify
+    libreoffice
   ];
 
   home = {
