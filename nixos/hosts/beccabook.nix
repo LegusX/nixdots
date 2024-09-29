@@ -19,16 +19,10 @@
         })
       ];
     };
-    #loader.systemd-boot = {
-    #  editor = false;
-    #  enable = true;
-    #};
-    loader = {
-      grub = {
-        efiSupport = true;
-        configurationLimit = 10;
-        device = "nodev";
-      };
+    initrd.systemd.enable = true;
+    loader.systemd-boot = {
+      editor = false;
+      enable = true;
     };
     consoleLogLevel = 0;
     initrd.verbose = false;
