@@ -12,16 +12,23 @@
   boot = {
     plymouth = {
       enable = true;
-      theme = "rings";
+      theme = "hud_3";
       themePackages = with pkgs; [
         (adi1090x-plymouth-themes.override {
-          selected_themes = ["rings"];
+          selected_themes = ["hud_3"];
         })
       ];
     };
-    loader.systemd-boot = {
-      editor = false;
-      enable = true;
+    #loader.systemd-boot = {
+    #  editor = false;
+    #  enable = true;
+    #};
+    loader = {
+      grub = {
+        efiSupport = true;
+        configurationLimit = 10;
+        device = "nodev";
+      };
     };
     consoleLogLevel = 0;
     initrd.verbose = false;
