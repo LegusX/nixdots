@@ -34,6 +34,8 @@
       "rd.udev.log_level=3"
       "udev.log_priority=3"
       "logo.nologo"
+      "video=efifb:nobgrt"
+      "fbcon=nodefer"
     ];
     loader.timeout = 0;
   };
