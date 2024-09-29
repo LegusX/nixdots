@@ -50,14 +50,24 @@
     homeManagerModules = import ./modules/home-manager;
 
     # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       loganthinkbook = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          # > Our main nixos configuration file <
-          ./nixos/configuration.nix
-          ./nixos/loganthinkbook.nix
+          ./nixos/hosts/loganthinkbook.nix
+          ./nixos/hardware-configuration.nix
+          ./nixos/common.nix
+          ./nixos/hyprland.nix
+        ];
+      };
+      beccabook = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./nixos/hardware-configuration.nix
+          ./nixos/hosts/beccabook.nix
+          ./nixos/common.nix
+          #./nixos/games.nix
+          ./nixos/gnome.nix
           ./nixos/hyprland.nix
         ];
       };
