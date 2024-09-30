@@ -12,7 +12,7 @@
   boot = {
     plymouth = {
       enable = true;
-      theme = "hud_3";
+      theme = "bgrt";
       themePackages = with pkgs; [
         (adi1090x-plymouth-themes.override {
           selected_themes = ["hud_3"];
@@ -20,6 +20,7 @@
       ];
     };
     initrd.systemd.enable = true;
+    initrd.kernelModules = ["i915"];
     loader.systemd-boot = {
       editor = false;
       enable = true;
@@ -28,15 +29,17 @@
     initrd.verbose = false;
     kernelParams = [
       "quiet"
-      #"splash"
+      "splash"
       "boot.shell_on_fail"
+      "i915.fastboot=1"
       "loglevel=3"
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
       "udev.log_priority=3"
-      "logo.nologo"
-      "video=efifb:nobgrt"
-      "fbcon=nodefer"
+      "plymouth.use-simpledrm"
+      #"logo.nologo"
+      #"video=efifb:nobgrt"
+      #"fbcon=nodefer"
     ];
     loader.timeout = 0;
   };
