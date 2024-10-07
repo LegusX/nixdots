@@ -12,12 +12,16 @@
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    stylix.url = "github:danth/stylix";
+    nur.url = "github:nix-community/NUR";
   };
 
   outputs = {
     self,
     nixpkgs,
     home-manager,
+    stylix,
+    nur,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -58,6 +62,8 @@
           ./nixos/hardware-configuration.nix
           ./nixos/common.nix
           ./nixos/hyprland.nix
+          stylix.nixosModules.stylix
+          nur.nixosModules.nur
         ];
       };
       beccabook = nixpkgs.lib.nixosSystem {
@@ -69,6 +75,8 @@
           #./nixos/games.nix
           ./nixos/gnome.nix
           ./nixos/hyprland.nix
+          stylix.nixosModules.stylix
+          nur.nixosModules.nur
         ];
       };
     };

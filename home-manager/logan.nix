@@ -20,6 +20,7 @@
     # ./nvim.nix
     ./hyprland.nix
     ./zsh.nix
+    ./firefox.nix
   ];
 
   nixpkgs = {
