@@ -19,7 +19,7 @@
     brightnessctl
     hyprshot
     wofi
-    swaylock-effects
+    # swaylock-effects
     swww
     xdg-utils
     gnome.eog

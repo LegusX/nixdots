@@ -71,7 +71,7 @@
   programs.thunderbird = {
     enable = true;
     profiles = {
-      default  = {
+      default = {
         isDefault = true;
       };
     };
