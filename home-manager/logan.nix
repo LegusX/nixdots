@@ -76,13 +76,14 @@
   stylix = {
     enable = true;
     autoEnable = false;
-    #image = ../src/wallpapers/Dim_waneella.gif;
     polarity = "dark";
     opacity = {
       desktop = 0.3;
       terminal = 0.4;
+      popups = 0.3;
     };
     targets = {
+      avizo.enable = true;
       alacritty.enable = true;
       kitty.enable = true;
       btop.enable = true;

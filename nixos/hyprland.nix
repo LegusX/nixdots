@@ -48,12 +48,11 @@
     ];
   };
   programs.dconf.enable = true;
-  
+
   #make sure background is set
   system.userActivationScripts = {
     changeWallpaper.text = ''
       ${pkgs.swww}/bin/swww img ${config.services.gifWallpaper.gif}
     '';
   };
-
 }
