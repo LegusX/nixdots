@@ -52,6 +52,22 @@
     vscode-fhs
   ];
 
+  programs.helix = {
+    defaultEditor = true;
+    enable = true;
+    settings = {
+      theme = "base16_terminal";
+      editor = {
+        bufferline = "multiple";
+      };
+      keys.normal = {
+        space.space = "file_picker";
+        space.w = ":w";
+        space.q = ":q";
+      };
+    };
+  };
+
   home = {
     username = "logan";
     homeDirectory = "/home/logan";
@@ -62,26 +78,23 @@
     autoEnable = false;
     #image = ../src/wallpapers/Dim_waneella.gif;
     polarity = "dark";
-    opacity.terminal = 0.7;
+    opacity = {
+      desktop = 0.3;
+      terminal = 0.4;
+    };
     targets = {
+      alacritty.enable = true;
       kitty.enable = true;
       btop.enable = true;
       dunst.enable = true;
       firefox.enable = true;
       gnome.enable = true;
       gtk.enable = true;
-      helix.enable = true;
+      helix.enable = false;
       hyprland.enable = true;
       # hyprpaper.enable = true;
       # kde.enable = true;
       swaylock.enable = true;
-      swaylock.useImage = true;
-      # waybar = {
-      #   enable = true;
-      #   enableCenterBackColors = true;
-      #   enableLeftBackColors = true;
-      #   enableRightBackColors = true;
-      # };
       # #wofi.enable = true;
     };
 
@@ -95,7 +108,7 @@
         name = "Roboto";
       };
       monospace = {
-        package = (pkgs.nerdfonts.override {fonts = ["RobotoMono"];});
+        package = pkgs.nerdfonts.override {fonts = ["RobotoMono"];};
         name = "RobotoMono Nerd Font";
       };
       emoji = {

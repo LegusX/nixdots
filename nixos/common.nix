@@ -100,7 +100,7 @@
     clean.extraArgs = "--keep-since 4d --keep 3";
     flake = "/home/logan/.config/nixos-config";
   };
-  
+
   programs.zsh.enable = true;
   programs.mosh = {
     enable = true;

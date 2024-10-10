@@ -22,6 +22,7 @@
     swaylock-effects
     swww
     xdg-utils
+    gnome.eog
   ];
 
   security = {
@@ -35,6 +36,8 @@
       gnome-keyring.enable = true;
     };
   };
+
+  #xdg nonsense, I don't even know what parts of this are necessarry anymore
   xdg.autostart.enable = !config.services.xserver.desktopManager.gnome.enable;
   xdg.portal = {
     xdgOpenUsePortal = true;
@@ -45,4 +48,12 @@
     ];
   };
   programs.dconf.enable = true;
+  
+  #make sure background is set
+  system.userActivationScripts = {
+    changeWallpaper.text = ''
+      ${pkgs.swww}/bin/swww img ${config.services.gifWallpaper.gif}
+    '';
+  };
+
 }

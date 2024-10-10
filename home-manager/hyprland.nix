@@ -1,18 +1,15 @@
-{pkgs, config, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
     ./waybar.nix
   ];
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  #home.pointerCursor = {
-  #  gtk.enable = true;
-  #  package = pkgs.vimix-cursors;
-  #  name = "Vimix-cursors";
-  #  size = 12;
-  #};
-
   home.packages = with pkgs; [
-    kitty
+    # kitty
     cliphist
     waybar
     udiskie
@@ -20,6 +17,7 @@
     firefox
     udiskie
     wl-clipboard
+    alacritty
   ];
 
   services.avizo.enable = true;
@@ -100,7 +98,7 @@
 
       bind =
         [
-          "$mainMod, Q, exec, kitty -o allow_remote_control=yes"
+          "$mainMod, Q, exec, alacritty"
           "$mainMod, C, killactive"
           "$mainMod, M, exit"
           "$mainMod, E, exec, nautilus"

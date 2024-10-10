@@ -45,8 +45,6 @@
 
   stylix.enable = true;
   stylix.image = config.services.gifWallpaper.png;
-  environment.variables.SWWW_WALLPAPER = config.services.gifWallpaper.gif;
-  environment.variables.TESTING = "WHY DON'T YOU WORK";
 
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs;};

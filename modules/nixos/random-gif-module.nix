@@ -1,9 +1,11 @@
 # random-gif-module.nix
-{ lib, pkgs, config, ... }:
-
-with lib;
-
 {
+  lib,
+  pkgs,
+  config,
+  ...
+}:
+with lib; {
   options.services.gifWallpaper = {
     enable = mkOption {
       type = types.bool;
@@ -33,17 +35,15 @@ with lib;
     };
   };
 
-  config = let 
+  config = let
     outputDerivation = pkgs.callPackage ./gif-to-wallpaper.nix {
       inherit (config.services.gifWallpaper) dir random;
     };
-  in
-  {
+  in {
     services.gifWallpaper = {
       png = outputDerivation + "/output.png";
       gif = outputDerivation + "/random.gif";
     };
-
 
     # Set environment variable for the gif path
     environment.variables.GIF_PATH = "${outputDerivation}/random.gif";

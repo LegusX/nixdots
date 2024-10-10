@@ -21,11 +21,11 @@
 
   # Fonts
   # fonts.fontconfig = {
-    # enable = true;
-    # defaultFonts = {
-      # sansSerif = ["Roboto Mono"];
-     # monospace = ["RobotoMono Nerd Font"];
-    # };
+  # enable = true;
+  # defaultFonts = {
+  # sansSerif = ["Roboto Mono"];
+  # monospace = ["RobotoMono Nerd Font"];
+  # };
   # };
 
   home.file = {
