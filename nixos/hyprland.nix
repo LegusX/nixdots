@@ -1,13 +1,14 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }: {
   programs.hyprland.enable = true;
 
   environment.loginShellInit = ''
     if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-      exec dbus-launch Hyprland
+      exec dbus-run-session Hyprland
     fi
   '';
   environment.systemPackages = with pkgs; [
@@ -20,14 +21,8 @@
     wofi
     swaylock-effects
     swww
+    xdg-utils
   ];
-
-  #xdg.portal = {
-  #  enable = true;
-  #  extraPortals = with pkgs; [
-  #    xdg-desktop-portal-gtk
-  #  ];
-  #};
 
   security = {
     polkit.enable = true;
@@ -40,4 +35,14 @@
       gnome-keyring.enable = true;
     };
   };
+  xdg.autostart.enable = !config.services.xserver.desktopManager.gnome.enable;
+  xdg.portal = {
+    xdgOpenUsePortal = true;
+    enable = !config.services.xserver.desktopManager.gnome.enable;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
+    ];
+  };
+  programs.dconf.enable = true;
 }

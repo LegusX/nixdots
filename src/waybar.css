@@ -3,11 +3,10 @@
 window#waybar {
     /* background-color: alpha(@background, 0.6); */
     background-color: alpha(#fff, 0);
-    margin:3px;
+    padding:3px 10px;
 }
 
 #workspaces{
-    margin-top: 3px;
     margin-bottom: 2px;
     margin-right: 10px;
     margin-left: 25px;
@@ -45,7 +44,7 @@ window#waybar {
 #clock,
 .custom-spotify,
 #network {
-    background-color: alpha(@base01, 0.6);
+    background-color: alpha(@base01, 0.8);
     padding: 0px 10px;
     border-radius: 15px;
 }

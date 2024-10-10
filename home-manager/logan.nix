@@ -61,7 +61,7 @@
     enable = true;
     autoEnable = false;
     #image = ../src/wallpapers/Dim_waneella.gif;
-    polarity = "light";
+    polarity = "dark";
     opacity.terminal = 0.7;
     targets = {
       kitty.enable = true;

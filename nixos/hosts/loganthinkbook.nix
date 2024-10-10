@@ -32,6 +32,17 @@
     random = builtins.toString (builtins.getEnv "$RANDOM");
   };
 
+  xdg.autostart.enable = !config.services.xserver.desktopManager.gnome.enable;
+  xdg.portal = {
+    xdgOpenUsePortal = true;
+    enable = !config.services.xserver.desktopManager.gnome.enable;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
+    ];
+  };
+  programs.dconf.enable = true;
+
   stylix.enable = true;
   stylix.image = config.services.gifWallpaper.png;
   environment.variables.SWWW_WALLPAPER = config.services.gifWallpaper.gif;

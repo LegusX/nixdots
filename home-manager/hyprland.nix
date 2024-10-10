@@ -92,6 +92,10 @@
         workspace_swipe = "off";
       };
 
+      misc = {
+        focus_on_activate = true;
+      };
+
       "$mainMod" = "SUPER";
 
       bind =
