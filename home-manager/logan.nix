@@ -96,7 +96,7 @@
       # hyprpaper.enable = true;
       # kde.enable = true;
       swaylock.enable = true;
-      # #wofi.enable = true;
+      # wofi.enable = true;
     };
 
     fonts = {

@@ -20,14 +20,19 @@
     alacritty
   ];
 
-  services.avizo = {
+  # services.avizo = {
+  #   enable = true;
+  #   settings = {
+  #     default = {
+  #       time = 1.0;
+  #       height = 100;
+  #     };
+  #   };
+  # };
+
+  services.swayosd = {
     enable = true;
-    settings = {
-      default = {
-        time = 1.0;
-        height = 100;
-      };
-    };
+    topMargin = 0.9;
   };
 
   wayland.windowManager.hyprland = {
@@ -114,11 +119,11 @@
           "$mainMod, SPACE, exec, pkill wofi || wofi --show drun"
           "$mainMod, L, exec, swaylock --screenshots --effect-blur 20x2 --clock --indicator-thickness 5 --indicator"
           "SUPER_SHIFT, S, exec, hyprshot -m region --clipboard-only"
-          ", xf86monbrightnessup, exec, ${config.services.avizo.package}/bin/lightctl up"
-          ", xf86monbrightnessdown, exec, ${config.services.avizo.package}/bin/lightctl down"
-          ", xf86audioraisevolume, exec, ${config.services.avizo.package}/bin/volumectl -u up"
-          ", xf86audiolowervolume, exec, ${config.services.avizo.package}/bin/volumectl -u down"
-          ", xf86audiomute, exec, ${config.services.avizo.package}/bin/volumectl toggle-mute"
+          ", xf86monbrightnessup, exec, ${config.services.swayosd.package}/bin/swayosd-client --brightness raise"
+          ", xf86monbrightnessdown, exec, ${config.services.swayosd.package}/bin/swayosd-client --brightness lower"
+          ", xf86audioraisevolume, exec, ${config.services.swayosd.package}/bin/swayosd-client --output-volume raise"
+          ", xf86audiolowervolume, exec, ${config.services.swayosd.package}/bin/swayosd-client --output-volume lower"
+          ", xf86audiomute, exec, ${config.services.swayosd.package}/bin/swayosd-client --output-volume mute-toggle"
         ]
         ++ (
           builtins.concatLists (builtins.genList (
