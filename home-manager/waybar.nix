@@ -1,7 +1,48 @@
+{config, lib, pkgs, ...}:
+let
+  colorNames = [
+    "base00"
+    "base01"
+    "base02"
+    "base03"
+    "base04"
+    "base05"
+    "base06"
+    "base07"
+    "base08"
+    "base09"
+    "base0A"
+    "base0B"
+    "base0C"
+    "base0D"
+    "base0E"
+    "base0F"
+  ];
+  colors = config.lib.stylix.colors.withHashtag;
+  defineColor = name: value: "@define-color ${name} ${value};";
+  in
 {
   programs.waybar = {
     enable = true;
-    style = builtins.readFile ../src/waybar.css;
+        style = lib.strings.concatStringsSep "\n"
+      (
+        # Convert the colors attribute set to GTK color declarations
+        builtins.map (color: defineColor color colors.${color}) colorNames
+      )
+    +
+    # Append the main CSS file
+    (builtins.readFile ../src/waybar.css)
+    +
+    # Use monospace font
+    ''
+      /* Font family injected by Nix */
+      * {
+        font-family: ${config.stylix.fonts.monospace.name};
+        color: @base05;
+        font-size:13px;
+        min-height:0;
+      }
+    '';
     settings = {
       mainBar = {
         layer = "top";

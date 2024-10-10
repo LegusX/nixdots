@@ -20,13 +20,13 @@
   };
 
   # Fonts
-  fonts.fontconfig = {
-    enable = true;
-    defaultFonts = {
+  # fonts.fontconfig = {
+    # enable = true;
+    # defaultFonts = {
       # sansSerif = ["Roboto Mono"];
-      monospace = ["RobotoMono Nerd Font"];
-    };
-  };
+     # monospace = ["RobotoMono Nerd Font"];
+    # };
+  # };
 
   home.file = {
     ".p10k.zsh" = {

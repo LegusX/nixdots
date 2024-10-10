@@ -57,6 +57,59 @@
     homeDirectory = "/home/logan";
   };
 
+  stylix = {
+    enable = true;
+    autoEnable = false;
+    #image = ../src/wallpapers/Dim_waneella.gif;
+    polarity = "light";
+    opacity.terminal = 0.7;
+    targets = {
+      kitty.enable = true;
+      btop.enable = true;
+      dunst.enable = true;
+      firefox.enable = true;
+      gnome.enable = true;
+      gtk.enable = true;
+      helix.enable = true;
+      hyprland.enable = true;
+      # hyprpaper.enable = true;
+      # kde.enable = true;
+      swaylock.enable = true;
+      swaylock.useImage = true;
+      # waybar = {
+      #   enable = true;
+      #   enableCenterBackColors = true;
+      #   enableLeftBackColors = true;
+      #   enableRightBackColors = true;
+      # };
+      # #wofi.enable = true;
+    };
+
+    fonts = {
+      sansSerif = {
+        package = pkgs.roboto;
+        name = "Roboto";
+      };
+      serif = {
+        package = pkgs.roboto;
+        name = "Roboto";
+      };
+      monospace = {
+        package = (pkgs.nerdfonts.override {fonts = ["RobotoMono"];});
+        name = "RobotoMono Nerd Font";
+      };
+      emoji = {
+        package = pkgs.twitter-color-emoji;
+        name = "Twitter Color Emoji";
+      };
+    };
+    cursor = {
+      package = pkgs.vimix-cursors;
+      name = "Vimix-cursors";
+      size = 12;
+    };
+  };
+
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git.enable = true;

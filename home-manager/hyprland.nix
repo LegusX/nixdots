@@ -1,15 +1,15 @@
-{pkgs, ...}: {
+{pkgs, config, ...}: {
   imports = [
     ./waybar.nix
   ];
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  home.pointerCursor = {
-    gtk.enable = true;
-    package = pkgs.vimix-cursors;
-    name = "Vimix-cursors";
-    size = 12;
-  };
+  #home.pointerCursor = {
+  #  gtk.enable = true;
+  #  package = pkgs.vimix-cursors;
+  #  name = "Vimix-cursors";
+  #  size = 12;
+  #};
 
   home.packages = with pkgs; [
     kitty
@@ -22,13 +22,15 @@
     wl-clipboard
   ];
 
+  services.avizo.enable = true;
+
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
       monitor = ",preferred,auto,1";
 
       exec-once = [
-        "waybar & udiskie & swaync"
+        "waybar & udiskie & swaync & swww-daemon & sleep 3 && sww img ${builtins.getEnv "GIF_PATH"} --transition-type wipe &"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
       ];
@@ -102,6 +104,11 @@
           "$mainMod, SPACE, exec, pkill wofi || wofi --show drun"
           "$mainMod, L, exec, swaylock --screenshots --effect-blur 20x2 --clock --indicator-thickness 5 --indicator"
           "SUPER_SHIFT, S, exec, hyprshot -m region --clipboard-only"
+          ", xf86monbrightnessup, exec, brightnessctl set 10%+"
+          ", xf86monbrightnessdown, exec, brightnessctl set 10%-"
+          ", xf86audioraisevolume, exec, wpctl set-volume -l 1.0 @DEFAULT_SINK@ 5%+"
+          ", xf86audiolowervolume, exec, wpctl set-volume -l 1.0 @DEFAULT_SINK@ 5%-"
+          ", xf86audiomute, exec, wpctl set-mute @DEFAULT_SINK@ toggle"
         ]
         ++ (
           builtins.concatLists (builtins.genList (

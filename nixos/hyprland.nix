@@ -19,6 +19,7 @@
     hyprshot
     wofi
     swaylock-effects
+    swww
   ];
 
   #xdg.portal = {

@@ -2,10 +2,12 @@
   pkgs,
   inputs,
   outputs,
+  config,
   ...
 }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
+    outputs.nixosModules.gifWallpaper
   ];
 
   networking.hostName = "loganthinkbook";
@@ -23,6 +25,17 @@
       isNormalUser = true;
     };
   };
+
+  services.gifWallpaper = {
+    enable = true;
+    dir = ../../src/wallpapers;
+    random = builtins.toString (builtins.getEnv "$RANDOM");
+  };
+
+  stylix.enable = true;
+  stylix.image = config.services.gifWallpaper.png;
+  environment.variables.SWWW_WALLPAPER = config.services.gifWallpaper.gif;
+  environment.variables.TESTING = "WHY DON'T YOU WORK";
 
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs;};
