@@ -13,20 +13,20 @@
       test -f ~/.p10k.zsh && source ~/.p10k.zsh
     '';
     shellAliases = {
-      rebuild = "cd ~/.config/nixos-config && git add . && alejandra . && sudo nixos-rebuild switch --flake . && git commit";
+      rebuild = "cd ~/.config/nixos-config && git add . && alejandra . && nh os switch . && git commit";
       ls = "exa -hl";
       lsa = "exa -hal";
     };
   };
 
   # Fonts
-  fonts.fontconfig = {
-    enable = true;
-    defaultFonts = {
-      # sansSerif = ["Roboto Mono"];
-      monospace = ["RobotoMono Nerd Font"];
-    };
-  };
+  # fonts.fontconfig = {
+  # enable = true;
+  # defaultFonts = {
+  # sansSerif = ["Roboto Mono"];
+  # monospace = ["RobotoMono Nerd Font"];
+  # };
+  # };
 
   home.file = {
     ".p10k.zsh" = {

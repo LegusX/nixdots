@@ -1,18 +1,15 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
     ./waybar.nix
   ];
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  home.pointerCursor = {
-    gtk.enable = true;
-    package = pkgs.vimix-cursors;
-    name = "Vimix-cursors";
-    size = 12;
-  };
-
   home.packages = with pkgs; [
-    kitty
+    # kitty
     cliphist
     waybar
     udiskie
@@ -20,7 +17,28 @@
     firefox
     udiskie
     wl-clipboard
+    alacritty
   ];
+
+  # services.avizo = {
+  #   enable = true;
+  #   settings = {
+  #     default = {
+  #       time = 1.0;
+  #       height = 100;
+  #     };
+  #   };
+  # };
+
+  programs.swaylock = {
+    enable = true;
+    package = pkgs.swaylock-effects;
+  };
+
+  services.swayosd = {
+    enable = true;
+    topMargin = 0.9;
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -28,7 +46,7 @@
       monitor = ",preferred,auto,1";
 
       exec-once = [
-        "waybar & udiskie & swaync"
+        "swayosd-server & waybar & udiskie & swaync & swww-daemon & sleep 3 && sww img ${builtins.getEnv "GIF_PATH"} --transition-type wipe &"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
       ];
@@ -90,11 +108,15 @@
         workspace_swipe = "off";
       };
 
+      misc = {
+        focus_on_activate = true;
+      };
+
       "$mainMod" = "SUPER";
 
       bind =
         [
-          "$mainMod, Q, exec, kitty -o allow_remote_control=yes"
+          "$mainMod, Q, exec, alacritty"
           "$mainMod, C, killactive"
           "$mainMod, M, exit"
           "$mainMod, E, exec, nautilus"
@@ -102,6 +124,11 @@
           "$mainMod, SPACE, exec, pkill wofi || wofi --show drun"
           "$mainMod, L, exec, swaylock --screenshots --effect-blur 20x2 --clock --indicator-thickness 5 --indicator"
           "SUPER_SHIFT, S, exec, hyprshot -m region --clipboard-only"
+          ", xf86monbrightnessup, exec, ${config.services.swayosd.package}/bin/swayosd-client --brightness raise"
+          ", xf86monbrightnessdown, exec, ${config.services.swayosd.package}/bin/swayosd-client --brightness lower"
+          ", xf86audioraisevolume, exec, ${config.services.swayosd.package}/bin/swayosd-client --output-volume raise"
+          ", xf86audiolowervolume, exec, ${config.services.swayosd.package}/bin/swayosd-client --output-volume lower"
+          ", xf86audiomute, exec, ${config.services.swayosd.package}/bin/swayosd-client --output-volume mute-toggle"
         ]
         ++ (
           builtins.concatLists (builtins.genList (
