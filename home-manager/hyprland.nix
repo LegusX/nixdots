@@ -41,7 +41,7 @@
       monitor = ",preferred,auto,1";
 
       exec-once = [
-        "avizo-service & waybar & udiskie & swaync & swww-daemon & sleep 3 && sww img ${builtins.getEnv "GIF_PATH"} --transition-type wipe &"
+        "swayosd-server & waybar & udiskie & swaync & swww-daemon & sleep 3 && sww img ${builtins.getEnv "GIF_PATH"} --transition-type wipe &"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
       ];
