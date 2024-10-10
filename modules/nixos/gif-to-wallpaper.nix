@@ -21,8 +21,8 @@ pkgs.stdenv.mkDerivation {
       exit 1
     fi
     echo "Selected GIF file: $gifFile"
-    #gifFile=${dir}/Clouds.gif
-    gifFile=${dir}/Zephyr_waneella.gif
+    gifFile=${dir}/Clouds.gif
+    #gifFile=${dir}/Zephyr_waneella.gif
 
     echo "Converting $gifFile to PNG..."
     mkdir -p $out

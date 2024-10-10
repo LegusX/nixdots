@@ -23,6 +23,8 @@
     swww
     xdg-utils
     gnome.eog
+    overskride
+    networkmanagerapplet
   ];
 
   security = {

@@ -56,7 +56,7 @@
     defaultEditor = true;
     enable = true;
     settings = {
-      theme = "base16_terminal";
+      theme = "base16_default_dark";
       editor = {
         bufferline = "multiple";
       };
@@ -64,6 +64,15 @@
         space.space = "file_picker";
         space.w = ":w";
         space.q = ":q";
+      };
+    };
+  };
+
+  programs.thunderbird = {
+    enable = true;
+    profiles = {
+      default  = {
+        isDefault = true;
       };
     };
   };
