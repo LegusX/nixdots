@@ -7,7 +7,7 @@
 }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    outputs.nixosModules.gifWallpaper
+    # outputs.nixosModules.gifWallpaper
   ];
 
   networking.hostName = "loganthinkbook";
