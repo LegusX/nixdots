@@ -12,7 +12,7 @@
       };
 
       mounts = lib.mkOption {
-        type = with lib.types; list (attrsOf str);
+        type = lib.types.listOf (lib.types.attrsOf lib.types.str);
         description = "List of library mounts with source and target directories.";
         default = [
           {
@@ -23,12 +23,12 @@
         ];
       };
 
-      root = lib.mkOption {
-        type = lib.types.path;
-        description = "The root directory to link all the libraries into";
-        example = /opt/steam;
-        default = /opt/steam;
-      };
+      # root = lib.mkOption {
+      #   type = lib.types.path;
+      #   description = "The root directory to link all the libraries into";
+      #   example = /opt/steam;
+      #   default = /opt/steam;
+      # };
     };
   };
 
@@ -45,6 +45,7 @@
 
   config = let
     # Index the mounts in case the user doesn't supply names for the mounts
+    root = "/opt/steam";
     mounts = config.services.steamlibrary.mounts;
     indexedMounts = lib.genList (n: {
       index = n;
@@ -52,18 +53,21 @@
       label = mounts.${n}.label;
       dir = mounts.${n}.dirName;
     }) (lib.length mounts);
+    users = lib.strings.concatStringsSep ":" (lib.filter (name:
+    lib.hasAttr "home" config.users.users.${name} && config.users.users.${name}.home != null
+  ) (builtins.attrNames config.users.users));
   in
     lib.mkIf config.services.steamlibrary.enable {
       system.fsPackages = [
         pkgs.bindfs
       ];
-      systemd.tmpfiles.rules =
+      systemd.tmpfiles.rules = 
         map (
-          mount: "d ${config.services.steamlibrary.root}/${mount.dir} 0777 root root 0 -"
-        )
-        indexedMounts;
+            mount: "d ${root}/${mount.dirName} 0777 root root -"
+          )
+          config.services.steamlibrary.mounts;
       fileSystems = lib.listToAttrs (map (mount: {
-        name = "${config.services.steamlibrary.root}/${mount.name}";
+        name = "${root}/${mount.dirName}";
         value = {
           label = mount.label;
           device =
@@ -71,8 +75,8 @@
             then throw "steamlibrary.mounts.<mountname>.source must be defined!"
             else mount.source;
           fsType = "fuse.bindfs";
-          options = ["mirror" "perms=777" "x-gvfs-show" "nofail"];
+          options = ["perms=0777:+X" "mirror=${users}" "x-gvfs-show" "nofail"];
         };
-      }));
+      }) mounts);
     };
 }

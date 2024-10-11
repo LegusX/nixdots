@@ -18,7 +18,7 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
-    #./hyprland.nix
+    ./hyprland.nix
     ./gnome.nix
     ./firefox.nix
   ];

@@ -9,7 +9,7 @@
 
   environment.loginShellInit = ''
     if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-      exec dbus-run-session Hyprland
+      exec Hyprland
     fi
   '';
   environment.systemPackages = with pkgs; [
@@ -51,6 +51,8 @@
     ]);
   };
   programs.dconf.enable = true;
+  # Allows us to run hyprland without dbus-run-session and run steam I think
+  services.xserver.updateDbusEnvironment = true;
 
   #make sure background is set
   system.userActivationScripts = {
