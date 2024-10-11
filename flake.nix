@@ -60,7 +60,6 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/hosts/loganthinkbook.nix
-          ./nixos/hardware-configuration.nix
           ./nixos/common.nix
           ./nixos/hyprland.nix
           stylix.nixosModules.stylix
@@ -70,7 +69,6 @@
       beccabook = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./nixos/hardware-configuration.nix
           ./nixos/hosts/beccabook.nix
           ./nixos/common.nix
           #./nixos/games.nix
