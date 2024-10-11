@@ -103,10 +103,10 @@
   stylix = {
     enable = true;
     autoEnable = false;
+    targets.console.enable = true;
+    polarity = "dark";
     image = config.services.gifWallpaper.png;
   };
-
-  environment.variables.ALLOW_UNSAFE_NATIVE_CODE = 1;
 
   programs.nh = {
     enable = true;

@@ -4,19 +4,12 @@
   lib,
   ...
 }: {
-  imports = [
-    # outputs.modules.steamlibrary
-  ];
+  # imports = [
+  #   outputs.modules.steamlibrary
+  # ];
 
-  # Only enable if the system doesn't have a specific configuration set up
   # services.steamlibrary = lib.mkIf !services.steamlibrary.enable {
-  #   enable = true;
-  #   mounts = [
-  #     {
-  #       name = "Steam Library";
-  #       source =
-  #     }
-  #   ]
+  #   enable = false;
   # };
 
   programs.steam = {

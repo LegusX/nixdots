@@ -3,11 +3,11 @@
   inputs,
   outputs,
   config,
+  lib,
   ...
 }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    outputs.nixosModules.gifWallpaper
   ];
 
   networking.hostName = "loganthinkbook";
@@ -26,25 +26,16 @@
     };
   };
 
-  # services.gifWallpaper = {
-  #   enable = true;
-  #   dir = ../../src/wallpapers;
-  #   random = builtins.toString (builtins.getEnv "$RANDOM");
-  # };
-
-  xdg.autostart.enable = !config.services.xserver.desktopManager.gnome.enable;
+  xdg.autostart.enable = true;
   xdg.portal = {
     xdgOpenUsePortal = true;
-    enable = !config.services.xserver.desktopManager.gnome.enable;
-    extraPortals = with pkgs; [
+    enable = true;
+    extraPortals = lib.mkForce (with pkgs; [
       xdg-desktop-portal-gtk
       xdg-desktop-portal-hyprland
-    ];
+    ]);
   };
   programs.dconf.enable = true;
-
-  # stylix.enable = true;
-  # stylix.image = config.services.gifWallpaper.png;
 
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs;};
