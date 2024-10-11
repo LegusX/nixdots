@@ -4,13 +4,13 @@
   lib,
   ...
 }: {
-  # imports = [
-  #   outputs.modules.steamlibrary
-  # ];
+  imports = [
+    outputs.nixosModules.steamlibrary
+  ];
 
-  # services.steamlibrary = lib.mkIf !services.steamlibrary.enable {
-  #   enable = false;
-  # };
+  services.steamlibrary = {
+    enable = false;
+  };
 
   programs.steam = {
     enable = true;

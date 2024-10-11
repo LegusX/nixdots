@@ -14,7 +14,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix/release-24.05";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
-    nur.url = "github:nix-community/NUR";
   };
 
   outputs = {
@@ -62,8 +61,8 @@
           ./nixos/hosts/loganthinkbook.nix
           ./nixos/common.nix
           ./nixos/hyprland.nix
+          ./nixos/games.nix
           stylix.nixosModules.stylix
-          nur.nixosModules.nur
         ];
       };
       beccabook = nixpkgs.lib.nixosSystem {
@@ -75,7 +74,6 @@
           ./nixos/gnome.nix
           ./nixos/hyprland.nix
           stylix.nixosModules.stylix
-          nur.nixosModules.nur
         ];
       };
     };
