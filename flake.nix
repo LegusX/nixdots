@@ -14,7 +14,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix/release-24.05";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
-    nur.url = "github:nix-community/NUR";
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs"; 
   };
 
   outputs = {
@@ -22,7 +23,7 @@
     nixpkgs,
     home-manager,
     stylix,
-    nur,
+    disko,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -61,9 +62,9 @@
         modules = [
           ./nixos/hosts/loganthinkbook.nix
           ./nixos/common.nix
+          ./nixos/desktop-common.nix
           ./nixos/hyprland.nix
           stylix.nixosModules.stylix
-          nur.nixosModules.nur
         ];
       };
       beccabook = nixpkgs.lib.nixosSystem {
@@ -71,11 +72,19 @@
         modules = [
           ./nixos/hosts/beccabook.nix
           ./nixos/common.nix
+          ./nixos/desktop-common.nix
           #./nixos/games.nix
           ./nixos/gnome.nix
           ./nixos/hyprland.nix
           stylix.nixosModules.stylix
-          nur.nixosModules.nur
+        ];
+      };
+      oraclevps = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./nixos/hosts/vps.nix
+          ./nixos/common.nix
+          disko.nixosModules.nix
         ];
       };
     };

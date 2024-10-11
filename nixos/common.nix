@@ -69,20 +69,6 @@
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
-  # Networking
-  networking.networkmanager.enable = true;
-
-  # Sound
-  sound.enable = true;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-  hardware.pulseaudio.enable = false;
-
   environment.systemPackages = with pkgs; [
     btop
     wget
@@ -93,21 +79,6 @@
     git
   ];
 
-  # Theming
-  services.gifWallpaper = {
-    enable = true;
-    dir = ../src/wallpapers;
-    random = builtins.toString (builtins.getEnv "$RANDOM");
-  };
-
-  stylix = {
-    enable = true;
-    autoEnable = false;
-    image = config.services.gifWallpaper.png;
-  };
-
-  environment.variables.ALLOW_UNSAFE_NATIVE_CODE = 1;
-
   programs.nh = {
     enable = true;
     clean.enable = true;
@@ -116,10 +87,6 @@
   };
 
   programs.zsh.enable = true;
-  programs.mosh = {
-    enable = true;
-    openFirewall = true;
-  };
 
   home-manager.backupFileExtension = "backup";
 
@@ -132,7 +99,7 @@
       PermitRootLogin = "no";
       # Opinionated: use keys only.
       # Remove if you want to SSH using passwords
-      # PasswordAuthentication = false;
+      PasswordAuthentication = false;
     };
   };
 
