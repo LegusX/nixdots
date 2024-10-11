@@ -22,6 +22,7 @@
 
     # Import your generated (nixos-generate-config) hardware configuration
     inputs.home-manager.nixosModules.home-manager
+    outputs.nixosModules.gifWallpaper
   ];
 
   nixpkgs = {
@@ -91,6 +92,19 @@
     helix
     git
   ];
+
+  # Theming
+  services.gifWallpaper = {
+    enable = true;
+    dir = ../src/wallpapers;
+    random = builtins.toString (builtins.getEnv "$RANDOM");
+  };
+
+  stylix = {
+    enable = true;
+    autoEnable = false;
+    image = config.services.gifWallpaper.png;
+  };
 
   environment.variables.ALLOW_UNSAFE_NATIVE_CODE = 1;
 

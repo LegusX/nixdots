@@ -10,6 +10,9 @@
   ];
 
   boot = {
+    extraModprobeConfig = ''
+      options rtw88_pci disable_aspm=1
+    '';
     plymouth = {
       enable = true;
       theme = "hud_3";

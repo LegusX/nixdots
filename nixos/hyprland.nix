@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   config,
+  lib,
   ...
 }: {
   programs.hyprland.enable = true;
@@ -40,14 +41,14 @@
   };
 
   #xdg nonsense, I don't even know what parts of this are necessarry anymore
-  xdg.autostart.enable = !config.services.xserver.desktopManager.gnome.enable;
+  xdg.autostart.enable = true;
   xdg.portal = {
     xdgOpenUsePortal = true;
-    enable = !config.services.xserver.desktopManager.gnome.enable;
-    extraPortals = with pkgs; [
+    enable = true;
+    extraPortals = lib.mkForce (with pkgs; [
       xdg-desktop-portal-gtk
       xdg-desktop-portal-hyprland
-    ];
+    ]);
   };
   programs.dconf.enable = true;
 

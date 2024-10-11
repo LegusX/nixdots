@@ -26,11 +26,11 @@
     };
   };
 
-  services.gifWallpaper = {
-    enable = true;
-    dir = ../../src/wallpapers;
-    random = builtins.toString (builtins.getEnv "$RANDOM");
-  };
+  # services.gifWallpaper = {
+  #   enable = true;
+  #   dir = ../../src/wallpapers;
+  #   random = builtins.toString (builtins.getEnv "$RANDOM");
+  # };
 
   xdg.autostart.enable = !config.services.xserver.desktopManager.gnome.enable;
   xdg.portal = {
@@ -43,8 +43,8 @@
   };
   programs.dconf.enable = true;
 
-  stylix.enable = true;
-  stylix.image = config.services.gifWallpaper.png;
+  # stylix.enable = true;
+  # stylix.image = config.services.gifWallpaper.png;
 
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs;};
