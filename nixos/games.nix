@@ -10,6 +10,14 @@
 
   services.steamlibrary = {
     enable = false;
+    mounts = lib.mkDefault [
+      {
+        soruce = "/opt/steam/library";
+        dirName = "library";
+        label = "Steam Library";
+      }
+    ];
+    root = lib.mkDefault /opt/steam;
   };
 
   programs.steam = {

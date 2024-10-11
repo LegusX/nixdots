@@ -33,14 +33,14 @@
   };
 
   # assertions = [
-    # {
-    #   assertion = config.services.steamlibrary.enable && lib.length config.services.steamlibrary.mounts == 0;
-    #   message = "You must define at least one mount for steamlibrary to do anything.";
-    # }
-    # {
-    #   assertion = config.services.steamlibrary.enable && config.services.steamlibrary.root == undefined;
-    #   message = "You must define a root directory to link your libraries to.";
-    # }
+  # {
+  #   assertion = config.services.steamlibrary.enable && lib.length config.services.steamlibrary.mounts == 0;
+  #   message = "You must define at least one mount for steamlibrary to do anything.";
+  # }
+  # {
+  #   assertion = config.services.steamlibrary.enable && config.services.steamlibrary.root == undefined;
+  #   message = "You must define a root directory to link your libraries to.";
+  # }
   # ];
 
   config = let
