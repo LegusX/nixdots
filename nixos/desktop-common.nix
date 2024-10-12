@@ -5,6 +5,9 @@
   outputs,
   ...
 }: {
+  imports = [
+    outputs.nixosModules.gifWallpaper
+  ];
   # Networking
   networking.networkmanager.enable = true;
 

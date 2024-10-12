@@ -8,7 +8,7 @@
   ...
 }: {
   imports = [
-    imports.home-manager.nixosModules.home-manager
+    inputs.home-manager.nixosModules.home-manager
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
 

@@ -12,8 +12,12 @@
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Stylix
     stylix.url = "github:danth/stylix/release-24.05";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Disko
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs"; 
   };
@@ -84,7 +88,7 @@
         modules = [
           ./nixos/hosts/vps.nix
           ./nixos/common.nix
-          disko.nixosModules.nix
+          disko.nixosModules.disko
         ];
       };
     };

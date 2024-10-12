@@ -22,7 +22,6 @@
 
     # Import your generated (nixos-generate-config) hardware configuration
     inputs.home-manager.nixosModules.home-manager
-    outputs.nixosModules.gifWallpaper
   ];
 
   nixpkgs = {
