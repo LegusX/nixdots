@@ -5,14 +5,13 @@
   config,
   pkgs,
   ...
-}:
-{
+}: {
   imports = [
     ./hyprland.nix
     ./firefox.nix
     ./logan.nix
   ];
-  
+
   stylix = {
     enable = true;
     autoEnable = false;
@@ -63,7 +62,7 @@
       size = 12;
     };
   };
-  
+
   programs.thunderbird = {
     enable = true;
     profiles = {
@@ -72,11 +71,10 @@
       };
     };
   };
-  
+
   home.packages = with pkgs; [
     obsidian
     vscode-fhs
     spotify
   ];
-  
 }
