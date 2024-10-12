@@ -17,7 +17,7 @@
 
   time.timeZone = "America/New_York";
 
-  networking.hostName = "logan-vps";
+  networking.hostName = "oraclevps";
   users.users = {
     logan = {
       isNormalUser = true;
