@@ -68,6 +68,7 @@
           ./nixos/common.nix
           ./nixos/desktop-common.nix
           ./nixos/hyprland.nix
+          ./nixos/vpn.nix
           stylix.nixosModules.stylix
         ];
       };

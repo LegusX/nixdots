@@ -15,7 +15,7 @@
 
   networking.hostName = "loganthinkbook";
   networking.networkmanager.enable = true;
-  services.resolved.enable = true;
+  # services.resolved.enable = true;
 
   boot.loader.systemd-boot.enable = true;
   services.logind.lidSwitch = "hybrid-sleep";
