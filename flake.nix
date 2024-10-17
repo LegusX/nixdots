@@ -20,6 +20,9 @@
     # Disko
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+
+    # sops-nix
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs = {
@@ -28,6 +31,7 @@
     home-manager,
     stylix,
     disko,
+    sops-nix,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -70,6 +74,7 @@
           ./nixos/hyprland.nix
           ./nixos/vpn.nix
           stylix.nixosModules.stylix
+          sops-nix.nixosModules.sops
         ];
       };
       beccabook = nixpkgs.lib.nixosSystem {
@@ -82,6 +87,7 @@
           ./nixos/gnome.nix
           ./nixos/hyprland.nix
           stylix.nixosModules.stylix
+          sops-nix.nixosModules.sops
         ];
       };
       oraclevps = nixpkgs.lib.nixosSystem {
@@ -90,6 +96,7 @@
           ./nixos/hosts/vps.nix
           ./nixos/common.nix
           disko.nixosModules.disko
+          sops-nix.nixosModules.sops
         ];
       };
     };

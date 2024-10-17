@@ -76,6 +76,7 @@
     eza
     helix
     git
+    sops
   ];
 
   programs.nh = {
