@@ -40,6 +40,27 @@
 
   programs.zsh.enable = true;
 
+  # sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key"];
+  sops = {
+    defaultSopsFile = "../../secrets.yaml";
+    age = {
+      sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      keyFile = "/var/lib/sops-nix/key.txt";
+      generateKey = true;
+    };
+    # secrets
+  };
+
+  services.cloudflared = {
+    enable = true;
+    tunnels = {
+      "2165eb5d-35f7-4986-8fb7-59a51c18efa0" = {
+        credentialsFile = "${sops.secrets.cloudflare.path}";
+        default = "http_status:404";
+      };
+    };
+  };
+
   # Disk formatting
   disko.devices = {
     disk = {
