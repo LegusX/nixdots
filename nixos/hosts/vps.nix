@@ -44,22 +44,48 @@
   sops = {
     defaultSopsFile = "../../secrets.yaml";
     age = {
-      sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
       keyFile = "/var/lib/sops-nix/key.txt";
       generateKey = true;
     };
-    # secrets
-  };
-
-  services.cloudflared = {
-    enable = true;
-    tunnels = {
-      "2165eb5d-35f7-4986-8fb7-59a51c18efa0" = {
-        credentialsFile = "${sops.secrets.cloudflare.path}";
-        default = "http_status:404";
-      };
+    secrets = {
+      # cloudflare = {};
+      nextcloud-admin = {};
     };
   };
+
+  services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
+    forceSSL = true;
+    enableACME = true;
+  };
+
+  security.acme = {
+    acceptTerms = true;
+    certs = {
+      ${config.services.nextcloud.hostName}.email = "logan@legusx.dev";
+    };
+  };
+
+  services.nextcloud = {
+    enable = true;
+    hostName = "cloud.legusx.dev";
+    config.adminpassFile = "${config.sops.nextcloud-admin.path}";
+    package = pkgs.nextcloud30;
+    extraApps = {
+      inherit (config.services.nextcloud.package.packages.apps) contacts calendar tasks;
+    };
+    extraAppsEnable = true;
+  };
+
+  # services.cloudflared = {
+  #   enable = true;
+  #   tunnels = {
+  #     "2165eb5d-35f7-4986-8fb7-59a51c18efa0" = {
+  #       credentialsFile = "${sops.secrets.cloudflare.path}";
+  #       default = "http_status:404";
+  #     };
+  #   };
+  # };
 
   # Disk formatting
   disko.devices = {
