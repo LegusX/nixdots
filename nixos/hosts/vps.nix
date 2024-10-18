@@ -54,9 +54,14 @@
     };
   };
 
-  services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
-    forceSSL = true;
-    enableACME = true;
+  networking.firewall.allowedTCPPorts = [443];
+
+  services.nginx = {
+    enable = true;
+    virtualHosts.${config.services.nextcloud.hostName} = {
+      forceSSL = true;
+      enableACME = true;
+    };
   };
 
   security.acme = {
@@ -69,8 +74,21 @@
   services.nextcloud = {
     enable = true;
     hostName = "cloud.legusx.dev";
-    config.adminpassFile = "${config.sops.secrets.nextcloud-admin.path}";
     package = pkgs.nextcloud29;
+
+    database.createLocally = true;
+    maxUploadSize = "16G";
+    https = true;
+    enableBrokenCiphersForSSE = false;
+    
+    config = {
+      overwriteProtocol = "https";
+      dbtype = "pgsql";
+      adminpassFile = "${config.sops.secrets.nextcloud-admin.path}";
+      adminUser = "admin";
+    };
+    
+    autoUpdateApps.enable = true;
     extraApps = {
       inherit (config.services.nextcloud.package.packages.apps) contacts calendar tasks;
     };
