@@ -50,7 +50,10 @@
     };
     secrets = {
       # cloudflare = {};
-      nextcloud-admin = {};
+      nextcloud-admin = {
+        owner = "nextcloud";
+        group = "nextcloud";
+      };
     };
   };
 
