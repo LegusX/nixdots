@@ -78,7 +78,7 @@
   };
 
   systemd.services.nextcloud-setup.serviceConfig = {
-    RequiresMountsFor = [ "/var/lib/nextcloud" ];
+    RequiresMountsFor = ["/var/lib/nextcloud"];
   };
 
   # services.cloudflared = {
