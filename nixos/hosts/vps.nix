@@ -77,6 +77,10 @@
     extraAppsEnable = true;
   };
 
+  systemd.services.nextcloud-setup.serviceConfig = {
+    RequiresMountsFor = [ "/var/lib/nextcloud" ];
+  };
+
   # services.cloudflared = {
   #   enable = true;
   #   tunnels = {
