@@ -79,7 +79,6 @@
     database.createLocally = true;
     maxUploadSize = "16G";
     https = true;
-    enableBrokenCiphersForSSE = false;
     
     config = {
       overwriteProtocol = "https";
