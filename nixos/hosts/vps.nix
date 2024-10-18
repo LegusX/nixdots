@@ -85,7 +85,7 @@
       overwriteProtocol = "https";
       dbtype = "pgsql";
       adminpassFile = "${config.sops.secrets.nextcloud-admin.path}";
-      adminUser = "admin";
+      adminuser = "admin";
     };
     
     autoUpdateApps.enable = true;
