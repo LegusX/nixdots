@@ -79,13 +79,13 @@
     hostName = "cloud.legusx.dev";
     package = pkgs.nextcloud29;
 
-    database.createLocally = true;
+    # database.createLocally = true;
     maxUploadSize = "16G";
     https = true;
     
     config = {
       overwriteProtocol = "https";
-      dbtype = "pgsql";
+      # dbtype = "pgsql";
       adminpassFile = "${config.sops.secrets.nextcloud-admin.path}";
       adminuser = "admin";
     };
@@ -97,9 +97,9 @@
     extraAppsEnable = true;
   };
 
-  systemd.services.nextcloud-setup.serviceConfig = {
-    RequiresMountsFor = ["/var/lib/nextcloud"];
-  };
+  # systemd.services.nextcloud-setup.serviceConfig = {
+  #   RequiresMountsFor = ["/var/lib/nextcloud"];
+  # };
 
   # services.cloudflared = {
   #   enable = true;
