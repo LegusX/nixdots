@@ -1,0 +1,156 @@
+hash-format = "sha256"
+
+[[files]]
+file = "mods/almanac-lib.pw.toml"
+hash = "605ef8bb0533a72740dc3b5346908567dd2ce0539fe8a39e7dbcc7959e700797"
+metafile = true
+
+[[files]]
+file = "mods/alternate-current.pw.toml"
+hash = "ac3444154dfbd155eaa377eb00fdab860d7436249f73a9ef29acf7d4fb3c38d7"
+metafile = true
+
+[[files]]
+file = "mods/balm.pw.toml"
+hash = "966f995d81b792ae424ece87b1c1697bd976616f3580e4bb3f6c328de836b7e2"
+metafile = true
+
+[[files]]
+file = "mods/better-stats.pw.toml"
+hash = "941bf61ed32600eefffb76356799bbb7cd1a3d1775a6f478cb69657fc8bcccc5"
+metafile = true
+
+[[files]]
+file = "mods/c2me-fabric.pw.toml"
+hash = "14d029327cc236a0b107c2a0db42248170543f78445ee40cbab3a11d1c75d54c"
+metafile = true
+
+[[files]]
+file = "mods/chunky.pw.toml"
+hash = "8383ab78f5fb08bb0793b6ec4b66807a456bab571aea63699e614a09601de22a"
+metafile = true
+
+[[files]]
+file = "mods/cloth-config.pw.toml"
+hash = "cfc2c53b0d3cee953b423fe9abf210d87281d5bf774dab20cf03abe6224a9883"
+metafile = true
+
+[[files]]
+file = "mods/collective.pw.toml"
+hash = "901e954cfcd2fcb7928b95959c7688fa0b210c6ad67d0f3f2f7e54ee939c839c"
+metafile = true
+
+[[files]]
+file = "mods/debugify.pw.toml"
+hash = "24025ba601cfb851ede832821ab4d26dfe168db61f3c63e0b3fd2820176fb40c"
+metafile = true
+
+[[files]]
+file = "mods/fabric-api.pw.toml"
+hash = "4f98c68b1de3837e8e7c519dfffc8c2b312768c69f804540334cc3f20714f7f6"
+metafile = true
+
+[[files]]
+file = "mods/ferrite-core.pw.toml"
+hash = "078c828454d8a361baae372b5ee3dc33e5f3573fa19bdac8589b38da9dbc5c03"
+metafile = true
+
+[[files]]
+file = "mods/floodgate.pw.toml"
+hash = "ee7660b0580e7920853ef8f0518144cb497e62c6674d8b0021e210b80553f565"
+metafile = true
+
+[[files]]
+file = "mods/geyser.pw.toml"
+hash = "c0600d6bf65a9f19849653fae3e009832d6bfdd84cc7fa4de052029b85ca0ecc"
+metafile = true
+
+[[files]]
+file = "mods/lithium.pw.toml"
+hash = "fd902023333e13ae8e97a2a85d8732d6e60bc5479274d2308193c469d995fb84"
+metafile = true
+
+[[files]]
+file = "mods/lmd.pw.toml"
+hash = "64663662bd3ff0462976b3d8f6bc9b2fbef47ad4050e9731e877a552d1b76d84"
+metafile = true
+
+[[files]]
+file = "mods/modernfix.pw.toml"
+hash = "8db4414ae685883aaa38fba9d9412962338585c231b20b1770b20a119a0d5ba6"
+metafile = true
+
+[[files]]
+file = "mods/netherportalfix.pw.toml"
+hash = "68df9a2e507a6bba70f999042e5bec064b6ebae992f8620e7f19082e08b6cc9c"
+metafile = true
+
+[[files]]
+file = "mods/noisium.pw.toml"
+hash = "85984b4af80646c0d92388512daeb1ef5404ec76b83fd0958103b3b38e98fff1"
+metafile = true
+
+[[files]]
+file = "mods/scalablelux.pw.toml"
+hash = "c456b8055d6c39599b74d1ef518cd83892b3055bd283fc0aae78cf6899f5f146"
+metafile = true
+
+[[files]]
+file = "mods/softer-hay-bales.pw.toml"
+hash = "5d54a91ff470bedd2ffbafbc9a666971fc80fc3f9166316a2257b2274d42e02d"
+metafile = true
+
+[[files]]
+file = "mods/sswaystones.pw.toml"
+hash = "1a7e3199a1e72bcd22564cb66043e91bf476278a31a34fe4169d296472d8d939"
+metafile = true
+
+[[files]]
+file = "mods/tabtps.pw.toml"
+hash = "1925f5c76ce8bf52f3a2c9a7e331fdefa283f7719243ad8ed2d1135686508164"
+metafile = true
+
+[[files]]
+file = "mods/tcdcommons.pw.toml"
+hash = "a07734892496719d75a5ad73a8d53950469ffa2348df1aac07a75a6c304271a6"
+metafile = true
+
+[[files]]
+file = "mods/terralith.pw.toml"
+hash = "a0c0b9aa847a1cb324505849c531c967ac952985668f18b616326a504cbb04c8"
+metafile = true
+
+[[files]]
+file = "mods/underground-bunkers.pw.toml"
+hash = "52df39688e77ea72a5388470407b5e4af60b5e1513f196c349e46df528fbdff8"
+metafile = true
+
+[[files]]
+file = "mods/unloaded-activity.pw.toml"
+hash = "97d0d96c56f4a24e7cf90fa9872bbfc118eb4d96cc0342c28da84a9d15f1d7b1"
+metafile = true
+
+[[files]]
+file = "mods/when-dungeons-arise.pw.toml"
+hash = "29a5b8f25ad1a97ae38eae367933b03c85642327a4227ae24b36e830a8babcbd"
+metafile = true
+
+[[files]]
+file = "mods/yacl.pw.toml"
+hash = "6a22d14251ccfb61007da299c1040bcb3904bd0cc43e5d1ba96536b94ed43036"
+metafile = true
+
+[[files]]
+file = "mods/your-items-are-safe.pw.toml"
+hash = "c715c4514cb499d25edd003f3db355a4a1502170aa3384157b4116c416c4e67d"
+metafile = true
+
+[[files]]
+file = "mods/yungs-api.pw.toml"
+hash = "0f7c52ae7170bf098875bc304ec16068f74e94143f07b0d9d3726e6bb9c73eb3"
+metafile = true
+
+[[files]]
+file = "mods/yungs-bridges.pw.toml"
+hash = "c97d15447c8ba815d516a4e7c4815b885273bf074e0d9ab7fe2106293e3bc689"
+metafile = true

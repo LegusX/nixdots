@@ -1,0 +1,13 @@
+name = "Family"
+author = "Logan"
+version = "0.0.1"
+pack-format = "packwiz:1.1.0"
+
+[index]
+file = "index.toml"
+hash-format = "sha256"
+hash = "dce169f5c84cfae269f5a729a3a858edf6245620710be69f449892c7fa115dea"
+
+[versions]
+fabric = "0.16.7"
+minecraft = "1.21.1"

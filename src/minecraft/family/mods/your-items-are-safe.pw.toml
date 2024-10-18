@@ -1,0 +1,13 @@
+name = "Your Items Are Safe"
+filename = "youritemsaresafe-1.21.1-4.5.jar"
+side = "server"
+
+[download]
+url = "https://cdn.modrinth.com/data/lL35xmSR/versions/nUmtbOqG/youritemsaresafe-1.21.1-4.5.jar"
+hash-format = "sha1"
+hash = "d268f41355d97632f49daaf45739ece6b8142b0c"
+
+[update]
+[update.modrinth]
+mod-id = "lL35xmSR"
+version = "nUmtbOqG"
