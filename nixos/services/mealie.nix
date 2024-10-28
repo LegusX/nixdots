@@ -1,7 +1,7 @@
 {config, ...}: {
   sops.secrets = {
-    mealie_smtp_user = {};
-    mealie_smtp_pass = {};
+    "mealie/smtp_user" = {};
+    "mealie/smtp_pass" = {};
   };
   
 
