@@ -25,7 +25,7 @@
     };
   };
 
-  services.nginx."mealie.legusx.dev" = {
+  services.nginx.virtualHosts."mealie.legusx.dev" = {
     forceSSL = true;
     enableACME = true;
     locations."/" = {
