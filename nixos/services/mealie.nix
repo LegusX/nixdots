@@ -8,9 +8,10 @@
       MAX_WORKERS = "1";
       TZ = config.time.timeZone;
       BASE_URL = "https://mealie.legusx.dev";
-      DB_ENGINE = "postgres";
-      # Connect to pg over unix socket
-      POSTGRES_URL_OVERRIDE = "postgresql://mealie:@/mealie?host=/run/postgresql";
+      # Can't make postgres work
+      # DB_ENGINE = "postgres"; 
+      # # Connect to pg over unix socket
+      # POSTGRES_URL_OVERRIDE = "postgresql://mealie:@/mealie?host=/run/postgresql";
     };
   };
 
@@ -21,22 +22,22 @@
       proxyPass = "http://127.0.0.1:${builtins.toString config.services.mealie.port}";
     };
   };
+  # Can't make postgres work
+  # systemd.services = {
+  #   mealie = {
+  #     after = [ "postgresql.service" ];
+  #     requires = [ "postgresql.service" ];
+  #   };
+  # };
 
-  systemd.services = {
-    mealie = {
-      after = [ "postgresql.service" ];
-      requires = [ "postgresql.service" ];
-    };
-  };
-
-  services.postgresql = {
-    enable = true;
-    ensureDatabases = ["mealie"];
-    ensureUsers = [
-      {
-        name = "mealie";
-        ensureDBOwnership = true;
-      }
-    ];
-  };
+  # services.postgresql = {
+  #   enable = true;
+  #   ensureDatabases = ["mealie"];
+  #   ensureUsers = [
+  #     {
+  #       name = "mealie";
+  #       ensureDBOwnership = true;
+  #     }
+  #   ];
+  # };
 }
