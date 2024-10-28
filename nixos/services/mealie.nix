@@ -15,9 +15,9 @@
       SMTP_HOST = "smtp.gmail.com";
       
       # Can't make postgres work
-      # DB_ENGINE = "postgres"; 
-      # # Connect to pg over unix socket
-      # POSTGRES_URL_OVERRIDE = "postgresql://mealie:@/mealie?host=/run/postgresql";
+      DB_ENGINE = "postgres"; 
+      # Connect to pg over unix socket
+      POSTGRES_URL_OVERRIDE = "postgresql://mealie:@/mealie?host=/run/postgresql";
     };
   };
 
@@ -43,7 +43,7 @@
     };
   };
 
-  services.postgresql.enable = true;
+  # services.postgresql.enable = true;
 
   services.keycloak = {
     enable = true;
@@ -66,21 +66,21 @@
   };
 
   # Can't make postgres work
-  # systemd.services = {
-  #   mealie = {
-  #     after = [ "postgresql.service" ];
-  #     requires = [ "postgresql.service" ];
-  #   };
-  # };
+  systemd.services = {
+    mealie = {
+      after = [ "postgresql.service" ];
+      requires = [ "postgresql.service" ];
+    };
+  };
 
-  # services.postgresql = {
-  #   enable = true;
-  #   ensureDatabases = ["mealie"];
-  #   ensureUsers = [
-  #     {
-  #       name = "mealie";
-  #       ensureDBOwnership = true;
-  #     }
-  #   ];
-  # };
+  services.postgresql = {
+    enable = true;
+    ensureDatabases = ["mealie"];
+    ensureUsers = [
+      {
+        name = "mealie";
+        ensureDBOwnership = true;
+      }
+    ];
+  };
 }
