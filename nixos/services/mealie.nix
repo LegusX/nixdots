@@ -18,8 +18,9 @@
   services.nginx.virtualHosts."mealie.legusx.dev" = {
     forceSSL = true;
     enableACME = true;
+    serverAliases = ["mealie.legusx.dev"];
     locations."/" = {
-      proxyPass = "http://127.0.0.1:${builtins.toString config.services.mealie.port}";
+      proxyPass = "http://localhost:${builtins.toString config.services.mealie.port}";
     };
   };
   # Can't make postgres work
