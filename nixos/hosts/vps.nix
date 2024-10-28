@@ -40,7 +40,6 @@
 
   programs.zsh.enable = true;
 
-  # sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key"];
   sops = {
     defaultSopsFile = ../../secrets.yaml;
     age = {
@@ -48,58 +47,16 @@
       keyFile = "/var/lib/sops-nix/key.txt";
       generateKey = true;
     };
-    secrets = {
-      # cloudflare = {};
-      nextcloud-admin = {
-        owner = "nextcloud";
-        group = "nextcloud";
-      };
-    };
   };
 
   networking.firewall.allowedTCPPorts = [80 443];
 
-  services.nginx = {
-    enable = true;
-    virtualHosts.${config.services.nextcloud.hostName} = {
-      forceSSL = true;
-      enableACME = true;
-    };
-  };
+  services.nginx.enable = true;
 
   security.acme = {
     acceptTerms = true;
-    certs = {
-      ${config.services.nextcloud.hostName}.email = "logan@legusx.dev";
-    };
+    email = "logan@legusx.dev";
   };
-
-  services.nextcloud = {
-    enable = true;
-    hostName = "cloud.legusx.dev";
-    package = pkgs.nextcloud29;
-
-    # database.createLocally = true;
-    maxUploadSize = "16G";
-    https = true;
-    
-    config = {
-      overwriteProtocol = "https";
-      # dbtype = "pgsql";
-      adminpassFile = "${config.sops.secrets.nextcloud-admin.path}";
-      adminuser = "admin";
-    };
-    
-    autoUpdateApps.enable = true;
-    extraApps = {
-      inherit (config.services.nextcloud.package.packages.apps) contacts calendar tasks;
-    };
-    extraAppsEnable = true;
-  };
-
-  # systemd.services.nextcloud-setup.serviceConfig = {
-  #   RequiresMountsFor = ["/var/lib/nextcloud"];
-  # };
 
   # services.cloudflared = {
   #   enable = true;

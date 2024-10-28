@@ -95,6 +95,8 @@
         modules = [
           ./nixos/hosts/vps.nix
           ./nixos/common.nix
+          ./nixos/services/mealie.nix
+          ./nixos/services/nextcloud.nix
           disko.nixosModules.disko
           sops-nix.nixosModules.sops
         ];
