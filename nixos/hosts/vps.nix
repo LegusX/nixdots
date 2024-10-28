@@ -48,6 +48,9 @@
       generateKey = true;
     };
   };
+  sops.secrets."mealie/smtp_user" = {};
+  sops.secrets."mealie/smtp_pass" = {};
+
 
   networking.firewall.allowedTCPPorts = [80 443];
 
