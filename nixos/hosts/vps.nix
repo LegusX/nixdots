@@ -55,7 +55,7 @@
 
   security.acme = {
     acceptTerms = true;
-    email = "logan@legusx.dev";
+    defaults.email = "logan@legusx.dev";
   };
 
   # services.cloudflared = {

@@ -4,7 +4,7 @@
     enable = true;
     port = 9000;
     credentialsFile = config.sops.templates."mealie.env".path;
-    package = pkgs.unstable.mealie;
+    # package = pkgs.unstable.mealie;
     settings = {
       ALLOW_SIGNUP = "false";
       MAX_WORKERS = "1";
