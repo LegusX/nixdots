@@ -1,7 +1,7 @@
 {config, ...}: {
-  sops.secrets.mealie = {
-    smtp_user = {};
-    smtp_pass = {};
+  sops.secrets = {
+    mealie_smtp_user = {};
+    mealie_smtp_pass = {};
   };
   
 
@@ -23,9 +23,9 @@
       SMTP_PORT = 587;
       SMTP_FROM_NAME = "Mealie";
       SMTP_AUTH_STRATEGY = "SSL";
-      SMTP_FROM_EMAIL = config.sops.secrets.mealie.smtp_user;
-      SMTP_USER = config.sops.secrets.mealie.smtp_user;
-      SMTP_PASSWORD = config.sops.secrets.mealie.smtp_pass;
+      SMTP_FROM_EMAIL = config.sops.secrets.mealie_smtp_user;
+      SMTP_USER = config.sops.secrets.mealie_smtp_user;
+      SMTP_PASSWORD = config.sops.secrets.mealie_smtp_pass;
     };
   };
 
