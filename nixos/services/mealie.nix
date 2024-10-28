@@ -1,5 +1,9 @@
 {config, ...}: {
-  sops.secrets.mealie = {};
+  sops.secrets.mealie = {
+    smtp_user = {};
+    smtp_pass = {};
+  };
+  
 
   services.mealie = {
     enable = true;
