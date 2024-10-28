@@ -22,8 +22,8 @@
     maxUploadSize = "16G";
     https = true;
 
-    settings = {
-      overwriteProtocol = "https";
+    settings.overwriteProtocol = "https";
+    config = {
       # dbtype = "pgsql";
       adminpassFile = "${config.sops.secrets.nextcloud-admin.path}";
       adminuser = "admin";
