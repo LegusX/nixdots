@@ -15,9 +15,9 @@
       SMTP_HOST = "smtp.gmail.com";
       
       # Can't make postgres work
-      DB_ENGINE = "postgres"; 
+      # DB_ENGINE = "postgres"; 
       # Connect to pg over unix socket
-      POSTGRES_URL_OVERRIDE = "postgresql://mealie:@/mealie?host=/run/postgresql";
+      # POSTGRES_URL_OVERRIDE = "postgresql://mealie:@/mealie?host=/run/postgresql";
     };
   };
 
