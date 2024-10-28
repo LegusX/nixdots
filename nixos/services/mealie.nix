@@ -1,10 +1,7 @@
 {config, ...}: {
-  sops.secrets = {
-    "mealie/smtp_user" = {};
-    "mealie/smtp_pass" = {};
-  };
+  sops.secrets."mealie/smtp_user" = {};
+  sops.secrets."mealie/smtp_pass" = {};
   
-
   services.mealie = {
     enable = true;
     port = 9000;
