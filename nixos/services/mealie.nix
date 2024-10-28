@@ -45,25 +45,25 @@
 
   # services.postgresql.enable = true;
 
-  services.keycloak = {
-    enable = true;
+  # services.keycloak = {
+  #   enable = true;
 
-    database = {
-      type = "postgresql";
-      createLocally = true;
+  #   database = {
+  #     type = "postgresql";
+  #     createLocally = true;
 
-      username = "keycloak";
-      passwordFile = "${config.sops.secrets.keycloak.path}";
-    };
+  #     username = "keycloak";
+  #     passwordFile = "${config.sops.secrets.keycloak.path}";
+  #   };
 
-    settings = {
-      hostname = "mealie.legusx.dev";
-      http-relative-path = "/cloak";
-      http-port = 38080;
-      proxy = "passthrough";
-      http-enabled = true;
-    };
-  };
+  #   settings = {
+  #     hostname = "mealie.legusx.dev";
+  #     http-relative-path = "/cloak";
+  #     http-port = 38080;
+  #     proxy = "passthrough";
+  #     http-enabled = true;
+  #   };
+  # };
 
   # Can't make postgres work
   systemd.services = {
