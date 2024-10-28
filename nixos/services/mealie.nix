@@ -24,6 +24,7 @@
   sops = {
     secrets."mealie/smtp_pass" = {};
     secrets."mealie/smtp_user" = {};
+    secrets.keycloak = {};
     templates."mealie.env".content = ''
       Environment=SMTP_USER=${config.sops.placeholder."mealie/smtp_user"} SMTP_FROM_EMAIL=${config.sops.placeholder."mealie/smtp_user"} SMTP_PASSWORD=${config.sops.placeholder."mealie/smtp_pass"}
     '';
