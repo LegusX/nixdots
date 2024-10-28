@@ -22,6 +22,13 @@
     };
   };
 
+  systemd.services = {
+    mealie = {
+      after = [ "postgresql.service" ];
+      requires = [ "postgresql.service" ];
+    };
+  };
+
   services.postgresql = {
     enable = true;
     ensureDatabases = ["mealie"];
