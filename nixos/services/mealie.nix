@@ -29,7 +29,7 @@
     forceSSL = true;
     enableACME = true;
     locations."/" = {
-      proxyPass = "http://127.0.0.1:${config.services.mealie.port}";
+      proxyPass = "http://127.0.0.1:${builtins.toString config.services.mealie.port}";
     };
   };
 
