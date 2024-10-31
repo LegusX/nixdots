@@ -14,7 +14,7 @@
       # SMTP Setup
       SMTP_HOST = "smtp.gmail.com";
 
-      ALEMBIC_CONFIG_PATH = "${config.services.mealie.package}/alembic.ini";
+      ALEMBIC_CONFIG_FILE = "${config.services.mealie.package}/alembic.ini";
       
       # Can't make postgres work
       # DB_ENGINE = "postgres"; 
