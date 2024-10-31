@@ -4,7 +4,7 @@
     enable = true;
     port = 9000;
     credentialsFile = config.sops.templates."mealie.env".path;
-    # package = pkgs.unstable.mealie;
+    package = pkgs.unstable.mealie;
     settings = {
       ALLOW_SIGNUP = "false";
       MAX_WORKERS = "1";
@@ -13,6 +13,8 @@
 
       # SMTP Setup
       SMTP_HOST = "smtp.gmail.com";
+
+      ALEMBIC_CONFIG_PATH = "${config.services.mealie.package}/alembic.ini";
       
       # Can't make postgres work
       # DB_ENGINE = "postgres"; 
