@@ -67,6 +67,9 @@
   gtk.theme.package = pkgs.kanagawa-gtk-theme;
   gtk.theme.name = "Kanagawa-BL";
 
+  gtk.iconTheme.package = pkgs.kanagawa-icon-theme;
+  gtk.iconTheme.name = "Kanagawa";
+
   programs.thunderbird = {
     enable = true;
     profiles = {
