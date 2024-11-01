@@ -15,6 +15,7 @@
   stylix = {
     enable = true;
     autoEnable = false;
+    base16Scheme = ../src/kanagawa.yaml;
     polarity = "dark";
     opacity = {
       desktop = 0.3;
@@ -28,8 +29,8 @@
       btop.enable = true;
       dunst.enable = true;
       firefox.enable = true;
-      gnome.enable = true;
-      gtk.enable = true;
+      # gnome.enable = true;
+      # gtk.enable = true;
       helix.enable = false;
       hyprland.enable = true;
       # hyprpaper.enable = true;
@@ -62,6 +63,9 @@
       size = 12;
     };
   };
+
+  gtk.theme.package = pkgs.kanagawa-gtk-theme;
+  gtk.theme.name = "Kanagawa-BL";
 
   programs.thunderbird = {
     enable = true;

@@ -53,7 +53,7 @@
           on-timeout = "swaylock --screenshots --effect-blur 20x2 --clock --indicator-thickness 5 --indicator";
         }
         {
-          timeout = 10;
+          timeout = 1200;
           on-timeout = "hyprctl dispatch dpms off";
           on-resume = "hyprctl dispatch dpms on";
         }
