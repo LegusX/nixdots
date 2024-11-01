@@ -83,5 +83,7 @@
     obsidian
     vscode-fhs
     spotify
+    kanagawa-gtk-theme
+    kanagawa-icon-theme
   ];
 }
