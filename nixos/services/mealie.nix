@@ -1,5 +1,8 @@
-{config, pkgs, ...}: {
-  
+{
+  config,
+  pkgs,
+  ...
+}: {
   services.mealie = {
     enable = true;
     port = 9000;
@@ -15,9 +18,9 @@
       SMTP_HOST = "smtp.gmail.com";
 
       ALEMBIC_CONFIG_FILE = "${config.services.mealie.package}/alembic.ini";
-      
+
       # Can't make postgres work
-      DB_ENGINE = "postgres"; 
+      DB_ENGINE = "postgres";
       # Connect to pg over unix socket
       POSTGRES_URL_OVERRIDE = "postgresql://mealie:@/mealie?host=/run/postgresql";
     };
@@ -33,7 +36,6 @@
       SMTP_PASSWORD=${config.sops.placeholder."mealie/smtp_pass"}
     '';
   };
-  
 
   services.nginx.virtualHosts."mealie.legusx.dev" = {
     forceSSL = true;
@@ -72,8 +74,8 @@
   # Can't make postgres work
   systemd.services = {
     mealie = {
-      after = [ "postgresql.service" ];
-      requires = [ "postgresql.service" ];
+      after = ["postgresql.service"];
+      requires = ["postgresql.service"];
     };
   };
 

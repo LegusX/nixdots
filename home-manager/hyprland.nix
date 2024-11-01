@@ -40,6 +40,27 @@
     topMargin = 0.9;
   };
 
+  services.hypridle = {
+    enable = true;
+    settings = {
+      general = {
+        before_sleep_cmd = "swaylock --screenshots --effect-blur 20x2 --clock --indicator-thickness 5 --indicator";
+        after_sleep_cmd = "hyprctl dispatch dpms on";
+      };
+      listener = [
+        {
+          timeout = 600;
+          on-timeout = "swaylock --screenshots --effect-blur 20x2 --clock --indicator-thickness 5 --indicator";
+        }
+        {
+          timeout = 10;
+          on-timeout = "hyprctl dispatch dpms off";
+          on-resume = "hyprctl dispatch dpms on";
+        }
+      ];
+    };
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {

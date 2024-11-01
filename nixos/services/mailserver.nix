@@ -2,12 +2,11 @@
   config,
   pkgs,
   ...
-}:
-{
+}: {
   #####################################################################
   # INFO: Requires rDNS to be configured, which is a later me problem #
   #####################################################################
-  
+
   imports = [
     (builtins.fetchTarball {
       url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/nixos-24.05/nixos-mailserver-nixos-24.05.tar.gz";
