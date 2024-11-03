@@ -48,7 +48,7 @@
     forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
     packages = forAllSystems (system: nixpkgs.legacyPackages.${system});
-    # Formatter for your nix files, available thxxrough 'nix fmt'
+    # Formatter for your nix files, available through 'nix fmt'
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
     # Your custom packages and modifications, exported as overlays
@@ -59,35 +59,35 @@
       loganthinkbook = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./nixos/hosts/loganthinkbook.nix
-          ./nixos/common.nix
-          ./nixos/desktop-common.nix
-          ./nixos/hyprland.nix
-          ./nixos/vpn.nix
-          stylix.nixosModules.stylix
+          ./hosts/loganthinkbook.nix
+          ./shared/nix/common.nix
+          ./shared/nix/desktop-common.nix
+          ./shared/desktops/hyprland/core.nix
+          ./shared/nix/vpn.nix
+          # stylix.nixosModules.stylix
           sops-nix.nixosModules.sops
         ];
       };
       beccabook = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./nixos/hosts/beccabook.nix
-          ./nixos/common.nix
-          ./nixos/desktop-common.nix
-          #./nixos/games.nix
-          ./nixos/gnome.nix
-          ./nixos/hyprland.nix
-          stylix.nixosModules.stylix
+          ./hosts/beccabook.nix
+          ./shared/nix/common.nix
+          ./shared/nix/desktop-common.nix
+          ./shared/nix/games.nix
+          ./shared/desktops/gnome/core.nix
+          ./shared/desktops/hyprland/core.nix
+          # stylix.nixosModules.stylix
           sops-nix.nixosModules.sops
         ];
       };
       oraclevps = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./nixos/hosts/vps.nix
-          ./nixos/common.nix
-          ./nixos/services/mealie.nix
-          ./nixos/services/nextcloud.nix
+          ./hosts/vps/core.nix
+          ./shared/nix/common.nix
+          ./hosts/vps/mealie.nix
+          ./hosts/vps/nextcloud.nix
           disko.nixosModules.disko
           sops-nix.nixosModules.sops
         ];

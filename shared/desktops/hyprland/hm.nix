@@ -4,7 +4,8 @@
   ...
 }: {
   imports = [
-    ./waybar.nix
+    # TODO: Remove stylix references from waybar
+    # ./waybar.nix
   ];
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 

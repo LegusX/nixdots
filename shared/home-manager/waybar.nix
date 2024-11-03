@@ -35,7 +35,7 @@ in {
       )
       +
       # Append the main CSS file
-      (builtins.readFile ../src/waybar.css)
+      (builtins.readFile ../../src/waybar.css)
       +
       # Use monospace font
       ''

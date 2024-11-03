@@ -1,0 +1,5 @@
+{
+  imports = [
+    ./defs/logan.nix
+  ];
+}

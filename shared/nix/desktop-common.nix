@@ -5,9 +5,6 @@
   outputs,
   ...
 }: {
-  imports = [
-    outputs.nixosModules.gifWallpaper
-  ];
   # Networking
   networking.networkmanager.enable = true;
 
@@ -23,15 +20,8 @@
   hardware.pulseaudio.enable = false;
 
   # Theming
-  services.gifWallpaper = {
-    enable = true;
-    dir = ../src/wallpapers;
-    random = builtins.toString (builtins.getEnv "$RANDOM");
-  };
-
-  stylix = {
-    enable = true;
-    autoEnable = false;
-    image = config.services.gifWallpaper.png;
-  };
+  # stylix = {
+  #   enable = false;
+  #   autoEnable = false;
+  # };
 }

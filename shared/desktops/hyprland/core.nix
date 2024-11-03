@@ -7,6 +7,8 @@
 }: {
   programs.hyprland.enable = true;
 
+  home-manager.sharedModules = [./hm.nix];
+
   environment.loginShellInit = ''
     if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
       exec dbus-run-session Hyprland
@@ -20,7 +22,6 @@
     brightnessctl
     hyprshot
     wofi
-    # swaylock-effects
     swww
     xdg-utils
     gnome.eog
@@ -53,9 +54,10 @@
   programs.dconf.enable = true;
 
   #make sure background is set
-  system.userActivationScripts = {
-    changeWallpaper.text = ''
-      ${pkgs.swww}/bin/swww img ${config.services.gifWallpaper.gif}
-    '';
-  };
+  # TODO: Point to static wallpaper
+  # system.userActivationScripts = {
+  #   changeWallpaper.text = ''
+  #     ${pkgs.swww}/bin/swww img ${config.services.gifWallpaper.gif}
+  #   '';
+  # };
 }
