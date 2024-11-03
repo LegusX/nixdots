@@ -4,5 +4,5 @@
 }:
 {
   imports = [./logan.nix];
-  home-manager.users.logan = lib.mkForce import ../../logan/desktop.nix;
+  home-manager.users.logan = import ../../logan/desktop.nix;
 }

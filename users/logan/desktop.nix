@@ -7,9 +7,9 @@
   ...
 }: {
   imports = [
-    ./hyprland.nix
-    ./firefox.nix
-    ./logan.nix
+    ../../shared/desktops/hyprland/hm.nix
+    ../../shared/home-manager/firefox.nix
+    ./core.nix
   ];
 
   # stylix = {

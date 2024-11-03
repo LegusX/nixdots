@@ -1,6 +1,6 @@
 {
   imports = [
-    ./defs/logan.nix
+    ./defs/logan-desktop.nix
     ./defs/becca.nix
   ];
 }
