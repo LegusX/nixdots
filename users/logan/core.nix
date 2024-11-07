@@ -10,6 +10,7 @@
 }: {
   imports = [
     ./zsh.nix
+    ./theme.nix
   ];
 
   nixpkgs = {
@@ -40,12 +41,11 @@
     defaultEditor = true;
     enable = true;
     settings = {
-      theme = "base16_default_dark";
+      theme = "kanagawa";
       editor = {
         bufferline = "multiple";
       };
       keys.normal = {
-        space.space = "file_picker";
         space.w = ":w";
         space.q = ":q";
       };

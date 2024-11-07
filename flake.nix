@@ -23,6 +23,29 @@
 
     # sops-nix
     sops-nix.url = "github:Mic92/sops-nix";
+
+    # base16.nix
+    base16.url = "github:SenchoPens/base16.nix";
+    tt-schemes = {
+      url = "github:tinted-theming/schemes";
+      flake = false;
+    };
+    theme-helix = {
+      url = "github:tinted-theming/base16-helix";
+      flake = false;
+    };
+    theme-waybar = {
+      url = "github:tinted-theming/base16-waybar";
+      flake = false;
+    };
+    theme-btop = {
+      url = "git+https://git.sr.ht/~blueingreen/base16-btop";
+      flake = false;
+    };
+    theme-alacritty = {
+      url = "github:aarowill/base16-alacritty";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -32,6 +55,7 @@
     stylix,
     disko,
     sops-nix,
+    base16,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -64,8 +88,9 @@
           ./shared/nix/desktop-common.nix
           ./shared/desktops/hyprland/core.nix
           ./shared/nix/vpn.nix
-          # stylix.nixosModules.stylix
+          {scheme = "${inputs.tt-schemes}/base16/kanagawa.yaml";}
           sops-nix.nixosModules.sops
+          base16.nixosModule
         ];
       };
       beccabook = nixpkgs.lib.nixosSystem {
@@ -77,8 +102,8 @@
           ./shared/nix/games.nix
           ./shared/desktops/gnome/core.nix
           ./shared/desktops/hyprland/core.nix
-          # stylix.nixosModules.stylix
           sops-nix.nixosModules.sops
+          base16.nixosModule
         ];
       };
       oraclevps = nixpkgs.lib.nixosSystem {
@@ -88,8 +113,10 @@
           ./shared/nix/common.nix
           ./hosts/vps/mealie.nix
           ./hosts/vps/nextcloud.nix
+          {scheme = "${inputs.tt-schemes}/base16/kanagawa.yaml";}
           disko.nixosModules.disko
           sops-nix.nixosModules.sops
+          base16.nixosModule
         ];
       };
     };

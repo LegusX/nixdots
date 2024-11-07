@@ -46,7 +46,7 @@
     settings = {
       general = {
         before_sleep_cmd = "swaylock --screenshots --effect-blur 20x2 --clock --indicator-thickness 5 --indicator";
-        after_sleep_cmd = "hyprctl dispatch dpms on";
+        after_sleep_cmd = "sleep 1 && hyprctl dispatch dpms on";
       };
       listener = [
         {
