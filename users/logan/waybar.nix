@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  osConfig,
   inputs,
   ...
 }:
@@ -13,18 +14,18 @@
       (builtins.readFile(osConfig.scheme inputs.theme-waybar ))
       +
       # Append the main CSS file
-      (builtins.readFile ../../src/waybar.css)
-      +
-      # Use monospace font
-      ''
-        /* Font family injected by Nix */
-        * {
-          font-family: ${config.stylix.fonts.monospace.name};
-          color: @base05;
-          font-size:13px;
-          min-height:0;
-        }
-      '';
+      (builtins.readFile ../../src/waybar.css);
+      # +
+      # # Use monospace font
+      # ''
+      #   /* Font family injected by Nix */
+      #   * {
+      #     font-family: ${config.stylix.fonts.monospace.name};
+      #     color: @base05;
+      #     font-size:13px;
+      #     min-height:0;
+      #   }
+      # '';
       
     settings = {
       mainBar = {
