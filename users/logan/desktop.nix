@@ -8,7 +8,7 @@
 }: {
   imports = [
     ../../shared/desktops/hyprland/hm.nix
-    ../../shared/home-manager/firefox.nix
+    ../../shared/home-manager/librewolf.nix
     ./core.nix
   ];
 
@@ -79,5 +79,6 @@
     spotify
     kanagawa-gtk-theme
     kanagawa-icon-theme
+    chromium
   ];
 }

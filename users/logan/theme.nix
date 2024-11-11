@@ -4,18 +4,17 @@
   inputs,
   osConfig,
   ...
-}:
-{
+}: {
   imports = [
     ./waybar.nix
   ];
-  
+
   programs.btop.extraConfig = builtins.readFile (osConfig.scheme inputs.theme-btop);
   programs.btop.enable = true;
-  
+
   programs.alacritty.settings = builtins.fromTOML (builtins.readFile (osConfig.scheme inputs.theme-alacritty));
   programs.alacritty.enable = true;
-  
+
   home.packages = with pkgs; [
     kanagawa-gtk-theme
     kanagawa-icon-theme
@@ -44,6 +43,6 @@
       gtk-application-prefer-dark-theme=1
     '';
   };
-  
+
   home.sessionVariables.GTK_THEME = "Kanagawa";
 }

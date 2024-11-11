@@ -15,7 +15,6 @@
     waybar
     udiskie
     swaynotificationcenter
-    firefox
     udiskie
     wl-clipboard
     alacritty

@@ -7,6 +7,7 @@
 }: {
   # Networking
   networking.networkmanager.enable = true;
+  networking.resolvconf.dnsExtensionMechanism = false;
 
   # Sound
   sound.enable = true;

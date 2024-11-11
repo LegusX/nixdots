@@ -26,6 +26,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    prismlauncher.override {jdks = [pkgs.jdk22];}
+    prismlauncher.override
+    {jdks = [pkgs.jdk22];}
   ];
 }

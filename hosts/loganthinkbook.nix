@@ -9,6 +9,7 @@
 }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
+    (modulesPath + "/installer/scan/not-detected.nix")
     ../users/groups/loganbecca.nix
   ];
 
