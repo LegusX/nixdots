@@ -1,30 +1,52 @@
 @define-color background #0f181f;
 
+* {
+    margin:0;
+    padding:0;
+    border-radius:0;
+    border: none;
+}
 window#waybar {
     /* background-color: alpha(@background, 0.6); */
+    color:darker(@base05);
     background-color: alpha(#fff, 0);
-    padding:3px 10px;
 }
 
 #workspaces{
-    margin-bottom: 2px;
-    margin-right: 10px;
-    margin-left: 25px;
+    /* margin: 5px 20px; */
+    padding:1px;
 }
 
-#workspaces button{
+/* #workspaces button{ */
+    /* border-radius: 15px; */
+    /* padding: 1px 10px; */
+    /* font-weight: bolder; */
+    /* background-color: @base01; */
+    /* color: darker(@base05); */
+/* } */
+
+#workspaces button {
+    margin: 0px;
     border-radius: 15px;
-    margin-right: 10px;
-    padding: 1px 10px;
-    font-weight: bolder;
-    background-color: @base00;
+    padding: 0 10px 0 5px;
+}
+
+#workspaces button:hover {
+    border-width: 0;
+    box-shadow: none;
+    color: @base05;
+    background-color:alpha(#fff, 0);
+    background-image:none;
+    -gtk-icon-effect: none;
 }
 
 #workspaces button.active, #workspaces button.focused{
-    padding: 1px 22px;
+    /* padding: 1px 22px; */
+    margin: 0px;
     /* box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px in*/
-    box-shadow: alpha(@base02, 0.3) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
-    background: @base02;
+    /* box-shadow: alpha(@base02, 0.3) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset; */
+    background: darker(@base05);
+    color: @base00;
 }
 
 #tray,
@@ -44,7 +66,26 @@ window#waybar {
 #clock,
 .custom-spotify,
 #network {
-    background-color: alpha(@base01, 0.8);
-    padding: 0px 10px;
+    padding: 0px 5px;
+}
+
+.modules-left, .modules-right {
+    background-color: @base01;
+    margin: 5px 10px;
     border-radius: 15px;
+    padding: 5px 15px;
+    border-color: darker(@base05);
+    border-width: 1px;
+    border-style: solid;
+}
+
+.modules-center {
+    background-color: @base01;
+    border-radius:20px;
+    border-color: darker(@base05);
+    border-width:1px;
+    border-style: solid;
+    padding: 0px;
+    margin: 5px 0;
+    background-clip: padding-box;
 }

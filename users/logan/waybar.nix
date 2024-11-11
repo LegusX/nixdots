@@ -114,6 +114,14 @@
           on-click = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
         };
 
+        "hyprland/workspaces" = {
+          format = "{icon}";
+          format-icons = {
+            default = "";
+            active = "";
+          };
+        };
+
         # "custom/spotify" = {
 
         #}

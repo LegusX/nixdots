@@ -85,7 +85,7 @@
 
       general = {
         gaps_in = 5;
-        gaps_out = 20;
+        gaps_out = "5,10,10,10";
         border_size = 3;
         bezier = "linear, 0.0, 0.0, 1.0, 1.0";
 
