@@ -41,28 +41,44 @@
     settings = {
       background = [
         {
-          path = "~/.config/nixos-config/src/wallpaper.gif";
+          path = "~/.config/nixos-config/src/wallpaper.png";
           blur_passes = 2;
           contrast = 1;
-          brightness = 0.5;
+          brightness = 0.3;
           vibrancy = 0.2;
           vibrancy_darkness = 0.2;
         }
       ];
       
       general = {
-        no_fade_in = false;
-        no_fade_out = true;
+        no_fade_in = true;
+        no_fade_out = false;
         hide_cursor = true;
         grace = 5;
       };
 
       input-field = {
-        size = "250, 60";
+        size = "200, 40";
         outline_thickness = 1;
         outer_color = "rgb(${base04})";
-        inner_color = "rgb(${base01})";
+        inner_color = "rgb(${base00})";
         rounding = 5;
+        fade_on_empty = false;
+        dots_center = false;
+        dots_fade_time = 50;
+        font_color = "rgb(${base04})";
+        position = "0, -10%";
+        placeholder_text = "";
+      };
+
+      label = {
+        text = "cmd[update:1000] echo \"$(date +\"%-I:%M\")\"";
+        position = "0, 30%";
+        halign = "center";
+        valign = "center";
+        font_size = 100;
+        font_family = "RobotoMono Nerd Font"; 
+        color = "rgb(${base0C})";
       };
     };
   };
@@ -83,7 +99,7 @@
       listener = [
         {
           timeout = 600;
-          on-timeout = "loginctl lock-session";
+          on-timeout = "hyprlock";
         }
         {
           timeout = 1200;
@@ -182,7 +198,7 @@
           "$mainMod, E, exec, nautilus"
           "$mainMod, V, togglefloating"
           "$mainMod, SPACE, exec, pkill wofi || wofi --show drun"
-          "$mainMod, L, exec, swaylock --screenshots --effect-blur 20x2 --clock --indicator-thickness 5 --indicator"
+          "$mainMod, L, exec, hyprlock"
           "SUPER_SHIFT, S, exec, hyprshot -m region --clipboard-only"
           ", xf86monbrightnessup, exec, ${config.services.swayosd.package}/bin/swayosd-client --brightness raise"
           ", xf86monbrightnessdown, exec, ${config.services.swayosd.package}/bin/swayosd-client --brightness lower"
