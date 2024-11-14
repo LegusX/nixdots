@@ -34,7 +34,7 @@ window#waybar {
 #workspaces button:hover {
     border-width: 0;
     box-shadow: none;
-    color: @base05;
+    color: @base0C;
     background-color:alpha(#fff, 0);
     background-image:none;
     -gtk-icon-effect: none;

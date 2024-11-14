@@ -31,9 +31,40 @@
   #   };
   # };
 
-  programs.swaylock = {
+  # programs.swaylock = {
+  #   enable = true;
+  #   package = pkgs.swaylock-effects;
+  # };
+
+  programs.hyprlock = with osConfig.scheme; {
     enable = true;
-    package = pkgs.swaylock-effects;
+    settings = {
+      background = [
+        {
+          path = "~/.config/nixos-config/src/wallpaper.gif";
+          blur_passes = 2;
+          contrast = 1;
+          brightness = 0.5;
+          vibrancy = 0.2;
+          vibrancy_darkness = 0.2;
+        }
+      ];
+      
+      general = {
+        no_fade_in = false;
+        no_fade_out = true;
+        hide_cursor = true;
+        grace = 5;
+      };
+
+      input-field = {
+        size = "250, 60";
+        outline_thickness = 1;
+        outer_color = "rgb(${base04})";
+        inner_color = "rgb(${base01})";
+        rounding = 5;
+      };
+    };
   };
 
   services.swayosd = {
@@ -45,18 +76,23 @@
     enable = true;
     settings = {
       general = {
-        before_sleep_cmd = "swaylock --screenshots --effect-blur 20x2 --clock --indicator-thickness 5 --indicator";
+        before_sleep_cmd = "loginctl lock-session";
         after_sleep_cmd = "sleep 1 && hyprctl dispatch dpms on";
+        lock_cmd = "pidof hyprlock || hyprlock";
       };
       listener = [
         {
           timeout = 600;
-          on-timeout = "swaylock --screenshots --effect-blur 20x2 --clock --indicator-thickness 5 --indicator";
+          on-timeout = "loginctl lock-session";
         }
         {
           timeout = 1200;
           on-timeout = "hyprctl dispatch dpms off";
           on-resume = "hyprctl dispatch dpms on";
+        }
+        {
+          timeout = 1800;
+          on-timeout = "systemctl suspend";
         }
       ];
     };
