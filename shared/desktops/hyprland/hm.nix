@@ -91,7 +91,8 @@
         bezier = "linear, 0.0, 0.0, 1.0, 1.0";
 
         layout = "dwindle";
-        "col.active_border" = "rgb(${base05})";
+        "col.active_border" = "rgb(${base0C})";
+        "col.inactive_border" = "rgba(00000000)";
       };
 
       decoration = {
