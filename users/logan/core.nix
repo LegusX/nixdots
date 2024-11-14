@@ -5,6 +5,7 @@
   outputs,
   lib,
   config,
+  osConfig,
   pkgs,
   ...
 }: {
@@ -41,7 +42,7 @@
     defaultEditor = true;
     enable = true;
     settings = {
-      theme = "kanagawa";
+      theme = "ayu-dark";
       editor = {
         bufferline = "multiple";
       };
@@ -49,6 +50,9 @@
         space.w = ":w";
         space.q = ":q";
       };
+    };
+    themes = {
+      base16 = builtins.fromTOML ( builtins.readFile (osConfig.scheme inputs.theme-helix));
     };
   };
 

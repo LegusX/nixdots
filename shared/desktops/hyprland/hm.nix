@@ -5,13 +5,10 @@
   ...
 }: {
   imports = [
-    # TODO: Remove stylix references from waybar
-    # ./waybar.nix
   ];
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 
   home.packages = with pkgs; [
-    # kitty
     cliphist
     waybar
     udiskie
@@ -20,21 +17,6 @@
     wl-clipboard
     alacritty
   ];
-
-  # services.avizo = {
-  #   enable = true;
-  #   settings = {
-  #     default = {
-  #       time = 1.0;
-  #       height = 100;
-  #     };
-  #   };
-  # };
-
-  # programs.swaylock = {
-  #   enable = true;
-  #   package = pkgs.swaylock-effects;
-  # };
 
   programs.hyprlock = with osConfig.scheme; {
     enable = true;
