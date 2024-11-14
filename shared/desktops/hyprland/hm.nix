@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  osConfig,
   ...
 }: {
   imports = [
@@ -61,13 +62,13 @@
     };
   };
 
-  wayland.windowManager.hyprland = {
+  wayland.windowManager.hyprland = with osConfig.scheme; {
     enable = true;
     settings = {
       monitor = ",preferred,auto,1";
 
       exec-once = [
-        "swayosd-server & waybar & udiskie & swaync & swww-daemon & sleep 3 && sww img ${builtins.getEnv "GIF_PATH"} --transition-type wipe &"
+        "swayosd-server & waybar & udiskie & swaync & swww-daemon & sleep 1 && sww img ~/.config/nixos-config/src/wallpaper.gif --transition-type wipe &"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
       ];
@@ -90,6 +91,7 @@
         bezier = "linear, 0.0, 0.0, 1.0, 1.0";
 
         layout = "dwindle";
+        "col.active_border" = "rgb(${base05})";
       };
 
       decoration = {

@@ -1,13 +1,10 @@
 {
-  description = "Your new nix config";
+  description = "LegusX Flake.nix";
 
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    # You can access packages and modules from different nixpkgs revs
-    # at the same time. Here's an working example:
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-24.05";
@@ -88,7 +85,8 @@
           ./shared/nix/desktop-common.nix
           ./shared/desktops/hyprland/core.nix
           ./shared/nix/vpn.nix
-          {scheme = "${inputs.tt-schemes}/base16/kanagawa.yaml";}
+          # {scheme = "${inputs.tt-schemes}/base16/mocha.yaml";}
+          {scheme =  ./src/clouds_theme.yaml;}
           sops-nix.nixosModules.sops
           base16.nixosModule
         ];

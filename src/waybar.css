@@ -8,13 +8,13 @@
 }
 window#waybar {
     /* background-color: alpha(@background, 0.6); */
-    color:darker(@base05);
+    color: @base05;
     background-color: alpha(#fff, 0);
 }
 
 #workspaces{
     /* margin: 5px 20px; */
-    padding:1px;
+    padding:0px;
 }
 
 /* #workspaces button{ */
@@ -27,7 +27,7 @@ window#waybar {
 
 #workspaces button {
     margin: 0px;
-    border-radius: 15px;
+    border-radius: 2px;
     padding: 0 10px 0 5px;
 }
 
@@ -45,7 +45,7 @@ window#waybar {
     margin: 0px;
     /* box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px in*/
     /* box-shadow: alpha(@base02, 0.3) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset; */
-    background: darker(@base05);
+    background: lighter(@base04);
     color: @base00;
 }
 
@@ -70,22 +70,24 @@ window#waybar {
 }
 
 .modules-left, .modules-right {
-    background-color: @base01;
+    background-color: darker(@base01);
     margin: 5px 10px;
-    border-radius: 15px;
+    border-radius: 5px;
     padding: 5px 15px;
-    border-color: darker(@base05);
+    border-color: @base04;
     border-width: 1px;
     border-style: solid;
+    color: @base0C;
 }
 
 .modules-center {
-    background-color: @base01;
-    border-radius:20px;
-    border-color: darker(@base05);
+    background-color: darker(@base01);
+    border-radius:5px;
+    border-color: @base04;
     border-width:1px;
     border-style: solid;
     padding: 0px;
     margin: 5px 0;
+    color: @base0C;
     background-clip: padding-box;
 }

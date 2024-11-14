@@ -7,6 +7,7 @@
 }: {
   imports = [
     ./waybar.nix
+    ./wallust.nix
   ];
 
   programs.btop.extraConfig = builtins.readFile (osConfig.scheme inputs.theme-btop);

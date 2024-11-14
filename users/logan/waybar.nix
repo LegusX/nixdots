@@ -117,8 +117,8 @@
         "hyprland/workspaces" = {
           format = "{icon}";
           format-icons = {
-            default = "";
-            active = "";
+            default = "";
+            active = "";
           };
         };
 
