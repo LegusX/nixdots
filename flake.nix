@@ -86,9 +86,10 @@
           ./shared/desktops/hyprland/core.nix
           ./shared/nix/vpn.nix
           # {scheme = "${inputs.tt-schemes}/base16/mocha.yaml";}
-          {scheme =  ./src/clouds_theme.yaml;}
+          {scheme = ./src/clouds_theme.yaml;}
           sops-nix.nixosModules.sops
           base16.nixosModule
+          stylix.nixosModules.stylix
         ];
       };
       beccabook = nixpkgs.lib.nixosSystem {

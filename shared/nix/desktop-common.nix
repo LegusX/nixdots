@@ -19,10 +19,4 @@
     pulse.enable = true;
   };
   hardware.pulseaudio.enable = false;
-
-  # Theming
-  # stylix = {
-  #   enable = false;
-  #   autoEnable = false;
-  # };
 }

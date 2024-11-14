@@ -32,6 +32,19 @@
   };
   programs.dconf.enable = true;
 
+  # Theming
+  stylix = {
+    enable = true;
+    # targets = {
+    #   gtk.enable = true;
+    #   gnome.enable = true;
+    # };
+    autoEnable = false;
+    image = ../src/wallpaper.gif;
+    polarity = "dark";
+    # base16Scheme = ../src/base16_theme.yaml;
+  };
+
   #Hardware configuration
 
   # networking.dnsExtensionMechanism = lib.mkForce false;

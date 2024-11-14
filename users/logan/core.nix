@@ -42,7 +42,7 @@
     defaultEditor = true;
     enable = true;
     settings = {
-      theme = "ayu-dark";
+      theme = "ayu_dark";
       editor = {
         bufferline = "multiple";
       };
@@ -52,7 +52,7 @@
       };
     };
     themes = {
-      base16 = builtins.fromTOML ( builtins.readFile (osConfig.scheme inputs.theme-helix));
+      base16 = builtins.fromTOML (builtins.readFile (osConfig.scheme inputs.theme-helix));
     };
   };
 

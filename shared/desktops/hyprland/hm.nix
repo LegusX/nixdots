@@ -31,7 +31,7 @@
           vibrancy_darkness = 0.2;
         }
       ];
-      
+
       general = {
         no_fade_in = true;
         no_fade_out = false;
@@ -54,14 +54,56 @@
       };
 
       label = {
-        text = "cmd[update:1000] echo \"$(date +\"%-I:%M\")\"";
+        text = "cmd[update:1000] echo \"$(date +\"%0I:%M\")\"";
         position = "0, 30%";
         halign = "center";
         valign = "center";
-        font_size = 100;
-        font_family = "RobotoMono Nerd Font"; 
+        font_size = 90;
+        font_family = "RobotoMono Nerd Font";
         color = "rgb(${base0C})";
+        z-index = 1;
       };
+
+      shape = [
+        {
+          size = "400, 400";
+          border_size = 5;
+          border_color = "rgb(${base0C})";
+          # color = "rgb(${base0C})";
+          position = "-50, 0";
+          halign = "center";
+          valign = "center";
+          rotate = 45;
+        }
+        {
+          size = "400, 400";
+          border_size = 5;
+          border_color = "rgb(${base0C})";
+          # color = "rgb(${base0C})";
+          position = "50, 0";
+          halign = "center";
+          valign = "center";
+          rotate = 45;
+        }
+        {
+          size = "400, 400";
+          border_size = 5;
+          border_color = "rgb(${base0C})";
+          position = "0, -50";
+          halign = "center";
+          valign = "center";
+          rotate = 45;
+        }
+        {
+          size = "400, 400";
+          border_size = 5;
+          border_color = "rgb(${base0C})";
+          position = "0, 50";
+          halign = "center";
+          valign = "center";
+          rotate = 45;
+        }
+      ];
     };
   };
 
