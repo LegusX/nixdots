@@ -24,10 +24,10 @@
     (nerdfonts.override {fonts = ["RobotoMono"];})
   ];
 
-  gtk.theme.package = pkgs.colloid-gtk-theme;
+  gtk.theme.package = (pkgs.colloid-gtk-theme.override {themeVariants = ["all"];});
   gtk.theme.name = "Colloid-Orange-Dark";
 
-  gtk.iconTheme.package = pkgs.colloid-icon-theme;
+  gtk.iconTheme.package = (pkgs.colloid-icon-theme.override {colorVariants = ["all"];});
   gtk.iconTheme.name = "Colloid-orange-dark";
 
   gtk.cursorTheme = {
@@ -37,17 +37,18 @@
 
   gtk.gtk3.extraConfig = {
     Settings = ''
-      gtk-application-prefer-dark-theme=1
+      gtk-application-prefer-dark-theme=0
     '';
   };
 
   gtk.gtk4.extraConfig = {
     Settings = ''
-      gtk-application-prefer-dark-theme=1
+      gtk-application-prefer-dark-theme=0
     '';
+    gtk-theme-name = ''Colloid-Orange-Dark'';
   };
 
-  home.sessionVariables.GTK_THEME = "Colloid";
+  home.sessionVariables.GTK_THEME = "Colloid-Orange-Dark";
 
   stylix = {
     image = ../../src/wallpaper.gif;
