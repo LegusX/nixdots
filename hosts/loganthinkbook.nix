@@ -32,6 +32,18 @@
   };
   programs.dconf.enable = true;
 
+  # Enable GDM login manager
+  # services.xserver.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
+
+  # Enable LightDM
+  services.xserver = {
+    enable = true;
+    displayManager.lightdm = {
+      enable = true;
+    };
+  };
+
   # Theming
   stylix = {
     enable = true;

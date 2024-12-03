@@ -6,6 +6,7 @@
   ...
 }: {
   programs.hyprland.enable = true;
+  programs.hyprland.package = pkgs.unstable.hyprland;
 
   home-manager.sharedModules = [./hm.nix];
 
