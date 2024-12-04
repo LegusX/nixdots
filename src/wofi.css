@@ -7,17 +7,29 @@ window {
   background-color: @base00;
 }
 
+#outer-box {
+  border-radius: 2px;
+}
+
 #entry {
   background-color: none;
   border-radius: 0;
   border-width: 0;
+  padding: 5px 5px;
 }
 
 #entry:selected {
-  background-color: @base04;
+  /* background-color: @base04; */
+  border-color: @base04;
+  /* border-width: 2px;xx */
+  /* border-radius: 2px; */
+  background-color: @base00;
   color: white;
   box-shadow: none;
-  outline-width: 0;
+  outline-width: 2px;
+  outline-radius: 1px;
+  outline-color: @base04;
+  padding: 5px 15px;
 }
 
 #input {
