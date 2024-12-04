@@ -70,7 +70,7 @@ window#waybar {
 }
 
 .modules-left, .modules-right {
-    background-color: darker(@base01);
+    background-color: @base00;
     margin: 5px 10px;
     border-radius: 5px;
     padding: 5px 15px;
@@ -81,7 +81,7 @@ window#waybar {
 }
 
 .modules-center {
-    background-color: darker(@base01);
+    background-color: @base00;
     border-radius:5px;
     border-color: @base04;
     border-width:1px;

@@ -39,7 +39,6 @@
       "palette" = {
         "background" = base00;
         "foreground" = base0F;
-        "red" = base0C;
         "blue" = base0A;
       };
     };
