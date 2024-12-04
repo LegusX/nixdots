@@ -3,6 +3,7 @@
   pkgs,
   inputs,
   osConfig,
+  lib,
   ...
 }: {
   imports = [
@@ -30,6 +31,20 @@
     twitter-color-emoji
     (nerdfonts.override {fonts = ["RobotoMono"];})
   ];
+
+  programs.helix.settings.theme = lib.mkForce "custom";
+  programs.helix.themes = with osConfig.scheme.withHashtag; {
+    custom = {
+      "inherits" = "ayu_dark";
+      "palette" = {
+        "background" = base00;
+        "foreground" = base0F;
+        "red" = base0C;
+        "blue" = base0A;
+        "magenta" = base0E;
+      };
+    };
+  };
 
   gtk.theme.package = pkgs.colloid-gtk-theme.override {themeVariants = ["all"];};
   gtk.theme.name = "Colloid-Orange-Dark";
