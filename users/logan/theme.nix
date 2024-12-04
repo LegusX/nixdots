@@ -16,6 +16,13 @@
   programs.alacritty.settings = builtins.fromTOML (builtins.readFile (osConfig.scheme inputs.theme-alacritty));
   programs.alacritty.enable = true;
 
+  home.file."${config.xdg.configHome}/swayosd/style.css" = {
+    text = (builtins.readFile (osConfig.scheme inputs.theme-waybar)) + (builtins.readFile ../../src/swayosd.css);
+  };
+
+  programs.wofi.style = (builtins.readFile (osConfig.scheme inputs.theme-waybar)) + (builtins.readFile ../../src/wofi.css);
+  programs.wofi.enable = true;
+
   home.packages = with pkgs; [
     (colloid-gtk-theme.override {themeVariants = ["all"];})
     (colloid-icon-theme.override {colorVariants = ["all"];})
@@ -24,10 +31,10 @@
     (nerdfonts.override {fonts = ["RobotoMono"];})
   ];
 
-  gtk.theme.package = (pkgs.colloid-gtk-theme.override {themeVariants = ["all"];});
+  gtk.theme.package = pkgs.colloid-gtk-theme.override {themeVariants = ["all"];};
   gtk.theme.name = "Colloid-Orange-Dark";
 
-  gtk.iconTheme.package = (pkgs.colloid-icon-theme.override {colorVariants = ["all"];});
+  gtk.iconTheme.package = pkgs.colloid-icon-theme.override {colorVariants = ["all"];};
   gtk.iconTheme.name = "Colloid-orange-dark";
 
   gtk.cursorTheme = {

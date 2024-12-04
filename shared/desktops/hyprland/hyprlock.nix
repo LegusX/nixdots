@@ -1,35 +1,58 @@
-{
-  osConfig,
-  ...
-}:
-{
-  services.hypridle = {
+{osConfig, ...}: {
+  # services.hypridle = {
+  #   enable = true;
+  #   settings = {
+  #     general = {
+  #       before_sleep_cmd = "loginctl lock-session";
+  #       after_sleep_cmd = "hyprctl dispatch dpms on && kill $(pidof hypridle) || true) && (pidof hypridle || hypridle)";
+  #       lock_cmd = "pidof hyprlock || hyprlock";
+  #     };
+  #     listener = [
+  #       {
+  #         timeout = 600;
+  #         on-timeout = "hyprlock";
+  #       }
+  #       {
+  #         timeout = 1200;
+  #         on-timeout = "hyprctl dispatch dpms off";
+  #         on-resume = "hyprctl dispatch dpms on";
+  #       }
+  #       {
+  #         timeout = 1800;
+  #         on-timeout = "systemctl suspend";
+  #       }
+  #     ];
+  #   };
+  # };
+  services.swayidle = {
     enable = true;
-    settings = {
-      general = {
-        before_sleep_cmd = "loginctl lock-session";
-        after_sleep_cmd = "hyprctl dispatch dpms on && kill $(pidof hypridle) || true) && (pidof hypridle || hypridle)";
-        lock_cmd = "pidof hyprlock || hyprlock";
-      };
-      listener = [
-        {
-          timeout = 600;
-          on-timeout = "hyprlock";
-        }
-        {
-          timeout = 1200;
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
-        }
-        {
-          timeout = 1800;
-          on-timeout = "systemctl suspend";
-        }
-      ];
-    };
+    events = [
+      {
+        event = "before-sleep";
+        command = "hyprlock";
+      }
+      {
+        event = "after-resume";
+        command = "hyprctl dispatch dpms on";
+      }
+    ];
+    timeouts = [
+      {
+        timeout = 600;
+        command = "hyprlock";
+      }
+      {
+        timeout = 1200;
+        command = "hyprctl dispatch dpms off";
+      }
+      {
+        timeout = 1800;
+        command = "systemctl suspend";
+      }
+    ];
   };
 
-    programs.hyprlock = with osConfig.scheme; {
+  programs.hyprlock = with osConfig.scheme; {
     enable = true;
     settings = {
       background = [
@@ -47,7 +70,6 @@
         no_fade_in = true;
         no_fade_out = false;
         hide_cursor = true;
-        grace = 5;
       };
 
       input-field = {
@@ -117,5 +139,4 @@
       ];
     };
   };
-
 }

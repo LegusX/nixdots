@@ -37,12 +37,28 @@
   # services.xserver.displayManager.gdm.enable = true;
 
   # Enable LightDM
-  services.xserver = {
-    enable = true;
-    displayManager.lightdm = {
-      enable = true;
-    };
-  };
+  # services.xserver = {
+  #   enable = true;
+  #   displayManager.lightdm = {
+  #     enable = true;
+  #   };
+  # };
+
+  # Enable greetd
+  # Autologin to logan and then start hyprlock from hyprland
+  # services.greetd = {
+  #   enable = true;
+  #   settings = rec {
+  #     initial_session = {
+  #       command = "dbus-run-session ${pkgs.hyprland}/bin/Hyprland";
+  #       user = "logan";
+  #     };
+  #   };
+  # };
+  services.getty.autologinUser = "logan";
+  home-manager.users.logan.wayland.windowManager.hyprland.settings.exec-once = [
+    "hyprlock"
+  ];
 
   # Theming
   stylix = {

@@ -20,10 +20,6 @@
     alacritty
   ];
 
-  home.file."${config.xdg.configHome}/swayosd/style.css" = {
-    text = (builtins.readFile (osConfig.scheme inputs.theme-waybar)) + (builtins.readFile ../../../src/swayosd.css);
-  };
-
   services.swayosd = {
     enable = true;
     topMargin = 0.9;

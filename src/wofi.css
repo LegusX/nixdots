@@ -1,0 +1,17 @@
+window {
+  color: @base0C;
+  border-radius: 2px;
+  border-style: solid;
+  border-color: @base04;
+  border-width: 1px;
+  background-color: darker(@base01);
+}
+
+#entry {
+  background-color: none;
+}
+
+#entry:selected {
+  background-color: @base04;
+  color: @base01;
+}
