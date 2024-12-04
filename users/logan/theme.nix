@@ -41,7 +41,6 @@
         "foreground" = base0F;
         "red" = base0C;
         "blue" = base0A;
-        "magenta" = base0E;
       };
     };
   };
