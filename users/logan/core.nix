@@ -12,6 +12,7 @@
   imports = [
     ./zsh.nix
     ./theme.nix
+    ../../shared/home-manager/dev.nix
   ];
 
   nixpkgs = {
