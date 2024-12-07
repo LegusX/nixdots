@@ -55,10 +55,10 @@
   #     };
   #   };
   # };
-  services.getty.autologinUser = "logan";
-  home-manager.users.logan.wayland.windowManager.hyprland.settings.exec-once = [
-    "hyprlock"
-  ];
+  # services.getty.autologinUser = "logan";
+  # home-manager.users.logan.wayland.windowManager.hyprland.settings.exec-once = [
+  #   "hyprlock"
+  # ];
 
   # Theming
   stylix = {

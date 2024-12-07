@@ -85,7 +85,7 @@
           ./shared/nix/desktop-common.nix
           ./shared/desktops/hyprland/core.nix
           ./shared/nix/vpn.nix
-          # {scheme = "${inputs.tt-schemes}/base16/mocha.yaml";}
+          ./shared/nix/games.nix
           {scheme = ./src/clouds_theme.yaml;}
           sops-nix.nixosModules.sops
           base16.nixosModule
