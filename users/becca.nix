@@ -20,7 +20,7 @@
     # ./nvim.nix
     #./hyprland.nix
     # ./gnome.nix
-    ../shared/home-manager/firefox.nix
+    # ../shared/home-manager/firefox.nix
   ];
 
   nixpkgs = {

@@ -9,7 +9,7 @@
   imports = [
     ../../shared/desktops/hyprland/hm.nix
     ../../shared/home-manager/librewolf.nix
-    ../../shared/home-manager/firefox.nix
+    # ../../shared/home-manager/firefox.nix
     ./core.nix
   ];
 

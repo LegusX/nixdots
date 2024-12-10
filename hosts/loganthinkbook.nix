@@ -20,7 +20,7 @@
 
   boot.loader.systemd-boot.enable = true;
   services.logind.lidSwitch = "hybrid-sleep";
-
+  
   xdg.autostart.enable = true;
   xdg.portal = {
     xdgOpenUsePortal = true;
@@ -73,6 +73,8 @@
     # base16Scheme = ../src/base16_theme.yaml;
   };
 
+  
+  
   #Hardware configuration
 
   # networking.dnsExtensionMechanism = lib.mkForce false;
@@ -101,7 +103,7 @@
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
+  # networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 

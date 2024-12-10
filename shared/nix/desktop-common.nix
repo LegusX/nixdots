@@ -10,7 +10,6 @@
   networking.resolvconf.dnsExtensionMechanism = false;
 
   # Sound
-  sound.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

@@ -31,6 +31,10 @@
     settings = {
       monitor = ",preferred,auto,1";
 
+      debug = {
+        disable_logs = false;
+      };
+
       exec-once = [
         "dbus-update-activation-environment --systemd --all"
         "swayosd-server & waybar & udiskie & swaync & swww-daemon & sleep 1 && sww img ~/.config/nixos-config/src/wallpaper.gif --transition-type wipe &"

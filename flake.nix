@@ -3,15 +3,15 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home manager
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Stylix
-    stylix.url = "github:danth/stylix/release-24.05";
+    stylix.url = "github:danth/stylix/release-24.11";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
 
     # Disko
@@ -83,8 +83,9 @@
           ./hosts/loganthinkbook.nix
           ./shared/nix/common.nix
           ./shared/nix/desktop-common.nix
-          ./shared/desktops/hyprland/core.nix
+          # ./shared/desktops/hyprland/core.nix
           ./shared/nix/vpn.nix
+          ./shared/desktops/gnome/core.nix
           ./shared/nix/games.nix
           {scheme = ./src/clouds_theme.yaml;}
           sops-nix.nixosModules.sops

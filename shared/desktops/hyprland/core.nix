@@ -8,6 +8,13 @@
   programs.hyprland.enable = true;
   programs.hyprland.package = pkgs.unstable.hyprland;
 
+  hardware.graphics = {
+    enable = true;
+    package = pkgs.unstable.mesa.drivers;
+    # enable32Bit = true;
+    # package32 = pkgs.unstable.pkgsi686Linux.mesa.drivers;
+  };
+  
   home-manager.sharedModules = [./hm.nix];
 
   environment.loginShellInit = ''
