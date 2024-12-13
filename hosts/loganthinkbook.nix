@@ -21,17 +21,18 @@
   boot.loader.systemd-boot.enable = true;
   services.logind.lidSwitch = "hybrid-sleep";
   
-  xdg.autostart.enable = true;
-  xdg.portal = {
-    xdgOpenUsePortal = true;
-    enable = true;
-    extraPortals = lib.mkForce (with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-hyprland
-    ]);
+  # graphics nonsense
+  hardware.graphics = {
+    # enable = true;
+    # driSupport = true;
+    extraPackages = with pkgs; [
+      intel-vaapi-driver
+      # libvdpau-va-gl
+    ];
   };
-  programs.dconf.enable = true;
 
+  hardware.opengl.enable = true;
+  
   # Enable GDM login manager
   # services.xserver.enable = true;
   # services.xserver.displayManager.gdm.enable = true;

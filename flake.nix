@@ -85,7 +85,8 @@
           ./shared/nix/desktop-common.nix
           # ./shared/desktops/hyprland/core.nix
           ./shared/nix/vpn.nix
-          ./shared/desktops/gnome/core.nix
+          # ./shared/desktops/gnome/core.nix
+          ./shared/desktops/sway/core.nix
           ./shared/nix/games.nix
           {scheme = ./src/clouds_theme.yaml;}
           sops-nix.nixosModules.sops
