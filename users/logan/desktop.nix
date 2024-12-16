@@ -81,6 +81,6 @@
     kanagawa-gtk-theme
     kanagawa-icon-theme
     chromium
-    discord
+    # discord
   ];
 }

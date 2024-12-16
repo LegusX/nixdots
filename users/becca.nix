@@ -50,7 +50,7 @@
     obsidian
     firefox
     p3x-onenote
-    gnome.gnome-software
+    gnome-software
     spotify
     libreoffice
   ];

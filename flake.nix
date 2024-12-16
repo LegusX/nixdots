@@ -35,10 +35,10 @@
       url = "github:tinted-theming/base16-waybar";
       flake = false;
     };
-    theme-btop = {
-      url = "git+https://git.sr.ht/~blueingreen/base16-btop";
-      flake = false;
-    };
+    # theme-btop = {
+    #   url = "git+https://git.sr.ht/~blueingreen/base16-btop";
+    #   flake = false;
+    # };
     theme-alacritty = {
       url = "github:aarowill/base16-alacritty";
       flake = false;
@@ -83,15 +83,16 @@
           ./hosts/loganthinkbook.nix
           ./shared/nix/common.nix
           ./shared/nix/desktop-common.nix
-          # ./shared/desktops/hyprland/core.nix
+          ./shared/desktops/hyprland/core.nix
           ./shared/nix/vpn.nix
           # ./shared/desktops/gnome/core.nix
-          ./shared/desktops/sway/core.nix
+          # ./shared/desktops/sway/core.nix
           ./shared/nix/games.nix
           {scheme = ./src/clouds_theme.yaml;}
           sops-nix.nixosModules.sops
           base16.nixosModule
           stylix.nixosModules.stylix
+          disko.nixosModules.disko
         ];
       };
       beccabook = nixpkgs.lib.nixosSystem {

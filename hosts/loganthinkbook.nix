@@ -23,16 +23,13 @@
   
   # graphics nonsense
   hardware.graphics = {
-    # enable = true;
-    # driSupport = true;
+    enable = true;
     extraPackages = with pkgs; [
       intel-vaapi-driver
       # libvdpau-va-gl
     ];
   };
 
-  hardware.opengl.enable = true;
-  
   # Enable GDM login manager
   # services.xserver.enable = true;
   # services.xserver.displayManager.gdm.enable = true;
@@ -56,10 +53,10 @@
   #     };
   #   };
   # };
-  # services.getty.autologinUser = "logan";
-  # home-manager.users.logan.wayland.windowManager.hyprland.settings.exec-once = [
-  #   "hyprlock"
-  # ];
+  services.getty.autologinUser = "logan";
+  home-manager.users.logan.wayland.windowManager.hyprland.settings.exec-once = [
+    "hyprlock"
+  ];
 
   # Theming
   stylix = {
@@ -85,20 +82,21 @@
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/b427321b-d2e3-4e31-9eea-bceabaf95b9b";
-    fsType = "ext4";
-  };
+  # Now controlled by disko
+  # fileSystems."/" = {
+  #   device = "/dev/disk/by-uuid/b427321b-d2e3-4e31-9eea-bceabaf95b9b";
+  #   fsType = "ext4";
+  # };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/7086-D615";
-    fsType = "vfat";
-    options = ["fmask=0077" "dmask=0077"];
-  };
+  # fileSystems."/boot" = {
+  #   device = "/dev/disk/by-uuid/7086-D615";
+  #   fsType = "vfat";
+  #   options = ["fmask=0077" "dmask=0077"];
+  # };
 
-  swapDevices = [
-    {device = "/dev/disk/by-uuid/0c3aac5a-c570-4e72-8be1-d1bf13e66eb6";}
-  ];
+  # swapDevices = [
+  #   {device = "/dev/disk/by-uuid/0c3aac5a-c570-4e72-8be1-d1bf13e66eb6";}
+  # ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
