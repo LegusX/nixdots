@@ -37,7 +37,7 @@
 
       exec-once = [
         "dbus-update-activation-environment --systemd --all"
-        "swayosd-server & waybar & udiskie & swaync & swww-daemon & sleep 1 && sww img ~/.config/nixos-config/src/wallpaper.gif --transition-type wipe &"
+        "swayosd-server & waybar & udiskie & swaync & swww-daemon & sleep 1 && swww img ~/.config/nixos-config/src/wallpaper.gif --transition-type wipe &"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
       ];
