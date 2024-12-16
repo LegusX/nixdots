@@ -30,7 +30,7 @@
     ];
   };
 
-  Greeter nonsense
+  # Greeter nonsense
   services.greetd = {
     enable = true;
     settings = {
