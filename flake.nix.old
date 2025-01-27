@@ -21,11 +21,12 @@
     # sops-nix
     sops-nix.url = "github:Mic92/sops-nix";
 
-    # Hyprland
-    hyprland.url = "github:hyprwm/Hyprland/0bd541f2fd902dbfa04c3ea2ccf679395e316887";
-
     # base16.nix
     base16.url = "github:SenchoPens/base16.nix";
+    tt-schemes = {
+      url = "github:tinted-theming/schemes";
+      flake = false;
+    };
     theme-helix = {
       url = "github:tinted-theming/base16-helix";
       flake = false;
@@ -34,6 +35,10 @@
       url = "github:tinted-theming/base16-waybar";
       flake = false;
     };
+    # theme-btop = {
+    #   url = "git+https://git.sr.ht/~blueingreen/base16-btop";
+    #   flake = false;
+    # };
     theme-alacritty = {
       url = "github:aarowill/base16-alacritty";
       flake = false;
@@ -48,7 +53,6 @@
     disko,
     sops-nix,
     base16,
-    hyprland,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -57,6 +61,8 @@
       "aarch64-linux"
       "i686-linux"
       "x86_64-linux"
+      "aarch64-darwin"
+      "x86_64-darwin"
     ];
     # This is a function that generates an attribute by calling a function you
     # pass to it, with each system as an argument
@@ -67,7 +73,7 @@
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
     # Your custom packages and modifications, exported as overlays
-    overlays = import ./modules/overlays.nix {inherit inputs;};
+    overlays = import ./shared/nix/overlays {inherit inputs;};
 
     # NixOS configuration entrypoint
     nixosConfigurations = {
@@ -75,6 +81,13 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./hosts/loganthinkbook.nix
+          ./shared/nix/common.nix
+          ./shared/nix/desktop-common.nix
+          ./shared/desktops/hyprland/core.nix
+          ./shared/nix/vpn.nix
+          # ./shared/desktops/gnome/core.nix
+          # ./shared/desktops/sway/core.nix
+          ./shared/nix/games.nix
           {scheme = ./src/clouds_theme.yaml;}
           sops-nix.nixosModules.sops
           base16.nixosModule
@@ -82,23 +95,32 @@
           disko.nixosModules.disko
         ];
       };
-    #   beccabook = nixpkgs.lib.nixosSystem {
-    #     specialArgs = {inherit inputs outputs;};
-    #     modules = [
-    #       ./hosts/beccabook.nix
-    #       sops-nix.nixosModules.sops
-    #       base16.nixosModule
-    #     ];
-    #   };
-    #   oraclevps = nixpkgs.lib.nixosSystem {
-    #     specialArgs = {inherit inputs outputs;};
-    #     modules = [
-    #       ./hosts/vps/core.nix
-    #         {scheme = ./src/clouds_theme.yaml;}
-    #       sops-nix.nixosModules.sops
-    #       base16.nixosModule
-    #     ];
-    #   };
+      beccabook = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/beccabook.nix
+          ./shared/nix/common.nix
+          ./shared/nix/desktop-common.nix
+          ./shared/nix/games.nix
+          ./shared/desktops/gnome/core.nix
+          ./shared/desktops/hyprland/core.nix
+          sops-nix.nixosModules.sops
+          base16.nixosModule
+        ];
+      };
+      oraclevps = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/vps/core.nix
+          ./shared/nix/common.nix
+          ./hosts/vps/mealie.nix
+          ./hosts/vps/nextcloud.nix
+          {scheme = "${inputs.tt-schemes}/base16/kanagawa.yaml";}
+          disko.nixosModules.disko
+          sops-nix.nixosModules.sops
+          base16.nixosModule
+        ];
+      };
     };
   };
 }
