@@ -38,62 +38,71 @@
     # base16Scheme = ../src/base16_theme.yaml;
   };
 
+  virtualisation.vmVariant = {
+    # following configuration is added only when building VM with build-vm
+    virtualisation = {
+      memorySize = 4096; # Use 2048MiB memory.
+      cores = 4;
+      graphics = true;
+    };
+  };
+
   #####################################################################################################
   # Hardware Config
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
-  boot.loader.systemd-boot.enable = true;
-  services.logind.lidSwitch = "hybrid-sleep";
+  # boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
+  # boot.initrd.kernelModules = [];
+  # boot.kernelModules = ["kvm-intel"];
+  # boot.extraModulePackages = [];
+  # boot.loader.systemd-boot.enable = true;
+  # services.logind.lidSwitch = "hybrid-sleep";
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  # nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  # hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # Disk setup
-  disko.devices = {
-    disk = {
-      main = {
-        device = "/dev/nvme0n1";
-        type = "disk";
-        content = {
-          type = "gpt";
-          partitions = {
-            ESP={
-              priority = 1;
-              name = "ESP";
-              start = "1M";
-              end = "512M";
-              type = "EF00";
-              content = {
-                type = "filesystem";
-                format = "vfat";
-                mountpoint = "/boot";
-                mountOptions = ["umask=0077"];
-              };
-            };
-            root = {
-              end = "-16G";
-              content = {
-                type = "btrfs";
-                extraArgs = ["-f"];
-                mountpoint = "/";
-                mountOptions = ["noatime"];
-              };
-            };
-            swap = {
-              size="100%";
-              content = {
-                type = "swap";
-                discardPolicy = "both";
-                resumeDevice = true;
-              };
-            };
-          };
-        };
-      };
-    };
-  };
+  # disko.devices = {
+  #   disk = {
+  #     main = {
+  #       device = "/dev/nvme0n1";
+  #       type = "disk";
+  #       content = {
+  #         type = "gpt";
+  #         partitions = {
+  #           ESP={
+  #             priority = 1;
+  #             name = "ESP";
+  #             start = "1M";
+  #             end = "512M";
+  #             type = "EF00";
+  #             content = {
+  #               type = "filesystem";
+  #               format = "vfat";
+  #               mountpoint = "/boot";
+  #               mountOptions = ["umask=0077"];
+  #             };
+  #           };
+  #           root = {
+  #             end = "-16G";
+  #             content = {
+  #               type = "btrfs";
+  #               extraArgs = ["-f"];
+  #               mountpoint = "/";
+  #               mountOptions = ["noatime"];
+  #             };
+  #           };
+  #           swap = {
+  #             size="100%";
+  #             content = {
+  #               type = "swap";
+  #               discardPolicy = "both";
+  #               resumeDevice = true;
+  #             };
+  #           };
+  #         };
+  #       };
+  #     };
+  #   };
+  # };
 
 }
