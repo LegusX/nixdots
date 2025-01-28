@@ -23,7 +23,7 @@
     config = lib.mkIf config.hyprland.enable {
 
       programs.hyprland = {
-        enable = true;
+        # enable = true;
         # Use packages locked to hyprland version
         package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
         portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
@@ -71,8 +71,8 @@
       # Lock mesa version to hyprland version
       hardware.graphics = {
         package = pkgs-hypr.mesa.drivers;
-        driSupport32Bit = true;
-        package32 = pkgs-hypr.pkgsi686Linux.mesa.drivers;
+        enable32Bit = true;
+        # extraPackages32 = [pkgs-hypr.pkgsi686Linux.mesa.drivers];
       };
 
       # XDG nonsense. Not sure I need all of this
@@ -82,7 +82,7 @@
         enable = true;
         extraPortals = [
           inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
-        ]
+        ];
       };
       programs.dconf.enable = true;
 
@@ -92,7 +92,7 @@
         settings = {
           initial_session = {
             command = "${Hyprland}";
-            user = "${username}";
+            user = "logan";
           };
           default_session = {
             command = concatStringsSep " " [
@@ -109,5 +109,5 @@
         };
       };
 
-    }
+    };
 }

@@ -2,11 +2,12 @@
   outputs,
   pkgs,
   lib,
+  config,
   ...
 }: {
-  options = [
-    games.enable = lib.mkEnableOption "Enable games module"
-  ];
+  options = {
+    games.enable = lib.mkEnableOption "Enable games module";
+  };
   config = lib.mkIf config.games.enable {
     programs.steam = {
       enable = true;
@@ -14,9 +15,9 @@
       localNetworkGameTransfers.openFirewall = true;
     };
 
-    environment.systemPackages = with pkgs; [
-      prismlauncher.override
-      {jdks = [pkgs.jdk22];}
-    ];
+    # environment.systemPackages = with pkgs; [
+    #   prismlauncher.override
+    #   {jdks = [pkgs.jdk22];}
+    # ];
   };
 }

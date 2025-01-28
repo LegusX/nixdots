@@ -1,7 +1,6 @@
-{
+{outputs,inputs,lib,config,pkgs,...}:{
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    ./zsh.nix
   ];
 
   nixpkgs = {
@@ -68,6 +67,7 @@
     useUserPackages = true;
     # useGlobalPkgs = true;
     extraSpecialArgs = {inherit inputs outputs;};
+    sharedModules = [./zsh.nix];
   };
 
   services.openssh = {

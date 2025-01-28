@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   ...
 }: 
 {
@@ -23,18 +24,18 @@
   };
   hardware.pulseaudio.enable = false;
 
-  environment.systemPackages = withpkgs; [
+  environment.systemPackages = with pkgs; [
     firefox
     librewolf
-  ]
+  ];
 
   programs.thunderbird = {
     enable = true;
-    profiles = {
-      default = {
-        isDefault = true;
-      };
-    };
+    # profiles = {
+    #   default = {
+    #     isDefault = true;
+    #   };
+    # };
   };
 
   home-manager.sharedModules = [{home.packages = with pkgs; [
@@ -46,5 +47,5 @@
     chromium
     libreoffice
     # discord
-  ];}]
+  ];}];
 }

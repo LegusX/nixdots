@@ -1,4 +1,4 @@
-{
+{lib,...}:{
   imports = [
     ./vpn.nix
     ./cli
