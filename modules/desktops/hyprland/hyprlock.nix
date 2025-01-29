@@ -1,28 +1,33 @@
-{osConfig, ...}: {
+{osConfig, pkgs, ...}: 
+let
+  hyprlock = "${pkgs.hyprlock}/bin/hyprlock";
+  hyprctl = "${pkgs.hyprland}/bin/hyprctl";
+in
+{
   services.swayidle = {
     enable = true;
     events = [
       {
         event = "before-sleep";
-        command = "hyprlock";
+        command = hyprlock;
       }
       {
         event = "after-resume";
-        command = "hyprctl dispatch dpms on";
+        command = "${hyprctl} dispatch dpms on";
       }
     ];
     timeouts = [
       {
         timeout = 600;
-        command = "hyprlock";
+        command = hyprlock;
       }
       {
         timeout = 1200;
-        command = "hyprctl dispatch dpms off";
+        command = "${hyprctl} dispatch dpms off";
       }
       {
         timeout = 1800;
-        command = "systemctl suspend";
+        command = "${pkgs.systemd}/bin/systemctl hybrid-sleep";
       }
     ];
   };
@@ -62,14 +67,14 @@
       };
 
       label = {
-        text = "cmd[update:1000] echo \"$(date +\"%0I:%M\")\"";
-        position = "0, 30%";
+        text = "cmd[update:1000] echo \"$(${pkgs.coreutils}/bin/date +\"%0I:%M\")\"";
+        position = "0, 100%";
         halign = "center";
         valign = "center";
         font_size = 90;
         font_family = "RobotoMono Nerd Font";
         color = "rgb(${base0C})";
-        z-index = 1;
+        zindex = 1;
       };
 
       shape = [

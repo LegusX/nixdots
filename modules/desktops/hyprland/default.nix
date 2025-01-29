@@ -88,10 +88,10 @@
       services.greetd = {
         enable = true;
         settings = {
-          initial_session = {
-            command = "${Hyprland}";
-            user = "logan";
-          };
+          # initial_session = {
+          #   command = "${Hyprland}";
+          #   user = "logan";
+          # };
           default_session = {
             command = concatStringsSep " " [
               tuigreet
