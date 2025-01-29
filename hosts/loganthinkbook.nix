@@ -11,6 +11,8 @@
     inputs.home-manager.nixosModules.home-manager
     (modulesPath + "/installer/scan/not-detected.nix")
     ./common.nix
+    ../modules
+    ../users
   ];
 
   hyprland.enable = true;
@@ -45,8 +47,15 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
-  boot.loader.systemd-boot.enable = true;
   services.logind.lidSwitch = "hybrid-sleep";
+
+  # boot.loader.grub = {xxx
+  #   enable = true;
+  #   efiSupport = true;
+  #   device = "nodev";
+  #   useOSProber = true;
+  # };
+  boot.loader.systemd-boot.enable = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
@@ -95,5 +104,5 @@
       };
     };
   };
-
+  system.stateVersion = "24.11";
 }

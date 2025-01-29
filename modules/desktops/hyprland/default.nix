@@ -7,7 +7,7 @@
 }:     
   let
     inherit (lib) concatStringsSep getExe;
-    sessionData = config.services.xserver.displayManager.sessionData.desktops;
+    sessionData = config.services.displayManager.sessionData.desktops;
     sessionPath = concatStringsSep ":" [
       "${sessionData}/share/wayland-sessions"
       "${sessionData}/share/xsessions"
@@ -28,20 +28,21 @@
         package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
         portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
         withUWSM = true;
+        xwayland.enable = false;
       };
 
       home-manager.sharedModules = [
-      {
-        xdg.configFile."hypr/hyprland.conf" = {
-          source = config.lib.mkOutOfStoreSymlink "${config.home.homeDirectory}/.nixos/config/hyprland.conf";
-        };
-      }
-      ./hyprlock.nix
+      # {
+      #   xdg.configFile."hypr/hyprland.conf" = {
+      #     source = config.lib.mkOutOfStoreSymlink "${config.home.homeDirectory}/.nixos/config/hyprland.conf";
+      #   };
+      # }
+      ./hm.nix
       ./waybar.nix
       ];
 
       environment.systemPackages = with pkgs; [
-        gnome.nautilus
+        nautilus
         wl-gammactl
         wl-clipboard
         pavucontrol
@@ -50,7 +51,7 @@
         wofi
         swww
         xdg-utils
-        gnome.eog
+        eog
         overskride
         networkmanagerapplet
       ];
@@ -80,9 +81,6 @@
       xdg.portal = {
         xdgOpenUsePortal = true;
         enable = true;
-        extraPortals = [
-          inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
-        ];
       };
       programs.dconf.enable = true;
 

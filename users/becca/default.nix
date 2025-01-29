@@ -1,11 +1,12 @@
 {
   lib,
+  config,
   ...
 }:{
   options = {
-    users.becca.enable = lib.mkEnableOption "Add becca user"
+    users.becca.enable = lib.mkEnableOption "Add becca user";
   };
-  config = lib.mkIf users.becca.enable {
+  config = lib.mkIf config.users.becca.enable {
     users.users.becca = {
       isNormalUser = true;
       initialPassword = "changemenow";
@@ -16,5 +17,5 @@
         becca = import ../../becca.nix;
       };
     };
-  }
+  };
 }
