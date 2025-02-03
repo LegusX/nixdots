@@ -23,22 +23,19 @@
     config = lib.mkIf config.hyprland.enable {
 
       programs.hyprland = {
-        # enable = true;
+        enable = true;
         # Use packages locked to hyprland version
-        package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-        portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+        # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+        portalPackage = pkgs.xdg-desktop-portal-hyprland;
+        package = pkgs.hyprland;
         withUWSM = true;
-        xwayland.enable = false;
+        xwayland.enable = config.games.enable;
+        # xwayland.enable = false;
       };
 
       home-manager.sharedModules = [
-      # {
-      #   xdg.configFile."hypr/hyprland.conf" = {
-      #     source = config.lib.mkOutOfStoreSymlink "${config.home.homeDirectory}/.nixos/config/hyprland.conf";
-      #   };
-      # }
-      ./hm.nix
-      ./waybar.nix
+        ./hm.nix
+        ./waybar.nix
       ];
 
       environment.systemPackages = with pkgs; [
@@ -48,7 +45,7 @@
         pavucontrol
         brightnessctl
         hyprshot
-        wofi
+        # wofi
         swww
         xdg-utils
         eog
@@ -79,7 +76,7 @@
       # XDG nonsense. Not sure I need all of this
       xdg.autostart.enable = true;
       xdg.portal = {
-        xdgOpenUsePortal = true;
+        # xdgOpenUsePortal = true;
         enable = true;
       };
       programs.dconf.enable = true;

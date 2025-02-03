@@ -15,9 +15,14 @@
       localNetworkGameTransfers.openFirewall = true;
     };
 
-    # environment.systemPackages = with pkgs; [
-    #   prismlauncher.override
-    #   {jdks = [pkgs.jdk22];}
-    # ];
+    environment.systemPackages = with pkgs; [
+      heroic
+      (prismlauncher.override {
+        jdks = with pkgs; [
+          jdk21
+          graalvm-ce
+        ];
+      })
+    ];
   };
 }

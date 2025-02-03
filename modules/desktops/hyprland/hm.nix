@@ -7,6 +7,7 @@
 }: {
   imports = [
     ./hyprlock.nix
+    inputs.walker.homeManagerModules.default
   ];
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 
@@ -26,8 +27,28 @@
     stylePath = "${config.xdg.configHome}/swayosd/style.css";
   };
 
-  wayland.windowManager.hyprland = with osConfig.scheme; {
+  programs.walker = {
     enable = true;
+    runAsService = true;
+
+    config = {
+      websearch.prefix = "?";
+      AppLaunchPrefix = "uwsm app --";
+    };
+  };
+
+  xdg.configFile."hypr/hyprland.conf" = {
+    # source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.nixos/config/hyprland.conf";
+    source = ../../../config/hyprland.conf;
+   }; 
+  
+
+  wayland.windowManager.hyprland = with osConfig.scheme; {
+    # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    # systemd.enable = false;
+    # xwayland.enable = osConfig.games.enable;
+    # enable = true;
+    enable = false;
     settings = {
       monitor = ",preferred,auto,1";
 
@@ -36,7 +57,7 @@
       };
 
       exec-once = [
-        "dbus-update-activation-environment --systemd --all"
+        # "dbus-update-activation-environment --systemd --all"
         "swayosd-server & waybar & udiskie & swaync & swww-daemon & sleep 1 && swww img ~/.config/nixos-config/src/wallpaper.gif --transition-type wipe &"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
@@ -106,14 +127,15 @@
 
       bind =
         [
-          "$mainMod, Q, exec, alacritty"
+          "$mainMod, Q, exec, uwsm app -- alacritty"
           "$mainMod, C, killactive"
           "$mainMod, M, exit"
-          "$mainMod, E, exec, nautilus"
+          "$mainMod, E, exec, uwsm app -- nautilus"
           "$mainMod, V, togglefloating"
-          "$mainMod, SPACE, exec, pkill wofi || wofi --show drun"
+          # "$mainMod, SPACE, exec, pkill wofi || uwsm app -- $(wofi --show drun --define=drun-print_desktop_file=true)"
+          "$mainMod, SPACE, exec, pkill walker || uwsm app -- walker"
           "$mainMod, L, exec, hyprlock"
-          "SUPER_SHIFT, S, exec, hyprshot -m region --clipboard-only"
+          "SUPER_SHIFT, S, exec, uwsm app -- hyprshot -m region --clipboard-only"
           ", xf86monbrightnessup, exec, ${config.services.swayosd.package}/bin/swayosd-client --brightness raise"
           ", xf86monbrightnessdown, exec, ${config.services.swayosd.package}/bin/swayosd-client --brightness lower"
           ", xf86audioraisevolume, exec, ${config.services.swayosd.package}/bin/swayosd-client --output-volume raise"

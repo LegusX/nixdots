@@ -6,6 +6,7 @@
 {
   imports = [
     ./hyprland
+    # ./gnome
   ];
 
   hyprland.enable = lib.mkDefault true;

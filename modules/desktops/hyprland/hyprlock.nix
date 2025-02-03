@@ -25,10 +25,10 @@ in
         timeout = 1200;
         command = "${hyprctl} dispatch dpms off";
       }
-      {
-        timeout = 1800;
-        command = "${pkgs.systemd}/bin/systemctl hybrid-sleep";
-      }
+      # {
+      #   timeout = 1800;
+      #   command = "${pkgs.systemd}/bin/systemctl hybrid-sleep";
+      # }
     ];
   };
 

@@ -23,6 +23,7 @@
 
     # Hyprland
     hyprland.url = "github:hyprwm/Hyprland/0bd541f2fd902dbfa04c3ea2ccf679395e316887";
+    # hyprland.url = "github:hyprwm/Hyprland/12f9a0d0b93f691d4d9923716557154d74777b0a";
 
     # base16.nix
     base16.url = "github:SenchoPens/base16.nix";
@@ -38,6 +39,15 @@
       url = "github:aarowill/base16-alacritty";
       flake = false;
     };
+
+    # Cachy Kernel
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+
+    #flatpak nix
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.5.2";
+
+    # Walker
+    walker.url = "github:abenz1267/walker";
   };
 
   outputs = {
@@ -49,6 +59,9 @@
     sops-nix,
     base16,
     hyprland,
+    chaotic,
+    nix-flatpak,
+    walker,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -82,6 +95,21 @@
           disko.nixosModules.disko
         ];
       };
+    ryzenshine = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs outputs;};
+      modules = [
+        ./hosts/ryzenshine.nix
+        {scheme = ./src/clouds_theme.yaml;}
+        sops-nix.nixosModules.sops
+        base16.nixosModule
+        stylix.nixosModules.stylix
+        disko.nixosModules.disko
+        chaotic.nixosModules.nyx-cache
+        chaotic.nixosModules.nyx-overlay
+        chaotic.nixosModules.nyx-registry
+        nix-flatpak.nixosModules.nix-flatpak
+      ];
+    };
     #   beccabook = nixpkgs.lib.nixosSystem {
     #     specialArgs = {inherit inputs outputs;};
     #     modules = [
