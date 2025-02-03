@@ -39,14 +39,31 @@
     # };
   };
 
-  home-manager.sharedModules = [{home.packages = with pkgs; [
-    obsidian
-    vscode-fhs
-    spotify
-    kanagawa-gtk-theme
-    kanagawa-icon-theme
-    chromium
-    libreoffice
-    # discord
-  ];}];
+  home-manager.sharedModules = [
+    {
+    home.packages = with pkgs; [
+      obsidian
+      vscode-fhs
+      spotify
+      kanagawa-gtk-theme
+      kanagawa-icon-theme
+      chromium
+      libreoffice
+      # discord
+    ];
+    
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
+      };
+    };
+    home.sessionVariables = {
+        EDITOR = "${lib.getExe pkgs.helix}";
+        BROWSER = "${lib.getExe pkgs.firefox}";
+        TERMINAL = "${lib.getExe pkgs.alacritty}";
+    };
+    }
+  ];
 }
