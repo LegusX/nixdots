@@ -6,6 +6,7 @@
 {
   imports = [
     ./hyprland
+    ./flatpak.nix
     # ./gnome
   ];
 
@@ -50,8 +51,11 @@
       chromium
       libreoffice
       # discord
+      (pkgs.writeShellScriptBin "discord" ''
+        exec ${pkgs.discord}/bin/discord --enable-features=UseOzonePlatform --ozone-platform=wayland
+      '')
     ];
-    
+ 
     xdg.mimeApps = {
       enable = true;
       defaultApplications = {
@@ -60,9 +64,9 @@
       };
     };
     home.sessionVariables = {
-        EDITOR = "${lib.getExe pkgs.helix}";
-        BROWSER = "${lib.getExe pkgs.firefox}";
-        TERMINAL = "${lib.getExe pkgs.alacritty}";
+        EDITOR = lib.mkForce "${lib.getExe pkgs.helix}";
+        BROWSER = lib.mkForce "${lib.getExe pkgs.firefox}";
+        TERMINAL = lib.mkForce "${lib.getExe pkgs.alacritty}";
     };
     }
   ];
