@@ -2,14 +2,13 @@
   pkgs,
   config,
   ...
-}:
-{
+}: {
   imports = [
     ../hyprland/hyprlock.nix
   ];
 
   home.sessionVariables.NIXOS_OZONE_WL = "1";
-  
+
   home.packages = with pkgs; [
     cliphist
     waybar
@@ -24,7 +23,7 @@
     topMargin = 0.9;
     stylePath = "${config.xdg.configHome}/swayosd/style.css";
   };
-  
+
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;

@@ -40,8 +40,7 @@
   xdg.configFile."hypr/hyprland.conf" = {
     # source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.nixos/config/hyprland.conf";
     source = ../../../config/hyprland.conf;
-   }; 
-  
+  };
 
   wayland.windowManager.hyprland = with osConfig.scheme; {
     # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;

@@ -49,7 +49,6 @@
   home.packages = with pkgs; [
     obsidian
     firefox
-    p3x-onenote
     gnome-software
     spotify
     libreoffice

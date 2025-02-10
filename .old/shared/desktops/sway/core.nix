@@ -2,8 +2,7 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   home-manager.sharedModules = [./hm.nix];
 
   environment.systemPackages = with pkgs; [
@@ -60,5 +59,4 @@
       };
     };
   };
-  
 }

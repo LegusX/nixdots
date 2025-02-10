@@ -14,7 +14,7 @@
     # enable32Bit = true;
     # package32 = pkgs.unstable.pkgsi686Linux.mesa.drivers;
   };
-  
+
   home-manager.sharedModules = [./hm.nix];
 
   environment.loginShellInit = ''

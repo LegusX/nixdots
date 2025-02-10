@@ -1,9 +1,11 @@
-{osConfig, pkgs, ...}: 
-let
+{
+  osConfig,
+  pkgs,
+  ...
+}: let
   hyprlock = "${pkgs.hyprlock}/bin/hyprlock";
   hyprctl = "${pkgs.hyprland}/bin/hyprctl";
-in
-{
+in {
   services.swayidle = {
     enable = true;
     events = [

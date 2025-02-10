@@ -1,4 +1,9 @@
-{pkgs,lib,config,...}:{
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options = {
     vpn.enable = lib.mkEnableOption "Enable vpn";
   };

@@ -5,9 +5,14 @@
   config,
   ...
 }: {
+  imports = [
+    ./minecraft.nix
+  ];
+
   options = {
     games.enable = lib.mkEnableOption "Enable games module";
   };
+
   config = lib.mkIf config.games.enable {
     programs.steam = {
       enable = true;

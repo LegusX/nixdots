@@ -20,7 +20,7 @@
 
   boot.loader.systemd-boot.enable = true;
   services.logind.lidSwitch = "hybrid-sleep";
-  
+
   # graphics nonsense
   hardware.graphics = {
     enable = true;
@@ -41,7 +41,6 @@
     };
   };
 
-
   # Theming
   stylix = {
     enable = true;
@@ -55,8 +54,6 @@
     # base16Scheme = ../src/base16_theme.yaml;
   };
 
-  
-  
   #Hardware configuration
 
   # networking.dnsExtensionMechanism = lib.mkForce false;
@@ -102,7 +99,7 @@
         content = {
           type = "gpt";
           partitions = {
-            ESP={
+            ESP = {
               priority = 1;
               name = "ESP";
               start = "1M";
@@ -125,7 +122,7 @@
               };
             };
             swap = {
-              size="100%";
+              size = "100%";
               content = {
                 type = "swap";
                 discardPolicy = "both";
@@ -137,6 +134,4 @@
       };
     };
   };
-
 }
-

@@ -1,16 +1,18 @@
-{lib,...}:{    
+{lib, ...}: {
   services.flatpak = {
     enable = true;
-    
+
     update.auto = {
       enable = true;
     };
-    
-    remotes = lib.mkOptionDefault [{
-      name = "flathub-beta";
-      location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
-    }];
-    
+
+    remotes = lib.mkOptionDefault [
+      {
+        name = "flathub-beta";
+        location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
+      }
+    ];
+
     # packages = [
     #   { appId = "com.discordapp.DiscordCanary"; origin = "flathub-beta"; }
     #   "com.discordapp.Discord"

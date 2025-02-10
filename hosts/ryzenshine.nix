@@ -15,9 +15,11 @@
     ../users
   ];
 
+  desktops.gnome.enable = false;
   hyprland.enable = true;
   games.enable = true;
-  # users.becca.enable = true;
+  services.minecraft.ryzenshine.enable = true;
+  users.becca.enable = true;
 
   networking.hostName = "ryzenshine";
   networking.networkmanager.enable = true;
@@ -33,7 +35,6 @@
   #     support32Bit.enable = true;
   # };
 
-
   # Theming
   stylix = {
     enable = true;
@@ -45,10 +46,10 @@
 
   ###################################################################################################
   # Hardware Config
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-amd"];
+  boot.extraModulePackages = [];
   boot.loader.systemd-boot.enable = true;
   # boot.kernelPackages = pkgs.linuxPackages_cachyos; # Custom kernel because why not
 

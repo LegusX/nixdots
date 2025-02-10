@@ -1,4 +1,4 @@
-{pkgs,...}:{
+{pkgs, ...}: {
   programs.zsh.enable = true;
   users.users.logan = {
     isNormalUser = true;

@@ -30,7 +30,6 @@
     ];
   };
 
-
   # Theming
   stylix = {
     enable = true;
@@ -69,7 +68,7 @@
         content = {
           type = "gpt";
           partitions = {
-            ESP={
+            ESP = {
               priority = 1;
               name = "ESP";
               start = "1M";
@@ -92,7 +91,7 @@
               };
             };
             swap = {
-              size="100%";
+              size = "100%";
               content = {
                 type = "swap";
                 discardPolicy = "both";

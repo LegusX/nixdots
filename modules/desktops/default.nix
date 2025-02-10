@@ -2,15 +2,15 @@
   pkgs,
   lib,
   ...
-}: 
-{
+}: {
   imports = [
     ./hyprland
     ./flatpak.nix
-    # ./gnome
+    ./gnome
   ];
 
   hyprland.enable = lib.mkDefault true;
+  desktops.gnome.enable = lib.mkDefault false;
 
   # Networking
   networking.networkmanager.enable = true;
@@ -42,32 +42,32 @@
 
   home-manager.sharedModules = [
     {
-    home.packages = with pkgs; [
-      obsidian
-      vscode-fhs
-      spotify
-      kanagawa-gtk-theme
-      kanagawa-icon-theme
-      chromium
-      libreoffice
-      # discord
-      (pkgs.writeShellScriptBin "discord" ''
-        exec ${pkgs.discord}/bin/discord --enable-features=UseOzonePlatform --ozone-platform=wayland
-      '')
-    ];
- 
-    xdg.mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "x-scheme-handler/http" = "firefox.desktop";
-        "x-scheme-handler/https" = "firefox.desktop";
+      home.packages = with pkgs; [
+        obsidian
+        vscode-fhs
+        spotify
+        kanagawa-gtk-theme
+        kanagawa-icon-theme
+        chromium
+        libreoffice
+        # discord
+        (pkgs.writeShellScriptBin "discord" ''
+          exec ${pkgs.discord}/bin/discord --enable-features=UseOzonePlatform --ozone-platform=wayland
+        '')
+      ];
+
+      xdg.mimeApps = {
+        enable = true;
+        defaultApplications = {
+          "x-scheme-handler/http" = "firefox.desktop";
+          "x-scheme-handler/https" = "firefox.desktop";
+        };
       };
-    };
-    home.sessionVariables = {
+      home.sessionVariables = {
         EDITOR = lib.mkForce "${lib.getExe pkgs.helix}";
         BROWSER = lib.mkForce "${lib.getExe pkgs.firefox}";
         TERMINAL = lib.mkForce "${lib.getExe pkgs.alacritty}";
-    };
+      };
     }
   ];
 }

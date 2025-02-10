@@ -2,7 +2,7 @@
   lib,
   config,
   ...
-}:{
+}: {
   options = {
     users.becca.enable = lib.mkEnableOption "Add becca user";
   };
@@ -14,7 +14,7 @@
 
     home-manager = {
       users = {
-        becca = import ../../becca.nix;
+        becca = import ./home.nix;
       };
     };
   };

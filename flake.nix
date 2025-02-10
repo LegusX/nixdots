@@ -95,38 +95,39 @@
           disko.nixosModules.disko
         ];
       };
-    ryzenshine = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs outputs;};
-      modules = [
-        ./hosts/ryzenshine.nix
-        {scheme = ./src/clouds_theme.yaml;}
-        sops-nix.nixosModules.sops
-        base16.nixosModule
-        stylix.nixosModules.stylix
-        disko.nixosModules.disko
-        chaotic.nixosModules.nyx-cache
-        chaotic.nixosModules.nyx-overlay
-        chaotic.nixosModules.nyx-registry
-        nix-flatpak.nixosModules.nix-flatpak
-      ];
-    };
-    #   beccabook = nixpkgs.lib.nixosSystem {
-    #     specialArgs = {inherit inputs outputs;};
-    #     modules = [
-    #       ./hosts/beccabook.nix
-    #       sops-nix.nixosModules.sops
-    #       base16.nixosModule
-    #     ];
-    #   };
-    #   oraclevps = nixpkgs.lib.nixosSystem {
-    #     specialArgs = {inherit inputs outputs;};
-    #     modules = [
-    #       ./hosts/vps/core.nix
-    #         {scheme = ./src/clouds_theme.yaml;}
-    #       sops-nix.nixosModules.sops
-    #       base16.nixosModule
-    #     ];
-    #   };
+      ryzenshine = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/ryzenshine.nix
+          {scheme = ./src/clouds_theme.yaml;}
+          sops-nix.nixosModules.sops
+          base16.nixosModule
+          stylix.nixosModules.stylix
+          disko.nixosModules.disko
+          chaotic.nixosModules.nyx-cache
+          chaotic.nixosModules.nyx-overlay
+          chaotic.nixosModules.nyx-registry
+          nix-flatpak.nixosModules.nix-flatpak
+        ];
+      };
+      beccabook = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/beccabook.nix
+          sops-nix.nixosModules.sops
+          base16.nixosModule
+        ];
+      };
+      oraclevps = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/vps/core.nix
+          {scheme = ./src/clouds_theme.yaml;}
+          sops-nix.nixosModules.sops
+          base16.nixosModule
+          disko.nixosModules.disko
+        ];
+      };
     };
   };
 }
