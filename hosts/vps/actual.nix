@@ -6,6 +6,7 @@
   
   services.actual = {
     enable = true;
+    package = pkgs.unstable.actual-server;
     settings = {
       port = 3004;
     };
