@@ -16,7 +16,7 @@
     enableACME = true;
     serverAliases = ["actual.legusx.dev"];
     locations."/" = {
-      proxyPass = "http://localhost:3004"
+      proxyPass = "http://localhost:3004";
     };
   };
 }
