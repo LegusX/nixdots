@@ -9,9 +9,9 @@
   pkgs,
   ...
 }: {
-  imports = [
-    ./theme.nix
-  ];
+  # imports = lib.mkIf (osConfig.networking.hostname != "oraclevps") [
+  #   ./theme.nix
+  # ];
 
   nixpkgs = {
     # You can add overlays here
@@ -50,9 +50,9 @@
         space.q = ":q";
       };
     };
-    themes = {
-      base16 = builtins.fromTOML (builtins.readFile (osConfig.scheme inputs.theme-helix));
-    };
+    # themes = {
+    #   base16 = builtins.fromTOML (builtins.readFile (osConfig.scheme inputs.theme-helix));
+    # };
   };
 
   home = {

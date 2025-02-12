@@ -76,7 +76,7 @@
     extraSpecialArgs = {inherit inputs outputs;};
     sharedModules = [./zsh.nix];
   };
-
+  
   services.openssh = {
     enable = true;
     settings = {

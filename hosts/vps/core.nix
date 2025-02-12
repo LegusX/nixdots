@@ -9,8 +9,11 @@
 }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    ./mealie.nix
-    ./nextcloud.nix
+    # ./mealie.nix
+    # ./nextcloud.nix
+    ./actual.nix
+    ../../users
+    ../../modules/cli
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
 
@@ -39,6 +42,11 @@
     defaults.email = "logan@legusx.dev";
   };
 
+  services.openssh.settings.PermitRootLogin = lib.mkForce "yes";
+
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE1oHkRdSwpahozBf0cr1huRkipnnghPJnmv+5gmrQGB logan@ryzenshine"
+  ];
   # services.cloudflared = {
   #   enable = true;
   #   tunnels = {

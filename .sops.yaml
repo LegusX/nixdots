@@ -1,7 +1,7 @@
 keys: 
-  - &logan age1ml0hqhru4u2wu6dcwh32ja82sz3nvnuq4ygwpwaar9rkmzzcnvvqrh9e6z
-  - &node_loganthinkbook age1pds0seq44wzxpmsly8zt58xuqcmux5r83zhczrwnvnk8rvtry5qspkr0da
-  - &node_oraclevps age10mmynej4ulh2prn9hjhuckzsgjxeqv5hupl6htzcrfgk2hju7fksl86tpq
+  - &logan age1mxys5qxscg3l3fu8ree0ekhqdmk3k8h40wphs509e2xjmsgsju6qp08mmg
+  # - &node_loganthinkbook age1pds0seq44wzxpmsly8zt58xuqcmux5r83zhczrwnvnk8rvtry5qspkr0da
+  - &node_oraclevps age146tj5mj0atrfsjp8f6xuagt7ehpat8rx5ut3xvx739q8yg0nzurqdrumr0
 creation_rules:
   - path_regex: secrets.yaml$
     key_groups:

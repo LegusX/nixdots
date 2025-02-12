@@ -23,6 +23,7 @@
     environment.systemPackages = with pkgs; [
       heroic
       (prismlauncher.override {
+        withWaylandGLFW = true;
         jdks = with pkgs; [
           jdk21
           graalvm-ce

@@ -116,16 +116,18 @@
           ./hosts/beccabook.nix
           sops-nix.nixosModules.sops
           base16.nixosModule
+          stylix.nixosModules.stylix
         ];
       };
       oraclevps = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./hosts/vps/core.nix
-          {scheme = ./src/clouds_theme.yaml;}
+          # {scheme = ./src/clouds_theme.yaml;}
           sops-nix.nixosModules.sops
-          base16.nixosModule
+          # base16.nixosModule
           disko.nixosModules.disko
+          # stylix.nixosModules.stylix
         ];
       };
     };
