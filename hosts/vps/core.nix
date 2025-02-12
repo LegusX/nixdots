@@ -9,8 +9,8 @@
 }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    # ./mealie.nix
-    # ./nextcloud.nix
+    ./mealie.nix
+    ./nextcloud.nix 
     ./actual.nix
     ../../users
     ../../modules/cli
