@@ -99,4 +99,5 @@
   networking.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkForce "aarch64-linux";
+  system.stateVersion = "24.11";
 }

@@ -16,7 +16,7 @@
   services.nextcloud = {
     enable = true;
     hostName = "cloud.legusx.dev";
-    package = pkgs.nextcloud29;
+    package = pkgs.nextcloud30;
 
     # database.createLocally = true;
     maxUploadSize = "16G";
