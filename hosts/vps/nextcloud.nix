@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  sops.secrets.nextcloud-admin = {
+  sops.secrets."nextcloud/admin" = {
     owner = "nextcloud";
     group = "nextcloud";
   };

@@ -22,8 +22,9 @@
 
     environment.systemPackages = with pkgs; [
       heroic
+      protontricks
       (prismlauncher.override {
-        withWaylandGLFW = true;
+        # withWaylandGLFW = true;
         jdks = with pkgs; [
           jdk21
           graalvm-ce

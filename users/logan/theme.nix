@@ -46,7 +46,7 @@
   gtk.theme.name = "Colloid-Orange-Dark";
 
   gtk.iconTheme.package = pkgs.colloid-icon-theme.override {colorVariants = ["all"];};
-  gtk.iconTheme.name = "Colloid-orange-dark";
+  gtk.iconTheme.name = "Colloid-Orange-Dark";
 
   gtk.cursorTheme = {
     package = pkgs.vimix-cursors;
@@ -64,6 +64,12 @@
       gtk-application-prefer-dark-theme=0
     '';
     gtk-theme-name = ''Colloid-Orange-Dark'';
+  };
+
+  xdg.configFile = {
+    "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
+    "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
+    "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
   };
 
   home.sessionVariables.GTK_THEME = "Colloid-Orange-Dark";
