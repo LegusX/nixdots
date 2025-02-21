@@ -13,8 +13,8 @@
       allow_guest_registration = false;
       allow_registration = true;
       database_backend = "rocksdb";
-    }
-  }
+    };
+  };
   
   # services.nginx.virtualHosts."actual.legusx.dev" = {
   #   forceSSL = true;
