@@ -25,7 +25,7 @@
     settings.overwriteProtocol = "https";
     config = {
       # dbtype = "pgsql";
-      adminpassFile = "${config.sops.secrets.nextcloud-admin.path}";
+      adminpassFile = "${config.sops.secrets."nextcloud/admin".path}";
       adminuser = "admin";
     };
 
