@@ -12,6 +12,9 @@
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       test -f ~/.p10k.zsh && source ~/.p10k.zsh
     '';
+    initExtra = ''
+      eval "$(direnv hook zsh)"
+    '';
     shellAliases = {
       rebuild = "cd ~/.config/nixos-config && git add . && alejandra . && nh os switch . && git commit";
       ls = "exa -hl";

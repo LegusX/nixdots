@@ -12,6 +12,7 @@
     ./mealie.nix
     ./nextcloud.nix 
     ./actual.nix
+    ./matrix.nix
     ../../users
     ../../modules/cli
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -23,11 +24,6 @@
   time.timeZone = "America/New_York";
 
   networking.hostName = "oraclevps";
-
-  nix.settings = {
-    substituters = ["https://attic.kennel.juneis.dog/conduwuit"]
-    trusted-public-keys = ["conduwuit:BbycGUgTISsltcmH0qNjFR9dbrQNYgdIAcmViSGoVTE="]
-  };
 
   sops = {
     defaultSopsFile = ../../secrets.yaml;

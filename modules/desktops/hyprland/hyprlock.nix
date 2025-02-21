@@ -7,7 +7,7 @@
   hyprctl = "${pkgs.hyprland}/bin/hyprctl";
 in {
   services.swayidle = {
-    enable = true;
+    # enable = true;
     events = [
       {
         event = "before-sleep";

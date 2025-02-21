@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+  imports = [
+    ../../modules/cli/dev.nix
+  ];
+  
   programs.zsh.enable = true;
   users.users.logan = {
     isNormalUser = true;
