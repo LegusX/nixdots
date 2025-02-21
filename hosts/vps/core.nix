@@ -12,7 +12,7 @@
     ./mealie.nix
     ./nextcloud.nix 
     ./actual.nix
-    ./matrix.nix
+    # ./matrix.nix
     ../../users
     ../../modules/cli
     (modulesPath + "/profiles/qemu-guest.nix")
