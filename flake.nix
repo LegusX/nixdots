@@ -48,6 +48,10 @@
 
     # Walker
     walker.url = "github:abenz1267/walker";
+
+    # Winapps
+    winapps.url = "github:winapps-org/winapps";
+    winapps.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -62,6 +66,7 @@
     chaotic,
     nix-flatpak,
     walker,
+    winapps,
     ...
   } @ inputs: let
     inherit (self) outputs;

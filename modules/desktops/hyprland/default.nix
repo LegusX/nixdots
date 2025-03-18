@@ -51,6 +51,10 @@ in {
       networkmanagerapplet
     ];
 
+    environment.sessionVariables = {
+      # XDG_CURRENT_DESKTOP = "GNOME";
+    };
+
     security = {
       polkit.enable = true;
       # pam.services.ags = {};
@@ -77,6 +81,10 @@ in {
       xdgOpenUsePortal = true;
       enable = true;
       extraPortals = [pkgs.xdg-desktop-portal-gnome];
+      config.common.default = [
+        "gtk"
+        "hyprland"
+      ];
     };
     programs.dconf.enable = true;
     services.dbus.implementation = "broker";

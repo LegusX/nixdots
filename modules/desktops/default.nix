@@ -15,6 +15,13 @@
   # Networking
   networking.networkmanager.enable = true;
   networking.resolvconf.dnsExtensionMechanism = false;
+  services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
 
   # Sound
   security.rtkit.enable = true;
@@ -29,6 +36,8 @@
   environment.systemPackages = with pkgs; [
     firefox
     librewolf
+    qbittorrent
+    signal-desktop
   ];
 
   programs.thunderbird = {

@@ -2,9 +2,7 @@
   services.flatpak = {
     enable = true;
 
-    update.auto = {
-      enable = true;
-    };
+    update.onActivation = true;
 
     remotes = lib.mkOptionDefault [
       {
@@ -17,6 +15,10 @@
     #   { appId = "com.discordapp.DiscordCanary"; origin = "flathub-beta"; }
     #   "com.discordapp.Discord"
     # ];
+
+    packages = [
+      "io.github.ryubing.Ryujinx"
+    ];
 
     overrides = {
       global = {
