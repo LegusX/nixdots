@@ -51,7 +51,8 @@
   
   networking.hostName = "ryzenshine";
   networking.networkmanager.enable = true;
-  time.timeZone = "America/New_York";
+  # time.timeZone = "America/New_York";
+  time.hardwareClockInLocalTime = true;
 
   # Bluetooth
   hardware.bluetooth.enable = true;
@@ -84,9 +85,24 @@
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
   boot.kernelParams = ["preempt=full"];
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.configurationLimit = 5;
+
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
+  # boot.loader.efi.efiSysMountPoint = "/boot";
+  # boot.loader.systemd-boot.configurationLimit = 5;
+
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
+    };
+    grub = {
+      enable = true;
+      devices = ["nodev"];
+      useOSProber = true;
+      efiSupport = true;
+    };
+  };
 
   #Sound nonsense for games over hdmi
   services.pipewire.wireplumber.extraConfig."99-fix-games" = {
