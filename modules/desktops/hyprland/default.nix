@@ -25,9 +25,7 @@ in {
       # Use packages locked to hyprland version
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
-      # package = pkgs.hyprland;
       withUWSM = true;
-      # xwayland.enable = config.games.enable; c      # xwayland.enable = false;
     };
 
     home-manager.sharedModules = [
@@ -50,13 +48,8 @@ in {
       networkmanagerapplet
     ];
 
-    environment.sessionVariables = {
-      # XDG_CURRENT_DESKTOP = "GNOME";
-    };
-
     security = {
       polkit.enable = true;
-      # pam.services.ags = {};
       pam.services.hyprlock = {};
     };
 
@@ -70,8 +63,6 @@ in {
     # Lock mesa version to hyprland version
     hardware.graphics = {
       package = pkgs-hypr.mesa.drivers;
-      # enable32Bit = true;
-      # extraPackages32 = [pkgs-hypr.pkgsi686Linux.mesa.drivers];
     };
 
     # XDG nonsense. Not sure I need all of this
@@ -92,10 +83,6 @@ in {
     services.greetd = {
       enable = true;
       settings = {
-        # initial_session = {
-        #   command = "${Hyprland}";
-        #   user = "logan";
-        # };
         default_session = {
           command = concatStringsSep " " [
             tuigreet

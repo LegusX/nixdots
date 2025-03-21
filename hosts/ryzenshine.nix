@@ -64,10 +64,6 @@
     enable = true;
     enable32Bit = true;
   };
-  # hardware.amdgpu.amdvlk = {
-  #     enable = true;
-  #     support32Bit.enable = true;
-  # };
 
   # Theming
   stylix = {
@@ -91,11 +87,6 @@
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
   boot.kernelParams = ["preempt=full"];
-
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
-  # boot.loader.efi.efiSysMountPoint = "/boot";
-  # boot.loader.systemd-boot.configurationLimit = 5;
 
   boot.loader = {
     efi = {
@@ -129,21 +120,6 @@
   };
   
   boot.kernelPackages = pkgs.linuxPackages_6_12;
-  # boot.kernelPackages = pkgs.linuxPackages_cachyos; # Custom kernel because why not
-  # boot.kernelPatches = [
-  #   {
-  #     name = "0001-drm-amdgpu-revert-clear-on-free";
-  #     patch = ../patches/0001-drm-amdgpu-revert-clear-on-free.patch;
-  #   }
-  #   {
-  #     name = "0001-drm-amdgpu-always-allocate-cleared-VRAM-for-GEM-allo";
-  #     patch = ../patches/0001-drm-amdgpu-always-allocate-cleared-VRAM-for-GEM-allo.patch;
-  #   }
-  #   {
-  #     name = "0001-drm-amdgpu-immediately-use-GTT-for-new-allocations";
-  #     patch = ../patches/0001-drm-amdgpu-immediately-use-GTT-for-new-allocations.patch;
-  #   }
-  # ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
