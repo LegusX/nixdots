@@ -23,12 +23,11 @@ in {
     programs.hyprland = {
       enable = true;
       # Use packages locked to hyprland version
-      # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
-      package = pkgs.hyprland;
+      # package = pkgs.hyprland;
       withUWSM = true;
-      xwayland.enable = config.games.enable;
-      # xwayland.enable = false;
+      # xwayland.enable = config.games.enable; c      # xwayland.enable = false;
     };
 
     home-manager.sharedModules = [
@@ -71,7 +70,7 @@ in {
     # Lock mesa version to hyprland version
     hardware.graphics = {
       package = pkgs-hypr.mesa.drivers;
-      enable32Bit = true;
+      # enable32Bit = true;
       # extraPackages32 = [pkgs-hypr.pkgsi686Linux.mesa.drivers];
     };
 

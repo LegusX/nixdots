@@ -78,6 +78,12 @@
     # base16Scheme = ../src/base16_theme.yaml;
   };
 
+  #speed thing ig?
+  services.scx = {
+    enable = true;
+    scheduler = "scx_lavd";
+  };
+
   ###################################################################################################
   # Hardware Config
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
@@ -122,7 +128,22 @@
     ];
   };
   
-  boot.kernelPackages = pkgs.linuxPackages_cachyos; # Custom kernel because why not
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
+  # boot.kernelPackages = pkgs.linuxPackages_cachyos; # Custom kernel because why not
+  # boot.kernelPatches = [
+  #   {
+  #     name = "0001-drm-amdgpu-revert-clear-on-free";
+  #     patch = ../patches/0001-drm-amdgpu-revert-clear-on-free.patch;
+  #   }
+  #   {
+  #     name = "0001-drm-amdgpu-always-allocate-cleared-VRAM-for-GEM-allo";
+  #     patch = ../patches/0001-drm-amdgpu-always-allocate-cleared-VRAM-for-GEM-allo.patch;
+  #   }
+  #   {
+  #     name = "0001-drm-amdgpu-immediately-use-GTT-for-new-allocations";
+  #     patch = ../patches/0001-drm-amdgpu-immediately-use-GTT-for-new-allocations.patch;
+  #   }
+  # ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

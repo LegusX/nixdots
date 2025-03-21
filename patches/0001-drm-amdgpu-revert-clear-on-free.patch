@@ -1,0 +1,27 @@
+From f428e1fc0a8fb6c6abbb64fc9c95157f85156a2d Mon Sep 17 00:00:00 2001
+From: Alex Deucher <alexander.deucher@amd.com>
+Date: Tue, 6 Aug 2024 09:49:23 -0400
+Subject: [PATCH] drm/amdgpu: revert clear on free
+
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+index d796af6b80f9..16af465f1c01 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+@@ -108,7 +108,8 @@ int amdgpu_gem_object_create(struct amdgpu_device *adev, unsigned long size,
+ 
+ 	memset(&bp, 0, sizeof(bp));
+ 	*obj = NULL;
+-	flags |= AMDGPU_GEM_CREATE_VRAM_WIPE_ON_RELEASE;
++	if (adev->ras_enabled)
++		flags |= AMDGPU_GEM_CREATE_VRAM_WIPE_ON_RELEASE;
+ 
+ 	bp.size = size;
+ 	bp.byte_align = alignment;
+-- 
+2.45.2
+
