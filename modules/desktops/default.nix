@@ -34,7 +34,7 @@
   hardware.pulseaudio.enable = false;
 
   environment.systemPackages = with pkgs; [
-    firefox
+    unstable.firefox
     librewolf
     qbittorrent
     signal-desktop
