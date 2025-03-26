@@ -1,10 +1,7 @@
 {
-  pkgs,
-  inputs,
-  config,
-  lib,
-  ...
-}: let
+  config, pkgs, lib, ...
+}:
+let
   inherit (lib) concatStringsSep getExe;
   sessionData = config.services.displayManager.sessionData.desktops;
   sessionPath = concatStringsSep ":" [
@@ -12,28 +9,35 @@
     "${sessionData}/share/xsessions"
   ];
   tuigreet = getExe pkgs.greetd.tuigreet;
-  Hyprland = getExe config.programs.hyprland.package;
-  pkgs-hypr = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in {
   options = {
-    hyprland.enable = lib.mkEnableOption "Enable Hyprland module";
+    desktops.sway.enable = lib.mkEnableOption "Enable sway";
   };
 
-  config = lib.mkIf config.hyprland.enable {
-    programs.hyprland = {
-      enable = true;
-      # Use packages locked to hyprland version
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      portalPackage = pkgs.xdg-desktop-portal-hyprland;
-      withUWSM = true;
-      xwayland.enable = true;
-    };
+  config = lib.mkIf config.desktops.sway.enable {
+    # assertions = [
+    #   {
+    #     assertion = config.hyprland.enable;
+    #     message = "Cannot enable sway and hyprland at the same time because hyprland sucks";
+    #   }
+    # ];
+    
+    # import = [
+      # ./regreet.nix
+    # ];
 
     home-manager.sharedModules = [
       ./hm.nix
       ./waybar.nix
     ];
 
+    programs.sway = {
+      enable = true;
+      package = pkgs.unstable.swayfx;
+      wrapperFeatures.gtk = true;
+      extraPackages = lib.mkForce [];
+   };
+    
     environment.systemPackages = with pkgs; [
       nautilus
       wl-gammactl
@@ -47,12 +51,8 @@ in {
       eog
       overskride
       networkmanagerapplet
+      autotiling
     ];
-
-    security = {
-      polkit.enable = true;
-      pam.services.hyprlock = {};
-    };
 
     services = {
       gvfs.enable = true;
@@ -60,28 +60,24 @@ in {
         gnome-keyring.enable = true;
       };
     };
+    programs.dconf.enable = true;
+    services.dbus.implementation = "broker";
 
-    # Lock mesa version to hyprland version
-    hardware.graphics = {
-      package = pkgs-hypr.mesa.drivers;
-      package32 = pkgs-hypr.pkgsi686Linux.mesa.drivers;
+    security = {
+      polkit.enable = true;
+      pam.services.hyprlock = {};
     };
 
-    # XDG nonsense. Not sure I need all of this
     xdg.autostart.enable = true;
     xdg.portal = {
       xdgOpenUsePortal = true;
       enable = true;
-      extraPortals = [pkgs.xdg-desktop-portal-gnome];
-      config.common.default = [
-        "gtk"
-        "hyprland"
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-wlr
       ];
     };
-    programs.dconf.enable = true;
-    services.dbus.implementation = "broker";
 
-    # Greeter
     services.greetd = {
       enable = true;
       settings = {

@@ -16,8 +16,8 @@
     ../modules/desktops/winapps.nix
   ];
 
-  desktops.gnome.enable = false;
-  hyprland.enable = true;
+  # desktops.gnome.enable = false;
+  hyprland.enable = false;
   games.enable = true;
   services.minecraft.ryzenshine.enable = true;
   users.becca.enable = true;

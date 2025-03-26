@@ -7,10 +7,12 @@
     ./hyprland
     ./flatpak.nix
     ./gnome
+    ./sway
   ];
 
-  hyprland.enable = lib.mkDefault true;
+  hyprland.enable = lib.mkDefault false;
   desktops.gnome.enable = lib.mkDefault false;
+  desktops.sway.enable = lib.mkDefault true;
 
   # Networking
   networking.networkmanager.enable = true;
@@ -58,7 +60,7 @@
         kanagawa-icon-theme
         chromium
         libreoffice
-        # discord
+        # (discord.override { nss = nss_latest; })
         (pkgs.writeShellScriptBin "discord" ''
           exec ${pkgs.discord}/bin/discord --enable-features=UseOzonePlatform --ozone-platform=wayland
         '')

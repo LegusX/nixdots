@@ -19,8 +19,8 @@
     text = (builtins.readFile (osConfig.scheme inputs.theme-waybar)) + (builtins.readFile ../../src/swayosd.css);
   };
 
-  # programs.wofi.style = (builtins.readFile (osConfig.scheme inputs.theme-waybar)) + (builtins.readFile ../../src/wofi.css);
-  # programs.wofi.enable = true;
+  programs.wofi.style = (builtins.readFile (osConfig.scheme inputs.theme-waybar)) + (builtins.readFile ../../src/wofi.css);
+  programs.wofi.enable = true;
 
   home.packages = with pkgs; [
     (colloid-gtk-theme.override {themeVariants = ["all"];})
