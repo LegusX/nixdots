@@ -17,12 +17,12 @@
     # ];
 
     packages = [
-      "io.github.ryubing.Ryujinx"
+      # "com.valvesoftware.Steam"
     ];
 
     overrides = {
       global = {
-        Context.sockets = ["wayland" "!x11" "!fallback-x11"];
+        # Context.sockets = ["wayland" "!x11" "!fallback-x11"];
 
         Environment = {
           # Fix un-themed cursor in some Wayland apps

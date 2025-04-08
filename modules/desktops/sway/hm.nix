@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   config,
   osConfig,
@@ -8,6 +9,7 @@
   imports = [
     # ./hyprlock.nix
     inputs.walker.homeManagerModules.default
+    inputs.gauntlet.homeManagerModules.default
   ];
   home.sessionVariables.NIXOS_OZONE_WL = "1";
   home.sessionVariables.ELECTRON_OZONE_PLATFORM_HINT = "wayland";
@@ -28,18 +30,46 @@
     stylePath = "${config.xdg.configHome}/swayosd/style.css";
   };
 
+  wayland.windowManager.sway = {
+    enable = true;
+    package = pkgs.unstable.swayfx;
+    systemd = {
+      xdgAutostart = true;
+      enable = true;
+    };
+    extraSessionCommands = "export WLR_RENDERER=vulkan";
+    # extraConfigEarly = lib.readFile ../../../config/sway.conf;
+    xwayland = true;
+    wrapperFeatures = {
+      base = true;
+      gtk = true;
+    };
+    checkConfig = false;
+  };
+
+  programs.gauntlet = {
+    enable = true;
+    service.enable = true;
+  };
+
   programs.walker = {
     # enable = true;
     runAsService = true;
 
     config = {
       websearch.prefix = "?";
-      AppLaunchPrefix = "uwsm app --";
+      # AppLaunchPrefix = "uwsm app --";
     };
   };
 
   xdg.configFile."sway/config" = {
     # source = config.lib.file.mk OutOfStoreSymlink "${config.home.homeDirectory}/.nixos/config/hyprland.conf";
-    source = ../../../config/sway.conf;
+    source = lib.mkForce ../../../config/sway.conf;
   };
+
+  # xdg.configFile."uwsm/env" = {
+  #   text = ''
+  #     export
+  #   ''
+  # }
 }

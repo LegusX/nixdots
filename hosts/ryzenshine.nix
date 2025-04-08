@@ -51,8 +51,8 @@
   
   networking.hostName = "ryzenshine";
   networking.networkmanager.enable = true;
-  # time.timeZone = "America/New_York";
-  time.hardwareClockInLocalTime = true;
+  time.timeZone = "America/New_York";
+  # time.hardwareClockInLocalTime = true;
 
   # Bluetooth
   hardware.bluetooth.enable = true;
@@ -119,7 +119,8 @@
     ];
   };
   
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
+  # boot.kernelPackages = pkgs.linuxPackages_6_12;
+  boot.kernelPackages = pkgs.linuxPackages_cachyos;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

@@ -40,6 +40,9 @@
     librewolf
     qbittorrent
     signal-desktop
+    (calibre.override {
+      unrarSupport = true;
+    })
   ];
 
   programs.thunderbird = {
@@ -60,10 +63,11 @@
         kanagawa-icon-theme
         chromium
         libreoffice
+        discord
         # (discord.override { nss = nss_latest; })
-        (pkgs.writeShellScriptBin "discord" ''
-          exec ${pkgs.discord}/bin/discord --enable-features=UseOzonePlatform --ozone-platform=wayland
-        '')
+        # (pkgs.writeShellScriptBin "discord" ''
+        #   exec ${pkgs.discord}/bin/discord --enable-features=UseOzonePlatform --ozone-platform=wayland
+        # '')
       ];
 
       xdg.mimeApps = {

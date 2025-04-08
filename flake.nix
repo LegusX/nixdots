@@ -54,6 +54,10 @@
     # Winapps
     winapps.url = "github:winapps-org/winapps";
     winapps.inputs.nixpkgs.follows = "nixpkgs";
+
+    # gauntlet
+    gauntlet.url = github:project-gauntlet/gauntlet/704b466b209903970e32b40a94334723b88c36ea;
+    gauntlet.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -69,6 +73,7 @@
     nix-flatpak,
     walker,
     winapps,
+    gauntlet,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -100,6 +105,7 @@
           base16.nixosModule
           stylix.nixosModules.stylix
           disko.nixosModules.disko
+          # gauntlet.nixosModules.default
         ];
       };
       ryzenshine = nixpkgs.lib.nixosSystem {
@@ -115,6 +121,7 @@
           chaotic.nixosModules.nyx-overlay
           chaotic.nixosModules.nyx-registry
           nix-flatpak.nixosModules.nix-flatpak
+          # gauntlet.nixosModules.default
         ];
       };
       beccabook = nixpkgs.lib.nixosSystem {

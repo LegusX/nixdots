@@ -1,5 +1,5 @@
 {
-  config, pkgs, lib, ...
+  config, pkgs, lib, inputs, ...
 }:
 let
   inherit (lib) concatStringsSep getExe;
@@ -15,6 +15,9 @@ in {
   };
 
   config = lib.mkIf config.desktops.sway.enable {
+    # imports = [
+    #   inputs.gauntlet.nixosModules.default
+    # ];
     # assertions = [
     #   {
     #     assertion = config.hyprland.enable;
@@ -34,9 +37,20 @@ in {
     programs.sway = {
       enable = true;
       package = pkgs.unstable.swayfx;
-      wrapperFeatures.gtk = true;
+      # wrapperFeatures.gtk = true;
       extraPackages = lib.mkForce [];
+      # extraSessionCommands = "export WLR_RENDERER=vulkan";
    };
+
+   # programs.uwsm = {
+   #  enable = true;
+   #  waylandCompositors = {
+   #    sway = {
+   #      prettyName = "Sway";
+   #      binPath = "${pkgs.sway}/bin/sway";
+   #    };
+   #  };
+   # };
     
     environment.systemPackages = with pkgs; [
       nautilus
@@ -52,6 +66,8 @@ in {
       overskride
       networkmanagerapplet
       autotiling
+      sddm-astronaut
+      # unstable.onagre
     ];
 
     services = {
@@ -78,22 +94,28 @@ in {
       ];
     };
 
-    services.greetd = {
+    services.xserver.enable = true;
+    services.displayManager.sddm = {
       enable = true;
-      settings = {
-        default_session = {
-          command = concatStringsSep " " [
-            tuigreet
-            "-g 'Welcome to NixOS!'"
-            "--asterisks"
-            "--remember"
-            "--remember-user-session"
-            "--time"
-            "--sessions '${sessionPath}'"
-          ];
-          user = "greeter";
-        };
-      };
+      theme = "sddm-astronaut-theme";
     };
+
+  #   services.greetd = {
+  #     enable = true;
+  #     settings = {
+  #       default_session = {
+  #         command = concatStringsSep " " [
+  #           tuigreet
+  #           "-g 'Welcome to NixOS!'"
+  #           "--asterisks"
+  #           "--remember"
+  #           "--remember-user-session"
+  #           "--time"
+  #           "--sessions '${sessionPath}'"
+  #         ];
+  #         user = "greeter";
+  #       };
+  #     };
+  #   };
   };
 }
