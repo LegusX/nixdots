@@ -6,13 +6,18 @@
   imports = [
     ./hyprland
     ./flatpak.nix
-    ./gnome
-    ./sway
+    # ./gnome
+    # ./sway
+    # ./wayfire
   ];
 
-  hyprland.enable = lib.mkDefault false;
-  desktops.gnome.enable = lib.mkDefault false;
-  desktops.sway.enable = lib.mkDefault true;
+  hyprland.enable = lib.mkDefault true;
+  # desktops.gnome.enable = lib.mkDefault false;
+  # desktops.sway.enable = lib.mkDefault false;
+  # desktops.wayfire.enable = lib.mkDefault true;
+
+  # services.desktopManager.cosmic.enable = true;
+  # services.displayManager.cosmic-greeter.enable = true;
 
   # Networking
   networking.networkmanager.enable = true;
@@ -35,8 +40,8 @@
   };
   hardware.pulseaudio.enable = false;
 
-  environment.systemPackages = with pkgs; [
-    unstable.firefox
+  environment.systemPackages = with pkgs.unstable; [
+    firefox
     librewolf
     qbittorrent
     signal-desktop

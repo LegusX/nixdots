@@ -11,7 +11,7 @@ let
   tuigreet = getExe pkgs.greetd.tuigreet;
 in {
   options = {
-    desktops.sway.enable = lib.mkEnableOption "Enable sway";
+    desktops.river.enable = lib.mkEnableOption "Enable river";
   };
 
   config = lib.mkIf config.desktops.sway.enable {
@@ -34,20 +34,17 @@ in {
       ./waybar.nix
     ];
 
-    programs.sway = {
-      enable = true;
-      package = pkgs.unstable.swayfx;
-      # wrapperFeatures.gtk = true;
-      extraPackages = lib.mkForce [];
-      # extraSessionCommands = "export WLR_RENDERER=vulkan";
-   };
+   #  programs.river = {
+   #    enable = true;
+   #    extraPackages = lib.mkForce [];
+   #  };
 
    # programs.uwsm = {
    #  enable = true;
    #  waylandCompositors = {
    #    sway = {
-   #      prettyName = "Sway";
-   #      binPath = "${pkgs.sway}/bin/sway";
+   #      prettyName = "River uwsm";
+   #      binPath = "${pkgs.river}/bin/river";
    #    };
    #  };
    # };
@@ -99,23 +96,5 @@ in {
       enable = true;
       theme = "sddm-astronaut-theme";
     };
-
-  #   services.greetd = {
-  #     enable = true;
-  #     settings = {
-  #       default_session = {
-  #         command = concatStringsSep " " [
-  #           tuigreet
-  #           "-g 'Welcome to NixOS!'"
-  #           "--asterisks"
-  #           "--remember"
-  #           "--remember-user-session"
-  #           "--time"
-  #           "--sessions '${sessionPath}'"
-  #         ];
-  #         user = "greeter";
-  #       };
-  #     };
-  #   };
   };
 }

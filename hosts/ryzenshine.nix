@@ -17,7 +17,7 @@
   ];
 
   # desktops.gnome.enable = false;
-  hyprland.enable = false;
+  hyprland.enable = true;
   games.enable = true;
   services.minecraft.ryzenshine.enable = true;
   users.becca.enable = true;

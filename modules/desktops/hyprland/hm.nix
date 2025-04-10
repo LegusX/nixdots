@@ -37,6 +37,12 @@
     };
   };
 
+  # programs.gauntlet = {
+  #   enable = true;
+  #   service.enable = true;
+  # };
+  
+
   xdg.configFile."hypr/hyprland.conf" = {
     # source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.nixos/config/hyprland.conf";
     source = ../../../config/hyprland.conf;

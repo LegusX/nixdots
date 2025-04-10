@@ -30,41 +30,19 @@
     stylePath = "${config.xdg.configHome}/swayosd/style.css";
   };
 
-  wayland.windowManager.sway = {
+  wayland.windowManager.river = {
     enable = true;
-    package = pkgs.unstable.swayfx;
-    systemd = {
-      xdgAutostart = true;
-      enable = true;
+    settings = {
+      border-width = 2;
     };
-    extraSessionCommands = ''
-      export WLR_RENDERER=vulkan
-      dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-      systemctl --user restart pipewire wireplumber xdg-desktop-portal xdg-desktop-portal-wlr xdg-desktop-portal-gtk
-    '';
-    # extraConfigEarly = lib.readFile ../../../config/sway.conf;
-    xwayland = true;
-    wrapperFeatures = {
-      base = true;
-      gtk = true;
-    };
-    checkConfig = false;
   };
 
   programs.gauntlet = {
     enable = true;
     service.enable = true;
+    
   };
 
-  programs.walker = {
-    # enable = true;
-    runAsService = true;
-
-    config = {
-      websearch.prefix = "?";
-      # AppLaunchPrefix = "uwsm app --";
-    };
-  };
 
   xdg.configFile."sway/config" = {
     # source = config.lib.file.mk OutOfStoreSymlink "${config.home.homeDirectory}/.nixos/config/hyprland.conf";

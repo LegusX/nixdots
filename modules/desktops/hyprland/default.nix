@@ -26,7 +26,7 @@ in {
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
       withUWSM = true;
-      xwayland.enable = true;
+      xwayland.enable = false;
     };
 
     home-manager.sharedModules = [
@@ -34,7 +34,7 @@ in {
       ./waybar.nix
     ];
 
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = with pkgs.unstable; [
       nautilus
       wl-gammactl
       wl-clipboard
@@ -47,6 +47,7 @@ in {
       eog
       overskride
       networkmanagerapplet
+      xwayland-satellite
     ];
 
     security = {
@@ -72,10 +73,10 @@ in {
     xdg.portal = {
       xdgOpenUsePortal = true;
       enable = true;
-      extraPortals = [pkgs.xdg-desktop-portal-gnome];
+      extraPortals = [pkgs.xdg-desktop-portal-gtk];
       config.common.default = [
-        "gtk"
         "hyprland"
+        "gtk"
       ];
     };
     programs.dconf.enable = true;
