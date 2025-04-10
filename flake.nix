@@ -54,6 +54,9 @@
     # Winapps
     winapps.url = "github:winapps-org/winapps";
     winapps.inputs.nixpkgs.follows = "nixpkgs";
+
+    # niri
+    niri.url = "github:sodiboo/niri-flake";
   };
 
   outputs = {
@@ -69,6 +72,7 @@
     nix-flatpak,
     walker,
     winapps,
+    niri,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -100,6 +104,7 @@
           base16.nixosModule
           stylix.nixosModules.stylix
           disko.nixosModules.disko
+          nix-flatpak.nixosModules.nix-flatpak
         ];
       };
       ryzenshine = nixpkgs.lib.nixosSystem {
@@ -115,6 +120,7 @@
           chaotic.nixosModules.nyx-overlay
           chaotic.nixosModules.nyx-registry
           nix-flatpak.nixosModules.nix-flatpak
+          niri.nixosModules.niri
         ];
       };
       beccabook = nixpkgs.lib.nixosSystem {

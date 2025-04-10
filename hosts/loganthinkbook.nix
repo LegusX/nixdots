@@ -15,7 +15,7 @@
     ../users
   ];
 
-  hyprland.enable = true;
+  # hyprland.enable = true;
 
   networking.hostName = "loganthinkbook";
   networking.networkmanager.enable = true;
