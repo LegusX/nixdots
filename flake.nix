@@ -48,15 +48,18 @@
     #flatpak nix
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.5.2";
 
-    # Walker
-    walker.url = "github:abenz1267/walker";
-
     # Winapps
     winapps.url = "github:winapps-org/winapps";
     winapps.inputs.nixpkgs.follows = "nixpkgs";
 
     # niri
     niri.url = "github:sodiboo/niri-flake";
+
+    # gauntlet
+    gauntlet.url = "github:project-gauntlet/gauntlet";
+
+    # walker
+    walker.url = "github:abenz1267/walker";
   };
 
   outputs = {
@@ -70,9 +73,9 @@
     hyprland,
     chaotic,
     nix-flatpak,
-    walker,
     winapps,
     niri,
+    gauntlet,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -120,7 +123,7 @@
           chaotic.nixosModules.nyx-overlay
           chaotic.nixosModules.nyx-registry
           nix-flatpak.nixosModules.nix-flatpak
-          niri.nixosModules.niri
+          # niri.nixosModules.niri
         ];
       };
       beccabook = nixpkgs.lib.nixosSystem {

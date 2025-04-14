@@ -8,11 +8,13 @@
     ./flatpak.nix
     ./gnome
     ./sway
+    ./niri
   ];
 
   hyprland.enable = lib.mkDefault false;
   desktops.gnome.enable = lib.mkDefault false;
   desktops.sway.enable = lib.mkDefault true;
+  desktops.niri.enable = lib.mkDefault true;
 
   # Networking
   networking.networkmanager.enable = true;

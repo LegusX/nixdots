@@ -12,10 +12,10 @@ let
 in {
    
   options = {
-    desktops.sway.enable = lib.mkEnableOption "Enable sway";
+    desktops.niri.enable = lib.mkEnableOption "Enable niri";
   };
 
-  config = lib.mkIf config.desktops.sway.enable {
+  config = lib.mkIf config.desktops.niri.enable {
 
     nixpkgs.overlays = [inputs.niri.overlays.niri];
 
@@ -41,6 +41,7 @@ in {
       eog
       overskride
       networkmanagerapplet
+      xwayland-satellite
     ];
 
     services = {
@@ -58,6 +59,9 @@ in {
     xdg.portal = {
       xdgOpenUsePortal = true;
       enable = true;
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gnome
+      ];
     };
 
     services.greetd = {

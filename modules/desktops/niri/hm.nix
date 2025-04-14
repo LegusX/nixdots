@@ -3,16 +3,19 @@
   config,
   osConfig,
   inputs,
+  lib,
   ...
 }: {
   imports = [
     inputs.walker.homeManagerModules.default
+    inputs.niri.homeModules.niri
   ];
   home.sessionVariables.NIXOS_OZONE_WL = "1";
   home.sessionVariables.ELECTRON_OZONE_PLATFORM_HINT = "wayland";
 
   programs.niri = {
     enable = true;
+    # package = null;
     settings = {
       spawn-at-startup = [
       {
@@ -34,6 +37,11 @@
       {
         command = [
           "${lib.getExe pkgs.udiskie}"
+        ];
+      }
+      {
+        command = [
+          "${lib.getExe pkgs.xwayland-satellite}"
         ];
       }
       {
@@ -109,7 +117,7 @@
       ];
       
       environment = {
-        "NIXOS_OZONE_WL" = 1;
+        "NIXOS_OZONE_WL" = "1";
         "ELECTRON_OZONE_PLATFORM_HINT" = "wayland";
       };
 
@@ -127,15 +135,71 @@
         "HDMI-A-1" = {
           mode.width = 1920;
           mode.height = 1080;
-          mode.refresh = 60;
+          mode.refresh = 60.0;
           position.x = 2560;
           position.y = 0;
         };
       };
 
-      input.keyboard.xkb.options = "caps:super";
-    }
-  }
+      input = {
+        keyboard.xkb.options = "caps:super";
+        focus-follows-mouse.enable = true;
+        warp-mouse-to-focus = true;
+      };
+
+      cursor.size = 30;
+      cursor.theme = "Vimix-cursors";
+      screenshot-path = null;
+
+      binds = with config.lib.niri.actions; let
+        sh = spawn "sh" "-c";
+      in
+        lib.attrsets.mergeAttrsList [
+          {
+            "Mod+Q".action = spawn "alacritty";
+            "Mod+C".action = close-window;
+            "Mod+M".action = quit {skip-confirmation = true;};
+            "Mod+E".action = spawn "nautilus";
+            "Mod+V".action = switch-focus-between-floating-and-tiling;
+            "Mod+Space".action = spawn "walker";
+          # "Mod+L".action = spawn "hyprlock";
+            "Mod+Shift+S".action = screenshot;
+            "Mod+F".action = fullscreen-window;
+
+            "Mod+WheelScrollDown" = {
+              action = focus-workspace-down;
+              cooldown-ms = 250;
+            };
+            "Mod+WheelScrollUp" = {
+              action = focus-workspace-up;
+              cooldown-ms = 250;
+            };
+            "Mod+MouseBack".action = focus-column-left;
+            "Mod+MouseForward".action = focus-column-right;
+                   
+            # "xf86monbrightnessup" exec, /nix/store/898cjdq7lg8vfg7yqgk3hv3h3220lfr6-swayosd-0.1.0/bin/swayosd-client --brightness raise
+            # "xf86monbrightnessdown" exec, /nix/store/898cjdq7lg8vfg7yqgk3hv3h3220lfr6-swayosd-0.1.0/bin/swayosd-client --brightness lower
+            # "xf86audioraisevolume" exec, /nix/store/898cjdq7lg8vfg7yqgk3hv3h3220lfr6-swayosd-0.1.0/bin/swayosd-client --output-volume raise
+            # "xf86audiolowervolume" exec, /nix/store/898cjdq7lg8vfg7yqgk3hv3h3220lfr6-swayosd-0.1.0/bin/swayosd-client --output-volume lower
+            # "xf86audiomute" = sh "${pkgs.swayosd}/bin/swayosd-client" "--output-volume" "mute-toggle"
+          }
+          # (builtins.listToAttrs (with config.lib.niri.actions; map (n:{
+          #   name = "Mod+Shift+${toString n}";
+          #   value = {
+          #     action = move-window-to-workspace "workspace" (n+1);
+          #   };
+          # }) (lib.lists.range 1 9)))
+          # (bindsxx {
+          #   suffixes = builtins.listToAttrs (map (n: {
+          #     name = toString n;
+          #     value = ["workspace" (n + 1)]; # workspace 1 is empty; workspace 2 is the logical first.
+          #   }) (range 1 9));
+          #   prefixes."${Mod}" = "focus";
+          #   prefixes."${Mod}+Ctrl" = "move-window-to";
+          # })
+        ];
+    };
+  };
 
   home.packages = with pkgs; [
     cliphist
@@ -153,13 +217,17 @@
     stylePath = "${config.xdg.configHome}/swayosd/style.css";
   };
 
+  # programs.gauntlet = {xxx
+  #   enable = true;
+  #   service.enable = true;
+  # };
   programs.walker = {
-    # enable = true;
+    enable = true;
     runAsService = true;
 
     config = {
       websearch.prefix = "?";
-      AppLaunchPrefix = "uwsm app --";
+      # AppLaunchPrefix = "uwsm app --";
     };
   };
 
