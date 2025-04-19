@@ -28,6 +28,13 @@
       }
       {
         command = [
+          "${pkgs.dbus}/bin/dbus-update-activation-environment"
+          "--systemd"
+          "--all"
+        ];
+      }
+      {
+        command = [
           "${pkgs.systemd}/bin/systemctl"
           "--user"
           "restart"
@@ -35,8 +42,9 @@
         ];
       }
       {
+        # udiskie doesn't specify a meta.mainprogram or whatever its called 
         command = [
-          "${lib.getExe pkgs.udiskie}"
+          "${pkgs.udiskie}/bin/udiskie"
         ];
       }
       {
@@ -117,8 +125,9 @@
       ];
       
       environment = {
-        "NIXOS_OZONE_WL" = "1";
+        "NIXOS_OZONE_WL" = "1";#C0FFEE
         "ELECTRON_OZONE_PLATFORM_HINT" = "wayland";
+        "DISPLAY" = ":0";
       };
 
       outputs = {
@@ -150,6 +159,7 @@
       cursor.size = 30;
       cursor.theme = "Vimix-cursors";
       screenshot-path = null;
+      prefer-no-csd = true;
 
       binds = with config.lib.niri.actions; let
         sh = spawn "sh" "-c";
@@ -165,6 +175,7 @@
           # "Mod+L".action = spawn "hyprlock";
             "Mod+Shift+S".action = screenshot;
             "Mod+F".action = fullscreen-window;
+            "Mod+W".action = switch-preset-column-width;
 
             "Mod+WheelScrollDown" = {
               action = focus-workspace-down;
@@ -174,8 +185,11 @@
               action = focus-workspace-up;
               cooldown-ms = 250;
             };
-            "Mod+MouseBack".action = focus-column-left;
-            "Mod+MouseForward".action = focus-column-right;
+
+            "Mod+MouseBack".action = focus-column-right;
+            "Mod+MouseForward".action = focus-column-left;
+            "Mod+Shift+MouseBack".action = focus-column-last;
+            "Mod+Shift+MouseForward".action = focus-column-first;
                    
             # "xf86monbrightnessup" exec, /nix/store/898cjdq7lg8vfg7yqgk3hv3h3220lfr6-swayosd-0.1.0/bin/swayosd-client --brightness raise
             # "xf86monbrightnessdown" exec, /nix/store/898cjdq7lg8vfg7yqgk3hv3h3220lfr6-swayosd-0.1.0/bin/swayosd-client --brightness lower
@@ -198,6 +212,48 @@
           #   prefixes."${Mod}+Ctrl" = "move-window-to";
           # })
         ];
+
+        window-rules = [
+          {
+            matches = [
+              {
+                app-id = "steam";
+                title="r#\"^notificationtoasts_\d+_desktop$\"#";
+              }
+            ];
+            default-floating-position = {
+              x = 10;
+              y = 10;
+              relative-to = "bottom-right";
+            };
+          }
+          {
+            clip-to-geometry = true;
+            geometry-corner-radius = let radius = 12.0;
+            in {
+              bottom-left = radius;
+              bottom-right = radius;
+              top-left = radius;
+              top-right = radius;
+            };
+          }
+        ];
+
+        layout = {
+          preset-column-widths = [
+            {proportion = 1. / 3.;}
+            {proportion = 1. / 2.;}
+            {proportion = 2. / 3.;}
+            {proportion = 1.;}
+          ];
+          always-center-single-column = true;
+          default-column-width.proportion = 1. / 3.;
+
+          focus-ring = with osConfig.scheme.withHashtag; {
+            width = 4;
+            active.color = base0C;
+          };
+        };
     };
   };
 
@@ -223,7 +279,7 @@
   # };
   programs.walker = {
     enable = true;
-    runAsService = true;
+    # runAsService = true;
 
     config = {
       websearch.prefix = "?";

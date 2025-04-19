@@ -36,6 +36,7 @@
       unstable.ryubing
       torzu
       steam-rom-manager
+      steamtinkerlaunch
       (prismlauncher.override {
         # withWaylandGLFW = true;
         jdks = with pkgs; [

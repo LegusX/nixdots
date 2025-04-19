@@ -8,6 +8,7 @@
 }: {
   programs.waybar = {
     enable = true;
+    systemd.enable = true;
     style =
       # Color definitions
       (builtins.readFile (osConfig.scheme inputs.theme-waybar))
@@ -35,7 +36,7 @@
         margin-top = 0;
 
         modules-left = ["cpu" "memory" "network" "custom/spotify"];
-        modules-center = ["sway/workspaces"];
+        modules-center = ["niri/workspaces"];
         modules-right = ["tray" "pulseaudio" "backlight" "battery" "clock"];
 
         battery = {

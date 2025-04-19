@@ -42,6 +42,7 @@
     librewolf
     qbittorrent
     signal-desktop
+    kicad
   ];
 
   programs.thunderbird = {
@@ -63,9 +64,9 @@
         chromium
         libreoffice
         # (discord.override { nss = nss_latest; })
-        # (pkgs.writeShellScriptBin "discord" ''
-        #   exec ${pkgs.discord}/bin/discord --enable-features=UseOzonePlatform --ozone-platform=wayland
-        # '')
+        (pkgs.writeShellScriptBin "discord" ''
+          exec ${pkgs.discord}/bin/discord --enable-features=UseOzonePlatform --ozone-platform=wayland
+        '')
       ];
 
       xdg.mimeApps = {
