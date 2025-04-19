@@ -9,7 +9,7 @@
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-24.11";
-    home-manager.inputs.nixpkgs.follows = "nixos-cosmic/nixpkgs-stable";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Stylix
     stylix.url = "github:danth/stylix/release-24.11";
@@ -23,8 +23,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
 
     # Hyprland
-    # hyprland.url = "github:hyprwm/Hyprland/927e1b5a8f7f5842c761abc084d22fdc33fbec18";
-    hyprland.url = "github:hyprwm/Hyprland/9a3bec5d0aae80aaa49a5f8822d983107123196a";
+    hyprland.url = "github:hyprwm/Hyprland/927e1b5a8f7f5842c761abc084d22fdc33fbec18";
     # hyprland.url = "github:hyprwm/Hyprland/0bd541f2fd902dbfa04c3ea2ccf679395e316887";
     # hyprland.url = "github:hyprwm/Hyprland/12f9a0d0b93f691d4d9923716557154d74777b0a";
 
@@ -49,21 +48,18 @@
     #flatpak nix
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.5.2";
 
-    # Walker
-    walker.url = "github:abenz1267/walker";
-
     # Winapps
     winapps.url = "github:winapps-org/winapps";
     winapps.inputs.nixpkgs.follows = "nixpkgs";
 
-    # gauntlet
-    gauntlet.url = github:project-gauntlet/gauntlet/704b466b209903970e32b40a94334723b88c36ea;
-    gauntlet.inputs.nixpkgs.follows = "nixpkgs";
+    # niri
+    niri.url = "github:sodiboo/niri-flake";
 
-    #cosmic
-    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
-    nixpkgs.follows = "nixos-cosmic/nixpkgs-stable";
-    nixpkgs-unstable.follows = "nixos-cosmic/nixpkgs";
+    # gauntlet
+    gauntlet.url = "github:project-gauntlet/gauntlet";
+
+    # walker
+    walker.url = "github:abenz1267/walker";
   };
 
   outputs = {
@@ -77,10 +73,9 @@
     hyprland,
     chaotic,
     nix-flatpak,
-    walker,
     winapps,
+    niri,
     gauntlet,
-    nixos-cosmic,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -112,7 +107,7 @@
           base16.nixosModule
           stylix.nixosModules.stylix
           disko.nixosModules.disko
-          # gauntlet.nixosModules.default
+          nix-flatpak.nixosModules.nix-flatpak
         ];
       };
       ryzenshine = nixpkgs.lib.nixosSystem {
@@ -128,8 +123,7 @@
           chaotic.nixosModules.nyx-overlay
           chaotic.nixosModules.nyx-registry
           nix-flatpak.nixosModules.nix-flatpak
-          nixos-cosmic.nixosModules.default
-          # gauntlet.nixosModules.default
+          # niri.nixosModules.niri
         ];
       };
       beccabook = nixpkgs.lib.nixosSystem {

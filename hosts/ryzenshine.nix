@@ -17,7 +17,8 @@
   ];
 
   # desktops.gnome.enable = false;
-  hyprland.enable = true;
+  hyprland.enable = false;
+  desktops.sway.enable = false;
   games.enable = true;
   services.minecraft.ryzenshine.enable = true;
   users.becca.enable = true;
@@ -51,8 +52,8 @@
   
   networking.hostName = "ryzenshine";
   networking.networkmanager.enable = true;
-  time.timeZone = "America/New_York";
-  # time.hardwareClockInLocalTime = true;
+  # time.timeZone = "America/New_York";
+  time.hardwareClockInLocalTime = true;
 
   # Bluetooth
   hardware.bluetooth.enable = true;
@@ -119,8 +120,7 @@
     ];
   };
   
-  # boot.kernelPackages = pkgs.linuxPackages_6_12;
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

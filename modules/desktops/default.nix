@@ -6,18 +6,15 @@
   imports = [
     ./hyprland
     ./flatpak.nix
-    # ./gnome
-    # ./sway
-    # ./wayfire
+    ./gnome
+    ./sway
+    ./niri
   ];
 
-  hyprland.enable = lib.mkDefault true;
-  # desktops.gnome.enable = lib.mkDefault false;
-  # desktops.sway.enable = lib.mkDefault false;
-  # desktops.wayfire.enable = lib.mkDefault true;
-
-  # services.desktopManager.cosmic.enable = true;
-  # services.displayManager.cosmic-greeter.enable = true;
+  hyprland.enable = lib.mkDefault false;
+  desktops.gnome.enable = lib.mkDefault false;
+  desktops.sway.enable = lib.mkDefault true;
+  desktops.niri.enable = lib.mkDefault true;
 
   # Networking
   networking.networkmanager.enable = true;
@@ -40,14 +37,12 @@
   };
   hardware.pulseaudio.enable = false;
 
-  environment.systemPackages = with pkgs.unstable; [
-    firefox
+  environment.systemPackages = with pkgs; [
+    unstable.firefox
     librewolf
     qbittorrent
     signal-desktop
-    (calibre.override {
-      unrarSupport = true;
-    })
+    kicad
   ];
 
   programs.thunderbird = {
@@ -68,11 +63,10 @@
         kanagawa-icon-theme
         chromium
         libreoffice
-        discord
         # (discord.override { nss = nss_latest; })
-        # (pkgs.writeShellScriptBin "discord" ''
-        #   exec ${pkgs.discord}/bin/discord --enable-features=UseOzonePlatform --ozone-platform=wayland
-        # '')
+        (pkgs.writeShellScriptBin "discord" ''
+          exec ${pkgs.discord}/bin/discord --enable-features=UseOzonePlatform --ozone-platform=wayland
+        '')
       ];
 
       xdg.mimeApps = {
