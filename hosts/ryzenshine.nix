@@ -13,13 +13,14 @@
     ./common.nix
     ../modules
     ../users
-    ../modules/desktops/winapps.nix
+    # ../modules/desktops/winapps.nix
   ];
 
   # desktops.gnome.enable = false;
   hyprland.enable = false;
   desktops.sway.enable = false;
   games.enable = true;
+  games.df.enable = true;
   services.minecraft.ryzenshine.enable = true;
   users.becca.enable = true;
 
@@ -35,6 +36,9 @@
     mediaelch
     radarr
     unstable.sonarr
+    jan
+    arduino-ide
+    arduino-cli
   ];
   # hopefully fixed soon
   nixpkgs.config.permittedInsecurePackages = [
@@ -47,6 +51,11 @@
   services.prowlarr = {
     enable = true;
   };
+
+  # supposedly fixes arduino dialout nonsense
+  services.udev.packages = with pkgs; [
+    arduino
+  ];
 
   # services.radarr.enable = true;
   
@@ -87,7 +96,7 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
-  boot.kernelParams = ["preempt=full"];
+  boot.kernelParams = ["preempt=full" "clearcpuid=514"];
 
   boot.loader = {
     efi = {
@@ -118,6 +127,36 @@
         };
       }
     ];
+  };
+
+  services.pipewire.extraConfig.pipewire."92-low-latency" = {
+    "context.properties" = {
+      "default.clock.rate" = 48000;
+      "default.clock.quantum" = 256;
+      "default.clock.min-quantum" = 256;
+      "default.clock.max-quantum" = 256;
+    };
+  };
+
+
+  services.pipewire.extraConfig.pipewire-pulse."92-low-latency" = {
+    "context.properties" = [
+      {
+        name = "libpipewire-module-protocol-pulse";
+        args = { };
+      }
+    ];
+    "pulse.properties" = {
+      "pulse.min.req" = "256/48000";
+      "pulse.default.req" = "256/48000";
+      "pulse.max.req" = "256/48000";
+      "pulse.min.quantum" = "256/48000";
+      "pulse.max.quantum" = "256/48000";
+    };
+    "stream.properties" = {
+      "node.latency" = "256/48000";
+      "resample.quality" = 1;
+    };
   };
   
   boot.kernelPackages = pkgs.linuxPackages_6_12;

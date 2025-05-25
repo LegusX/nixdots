@@ -57,7 +57,7 @@ in {
 
     xdg.autostart.enable = true;
     xdg.portal = {
-      xdgOpenUsePortal = true;
+      # xdgOpenUsePortal = true;
       enable = true;
       extraPortals = [
         pkgs.xdg-desktop-portal-gnome
