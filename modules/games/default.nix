@@ -61,7 +61,7 @@ in {
       protontricks
       lutris
       unstable.ryubing
-      torzu
+      # torzu # DMCA takedown
       steam-rom-manager
       steamtinkerlaunch
       bottles

@@ -43,6 +43,8 @@
     qbittorrent
     signal-desktop
     kicad
+    pwvucontrol
+    calibre
   ];
 
   programs.thunderbird = {

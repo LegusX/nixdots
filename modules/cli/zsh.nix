@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     zsh-powerlevel10k
-    (nerdfonts.override {fonts = ["RobotoMono"];})
+    nerd-fonts.roboto-mono
   ];
   programs.zsh = {
     enable = true;

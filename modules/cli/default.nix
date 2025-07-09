@@ -60,6 +60,8 @@
     helix
     git
     sops
+    usbutils
+    pciutils
   ];
 
   programs.nh = {

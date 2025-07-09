@@ -65,7 +65,7 @@
         cpu = {
           format = "  &#8239;{usage}%";
           tooltip = false;
-          on-click = "kitty -e 'btop'";
+          on-click = "alacritty -e 'btop'";
         };
 
         memory = {
@@ -74,7 +74,7 @@
           max-length = 10;
           tooltip = false;
           warning = 70;
-          on-click = "kitty -e 'btop'";
+          on-click = "alacritty -e 'btop'";
         };
 
         network = {
@@ -112,7 +112,7 @@
             portable = "  ";
             default = [" " " " "  "];
           };
-          on-click = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
+          on-click = "pwvucontrol";
         };
 
         "sway/workspaces" = {

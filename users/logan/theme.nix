@@ -27,7 +27,7 @@
     (colloid-icon-theme.override {colorVariants = ["all"];})
     vimix-cursors
     twitter-color-emoji
-    (nerdfonts.override {fonts = ["RobotoMono"];})
+    nerd-fonts.roboto-mono
   ];
 
   programs.helix.settings.theme = lib.mkForce "custom";
@@ -95,7 +95,7 @@
         name = "Roboto";
       };
       monospace = {
-        package = pkgs.nerdfonts.override {fonts = ["RobotoMono"];};
+        package = pkgs.nerd-fonts.roboto-mono;
         name = "RobotoMono Nerd Font";
       };
       emoji = {
