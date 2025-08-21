@@ -13,7 +13,7 @@
     ./common.nix
     ../modules
     ../users
-    # ../modules/desktops/winapps.nix
+    ../modules/desktops/winapps.nix
   ];
 
   # desktops.gnome.enable = false;
@@ -41,7 +41,18 @@
     arduino-cli
     cura-appimage
     orca-slicer
+    filezilla
+    teams-for-linux
+    vmware-workstation
+    swappy
+    grim
+    slurp
+    podman-desktop
+    freerdp3
   ];
+
+  # For VMWare for school
+  virtualisation.vmware.host.enable = true;
   # hopefully fixed soon
   nixpkgs.config.permittedInsecurePackages = [
     "aspnetcore-runtime-6.0.36"
@@ -129,22 +140,22 @@
       };
     };
   };
-  # services.pipewire.wireplumber.extraConfig."99-fix-games" = {
-  #   "monitor.alsa.rules" = [
-  #     {
-  #       matches = [
-  #         {
-  #           "node.name" = "~.*";
-  #         }
-  #       ];
-  #       actions = {
-  #         update-props={
-  #           "api.alsa.headroom" = "2048";
-  #         };
-  #       };
-  #     }
-  #   ];
-  # };
+  services.pipewire.wireplumber.extraConfig."99-fix-games" = {
+    "monitor.alsa.rules" = [
+      {
+        matches = [
+          {
+            "node.name" = "~.*";
+          }
+        ];
+        actions = {
+          update-props={
+            "api.alsa.headroom" = "2048";
+          };
+        };
+      }
+    ];
+};
 
   # services.pipewire.extraConfig.pipewire."92-low-latency" = {
   #   "context.properties" = {
@@ -162,25 +173,25 @@
   # };
 
 
-  # services.pipewire.extraConfig.pipewire-pulse."92-low-latency" = {
-  #   "context.properties" = [
-  #     {
-  #       name = "libpipewire-module-protocol-pulse";
-  #       args = { };
-  #     }
-  #   ];
-  #   "pulse.properties" = {
-  #     "pulse.min.req" = "256/48000";
-  #     "pulse.default.req" = "256/48000";
-  #     "pulse.max.req" = "256/48000";
-  #     "pulse.min.quantum" = "256/48000";
-  #     "pulse.max.quantum" = "256/48000";
-  #   };
-  #   "stream.properties" = {
-  #     "node.latency" = "256/48000";
-  #     "resample.quality" = 1;
-  #   };
-  # };
+  services.pipewire.extraConfig.pipewire-pulse."92-low-latency" = {
+    "context.properties" = [
+      {
+        name = "libpipewire-module-protocol-pulse";
+        args = { };
+      }
+    ];
+    "pulse.properties" = {
+      "pulse.min.req" = "256/48000";
+      "pulse.default.req" = "256/48000";
+      "pulse.max.req" = "256/48000";
+      "pulse.min.quantum" = "256/48000";
+      "pulse.max.quantum" = "256/48000";
+    };
+    "stream.properties" = {
+      "node.latency" = "256/48000";
+      "resample.quality" = 1;
+    };
+  };
   
   boot.kernelPackages = pkgs.linuxPackages_6_12;
 

@@ -59,7 +59,10 @@
     gauntlet.url = "github:project-gauntlet/gauntlet";
 
     # walker
-    walker.url = "github:abenz1267/walker";
+    walker.url = "github:abenz1267/walker/745d720fdb59965d6fe660fc835181619a179027";
+
+    # Dioxus
+    dioxus.url = "github:DioxusLabs/dioxus/a8230d8ff0e769d3c1fee3452b8ea47ec885ecc1";
   };
 
   outputs = {
@@ -76,6 +79,7 @@
     winapps,
     niri,
     gauntlet,
+    dioxus,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -115,6 +119,7 @@
         modules = [
           ./hosts/ryzenshine.nix
           {scheme = ./src/clouds_theme.yaml;}
+          # { winappsTemplate = ./src/winapps.conf; }
           sops-nix.nixosModules.sops
           base16.nixosModule
           stylix.nixosModules.stylix

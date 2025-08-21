@@ -153,10 +153,10 @@
       input = {
         keyboard.xkb.options = "caps:super";
         focus-follows-mouse.enable = true;
-        warp-mouse-to-focus = true;
+        warp-mouse-to-focus.enable = true;
       };
 
-      cursor.size = 30;
+      cursor.size = 20;
       cursor.theme = "Vimix-cursors";
       screenshot-path = null;
       prefer-no-csd = true;
@@ -174,6 +174,7 @@
             "Mod+Space".action = spawn "walker";
           # "Mod+L".action = spawn "hyprlock";
             "Mod+Shift+S".action = screenshot;
+            "Mod+Shift+F".action = spawn "sh" "-c" "grim -g \"$(slurp)\" - | swappy -f -";
             "Mod+F".action = fullscreen-window;
             "Mod+W".action = switch-preset-column-width;
 
@@ -225,6 +226,14 @@
               x = 10;
               y = 10;
               relative-to = "bottom-right";
+            };
+          }
+          {
+            matches = [
+              {app-id = "steam_app_72850";}
+            ];
+            default-column-width = {
+              proportion = 1.0;
             };
           }
           {

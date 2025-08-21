@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, lib, ...}: {
   home.packages = with pkgs; [
     zsh-powerlevel10k
     nerd-fonts.roboto-mono
@@ -7,12 +7,10 @@
     enable = true;
     autosuggestion.enable = true;
     #promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-    initExtraFirst = ''
+    initContent = lib.mkBefore ''
       # Powerlevel10k Zsh theme
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       test -f ~/.p10k.zsh && source ~/.p10k.zsh
-    '';
-    initExtra = ''
       eval "$(direnv hook zsh)"
     '';
     shellAliases = {

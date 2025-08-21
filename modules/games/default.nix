@@ -72,6 +72,8 @@ in {
           graalvm-ce
         ];
       })
+      limo
+      unstable.rimsort
     ];
 
     # virtualisation.waydroid.enable = true;

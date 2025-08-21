@@ -18,6 +18,7 @@
 
     packages = [
       # "com.valvesoftware.Steam"
+      # "com.freerdp.FreeRDP"
     ];
 
     overrides = {

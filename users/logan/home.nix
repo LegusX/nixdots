@@ -67,7 +67,20 @@
     userName = "Logan Henrie";
     userEmail = "loghenrie@gmail.com";
   };
-
+  # xdg.configFile."winapps/winapps.con".text = "test file";
+  # xdg.configFile."winapps/winapps.conf" = {
+  #   source = pkgs.substituteAll {
+  #     src = ../../src/winapps.conf;
+  #     command = lib.getExe' pkgs.freerdp "sdl-freerdp";
+  #   };
+  #   force = true;
+  # };
+  xdg.configFile."winaapps/winapps.conf".source = config.lib.file.mkOutOfStoreSymlink "${
+    pkgs.substituteAll {
+      src = ../../src/winapps.conf;
+      command = lib.getExe' pkgs.freerdp "sdl-freerdp";
+    }
+  }";
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
