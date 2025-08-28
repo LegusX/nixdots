@@ -21,7 +21,7 @@
     swaynotificationcenter
     udiskie
     wl-clipboard
-    alacritty
+    # alacritty
   ];
 
   services.swayosd = {

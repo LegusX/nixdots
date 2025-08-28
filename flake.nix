@@ -63,7 +63,15 @@
 
     # Dioxus
     dioxus.url = "github:DioxusLabs/dioxus/a8230d8ff0e769d3c1fee3452b8ea47ec885ecc1";
+
+    #freerdp
+    freerdp.url = "github:LegusX/nixpkgs/staging";
+
+    # Ashen Theme
+    ashen.url = "github:ficd0/ashen";
+    ashen.flake = false;
   };
+  
 
   outputs = {
     self,
@@ -80,6 +88,8 @@
     niri,
     gauntlet,
     dioxus,
+    freerdp,
+    ashen,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -118,7 +128,8 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./hosts/ryzenshine.nix
-          {scheme = ./src/clouds_theme.yaml;}
+          # {scheme = ./src/clouds_theme.yaml;}
+          {scheme = inputs.ashen + "/base16/ashen.yaml";}
           # { winappsTemplate = ./src/winapps.conf; }
           sops-nix.nixosModules.sops
           base16.nixosModule

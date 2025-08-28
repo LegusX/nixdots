@@ -166,11 +166,11 @@
       in
         lib.attrsets.mergeAttrsList [
           {
-            "Mod+Q".action = spawn "alacritty";
+            "Mod+Q".action = spawn "ghostty";
             "Mod+C".action = close-window;
             "Mod+M".action = quit {skip-confirmation = true;};
-            "Mod+E".action = spawn "nautilus";
-            "Mod+V".action = switch-focus-between-floating-and-tiling;
+            "Mod+E".action = spawn "ghostty" "-e" "yazi";
+            "Mod+V".action = toggle-window-floating;
             "Mod+Space".action = spawn "walker";
           # "Mod+L".action = spawn "hyprlock";
             "Mod+Shift+S".action = screenshot;
@@ -260,7 +260,7 @@
 
           focus-ring = with osConfig.scheme.withHashtag; {
             width = 4;
-            active.color = base0C;
+            active.color = base08;
           };
         };
     };
@@ -273,7 +273,7 @@
     swaynotificationcenter
     udiskie
     wl-clipboard
-    alacritty
+    # alacritty
   ];
 
   services.swayosd = {
@@ -300,4 +300,5 @@
     # source = config.lib.file.mk OutOfStoreSymlink "${config.home.homeDirectory}/.nixos/config/hyprland.conf";
     source = ../../../config/sway.conf;
   };
+  # xdg.configFile."test/test".text = "test";
 }

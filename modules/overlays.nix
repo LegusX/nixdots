@@ -4,9 +4,16 @@
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
   modifications = final: prev: {
-    # example = prev.example.overrideAttrs (oldAttrs: rec {
-    # ...
-    # });
+    # freerdp = let
+    #   libavif-new = inputs.libavif.legacyPackages."${prev.system}".libavif;
+
+    #   freerdp-new = inputs.freerdp.legacyPackages."${prev.system}".freerdp;
+    # in
+    #   freerdp-new.overrideAttrs (old: {
+    #     buildInputs =
+    #       (builtins.filter (pkg: pkg != prev.libavif) old.buildInputs)
+    #       ++ [ libavif-new ];
+    #   });
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will

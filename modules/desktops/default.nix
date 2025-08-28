@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   imports = [
@@ -48,7 +49,7 @@
   ];
 
   programs.thunderbird = {
-    enable = true;
+    # enable = true;
     # profiles = {
     #   default = {
     #     isDefault = true;
@@ -76,12 +77,14 @@
         defaultApplications = {
           "x-scheme-handler/http" = "firefox.desktop";
           "x-scheme-handler/https" = "firefox.desktop";
+          "inode/directory" = "yazi.desktop";
         };
       };
       home.sessionVariables = {
         EDITOR = lib.mkForce "${lib.getExe pkgs.helix}";
+        VISUAL = lib.mkForce "${lib.getExe pkgs.ghostty} -e ${lib.getExe pkgs.helix}";
         BROWSER = lib.mkForce "${lib.getExe pkgs.firefox}";
-        TERMINAL = lib.mkForce "${lib.getExe pkgs.alacritty}";
+        TERMINAL = lib.mkForce "${lib.getExe pkgs.ghostty}";
       };
       programs.vscode = {
         enable = true;
@@ -92,6 +95,19 @@
           pkg-config 
           nixd
         ]);
+      };
+      programs.yazi = {
+        enable = true;
+        flavors = {
+          ashen = inputs.ashen + "/ashen.yazi";
+        };
+        theme = {
+          flavor = {
+            dark = "ashen";
+            light = "ashen";
+          };
+        };
+        enableZshIntegration = true;
       };
     }
   ];

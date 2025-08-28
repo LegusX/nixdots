@@ -9,11 +9,29 @@
   imports = [
   ];
 
-  programs.btop.extraConfig = builtins.readFile (osConfig.scheme inputs.theme-btop);
-  programs.btop.enable = true;
+  # programs.btop.extraConfig = builtins.readFile (osConfig.scheme inputs.theme-btop);
+  programs.btop = {
+    enable = true;
+    settings = {
+      color_theme = "TTY";
+      theme_background = false;
+    };
+  };
+  
+  # programs.alacritty.settings = builtins.fromTOML (builtins.readFile (osConfig.scheme inputs.theme-alacritty));
+  # programs.alacritty.enable = true;
+  programs.ghostty = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      theme = "ashen";
+      background-opacity = 0.9;
+    };
+  };
 
-  programs.alacritty.settings = builtins.fromTOML (builtins.readFile (osConfig.scheme inputs.theme-alacritty));
-  programs.alacritty.enable = true;
+  home.file."${config.xdg.configHome}/ghostty/themes/ashen" = {
+    text = builtins.readFile (inputs.ashen + "/ghostty/ashen");
+  };
 
   home.file."${config.xdg.configHome}/swayosd/style.css" = {
     text = (builtins.readFile (osConfig.scheme inputs.theme-waybar)) + (builtins.readFile ../../src/swayosd.css);
@@ -30,7 +48,7 @@
     nerd-fonts.roboto-mono
   ];
 
-  programs.helix.settings.theme = lib.mkForce "custom";
+  programs.helix.settings.theme = lib.mkForce "ashen";
   programs.helix.themes = with osConfig.scheme.withHashtag; {
     custom = {
       "inherits" = "ayu_dark";

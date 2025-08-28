@@ -13,7 +13,7 @@
     ./common.nix
     ../modules
     ../users
-    ../modules/desktops/winapps.nix
+    # ../modules/desktops/winapps.nix
   ];
 
   # desktops.gnome.enable = false;
@@ -47,8 +47,6 @@
     swappy
     grim
     slurp
-    podman-desktop
-    freerdp3
   ];
 
   # For VMWare for school

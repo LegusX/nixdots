@@ -9,13 +9,11 @@
   programs.waybar = {
     enable = true;
     systemd.enable = true;
-    style =
-      # Color definitions
+    # style = builtins.readFile (inputs.ashen + "/waybar/style.css");
+    style = 
       (builtins.readFile (osConfig.scheme inputs.theme-waybar))
       +
-      # Append the main CSS file
       (builtins.readFile ../../../src/waybar.css);
-    # +
     # # Use monospace font
     # ''
     #   /* Font family injected by Nix */
@@ -65,7 +63,7 @@
         cpu = {
           format = "  &#8239;{usage}%";
           tooltip = false;
-          on-click = "alacritty -e 'btop'";
+          on-click = "ghostty -e 'btop'";
         };
 
         memory = {

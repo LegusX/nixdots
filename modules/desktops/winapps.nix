@@ -23,6 +23,7 @@
     # winapps
     inputs.winapps.packages."${pkgs.system}".winapps-launcher
     pkgs.podman-compose
+    inputs.freerdp.legacyPackages."${pkgs.system}".freerdp
   ];
 
   virtualisation.containers.enable = true;
@@ -34,12 +35,11 @@
     };
   };
 
-  # home-manager.users.logan = {pkgs, lib, ...}: 
-  #   {
-  #     xdg.configFile."winapps/winapps.conf".source =
-  #       pkgs.substituteAll {
-  #         src = ../../src/winapps.conf;
-  #         command = lib.getExe' pkgs.freerdp "sdl-freerdp";
-  #       };
-  #   };
+  home-manager.users.logan = {pkgs, lib, ...}: 
+    {
+      xdg.configFile."winapps/winapps.conf".source =
+        pkgs.replaceVars ../../src/winapps.conf {
+          command = lib.getExe' pkgs.freerdp "sdl-freerdp";
+        };
+    };
 }

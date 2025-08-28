@@ -34,7 +34,7 @@ window#waybar {
 #workspaces button:hover {
     border-width: 0;
     box-shadow: none;
-    color: @base0C;
+    color: @base0B;
     background-color:alpha(#fff, 0);
     background-image:none;
     -gtk-icon-effect: none;
@@ -45,7 +45,7 @@ window#waybar {
     margin: 0px;
     /* box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px in*/
     /* box-shadow: alpha(@base02, 0.3) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset; */
-    background: lighter(@base04);
+    background: @base08;
     color: @base00;
 }
 
@@ -74,20 +74,20 @@ window#waybar {
     margin: 5px 10px;
     border-radius: 5px;
     padding: 5px 15px;
-    border-color: @base04;
+    border-color: @base08;
     border-width: 1px;
     border-style: solid;
-    color: @base0C;
+    color: @base05;
 }
 
 .modules-center {
     background-color: @base00;
     border-radius:5px;
-    border-color: @base04;
+    border-color: @base08;
     border-width:1px;
     border-style: solid;
     padding: 0px;
     margin: 5px 0;
-    color: @base0C;
+    color: @base05;
     background-clip: padding-box;
 }
