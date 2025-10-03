@@ -46,6 +46,7 @@
     kicad
     pwvucontrol
     calibre
+    wlsunset
   ];
 
   programs.thunderbird = {

@@ -72,6 +72,16 @@
   
   networking.hostName = "ryzenshine";
   networking.networkmanager.enable = true;
+  networking.firewall.allowedUDPPorts = [53 67];
+  # networking.nat = {
+  #   enable = true;
+  #   internalInterfaces = ["wlo1"];
+  #   externalInterface = "enp42s0";
+  # };
+
+  # networking.bridges = {
+    
+  # }
   # time.timeZone = "America/New_York";
   time.hardwareClockInLocalTime = true;
 

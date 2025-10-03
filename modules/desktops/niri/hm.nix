@@ -130,6 +130,11 @@
         "DISPLAY" = ":0";
       };
 
+      # cursor = {
+      #   theme = "Vimix-cursors";
+      #   size = 20;
+      # };
+
       outputs = {
         "DP-1" = {
           mode.width = 2560;
@@ -156,7 +161,7 @@
         warp-mouse-to-focus.enable = true;
       };
 
-      cursor.size = 20;
+      cursor.size = 24;
       cursor.theme = "Vimix-cursors";
       screenshot-path = null;
       prefer-no-csd = true;

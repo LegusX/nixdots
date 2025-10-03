@@ -26,6 +26,7 @@
     settings = {
       theme = "ashen";
       background-opacity = 0.9;
+      confirm-close-surface = false;
     };
   };
 
@@ -58,6 +59,13 @@
         "blue" = base0A;
       };
     };
+  };
+
+  home.pointerCursor = {
+    name = lib.mkForce "Vimix-cursors";
+    gtk.enable = true;
+    x11.enable = true;
+    package = lib.mkForce pkgs.vimix-cursors;
   };
 
   gtk.theme.package = pkgs.colloid-gtk-theme.override {themeVariants = ["all"];};
@@ -122,8 +130,8 @@
       };
     };
     cursor = {
-      package = pkgs.vimix-cursors;
-      name = "Vimix-cursors";
+      package = lib.mkForce pkgs.vimix-cursors;
+      name = lib.mkForce "Vimix-cursors";
       size = 12;
     };
   };
