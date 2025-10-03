@@ -153,6 +153,9 @@
           position.x = 2560;
           position.y = 0;
         };
+        "eDP-1" = {
+          scale = 1.0;
+        };
       };
 
       input = {
