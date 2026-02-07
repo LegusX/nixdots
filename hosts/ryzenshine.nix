@@ -47,6 +47,9 @@
     swappy
     grim
     slurp
+    ollama-rocm
+    godot-mono
+    blender-hip
   ];
 
   # For VMWare for school
@@ -82,7 +85,7 @@
   # networking.bridges = {
     
   # }
-  # time.timeZone = "America/New_York";
+  time.timeZone = "America/New_York";
   time.hardwareClockInLocalTime = true;
 
   # Bluetooth
@@ -94,6 +97,17 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+  };
+
+  # Attempts at local ai hosting
+  services.ollama = {
+    enable = true;
+    acceleration = "rocm";
+    loadModels = ["llama3.1:8b" "qwen2.5-coder:1.5b-base" "nomic-embed-text:latest"];
+    environmentVariables = {
+      HCC_AMDGPU_TARGET = "gfx1031";
+    };
+    rocmOverrideGfx = "10.3.0";
   };
 
   # Theming
@@ -111,10 +125,16 @@
     scheduler = "scx_lavd";
   };
 
+  fileSystems."/mnt/slow2" = {
+    device = "/dev/disk/by-uuid/1265c8be-73fd-4002-a404-109101bab17b";
+    fsType = "btrfs";
+    options = ["compress=zstd" "noatime" "x-gvfs-show" "nofail"];
+  };
+
   ###################################################################################################
   # Hardware Config
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
-  boot.initrd.kernelModules = [];
+  boot.initrd.kernelModules = ["amdgpu"];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
   boot.kernelParams = ["preempt=full" "clearcpuid=514"];

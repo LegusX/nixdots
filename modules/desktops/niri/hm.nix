@@ -42,6 +42,11 @@
         ];
       }
       {
+        command = [
+          "${pkgs.swww}/bin/swww-daemon"
+        ];
+      }
+      {
         # udiskie doesn't specify a meta.mainprogram or whatever its called 
         command = [
           "${pkgs.udiskie}/bin/udiskie"
@@ -136,12 +141,14 @@
       # };
 
       outputs = {
-        "DP-1" = {
+        "DP-3" = {
           mode.width = 2560;
           mode.height = 1440;
           mode.refresh = 74.87;
           position.x = 0;
           position.y = 0;
+          variable-refresh-rate = true;
+          focus-at-startup = true;
         };
         "DP-2" = {
           enable = false;
@@ -178,7 +185,7 @@
             "Mod+V".action = toggle-window-floating;
             "Mod+Space".action = spawn "walker";
           # "Mod+L".action = spawn "hyprlock";
-            "Mod+Shift+S".action = screenshot;
+            "Mod+Shift+S".action.screenshot = {show-pointer = true;};
             "Mod+Shift+F".action = spawn "sh" "-c" "grim -g \"$(slurp)\" - | swappy -f -";
             "Mod+F".action = fullscreen-window;
             "Mod+W".action = switch-preset-column-width;

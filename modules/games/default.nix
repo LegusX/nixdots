@@ -3,6 +3,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }:let
   cfg = config.programs.steam;
@@ -30,6 +31,7 @@ in {
   imports = [
     ./minecraft.nix
     ./df.nix
+    inputs.jovian.nixosModules.default
   ];
 
   options = {
@@ -38,6 +40,24 @@ in {
   };
 
   config = lib.mkIf config.games.enable {
+
+    nixpkgs.overlays = [
+    # Try to force gamescope-session to start on DisplayPort2
+    (final: prev: {
+      gamescope-session = prev.gamescope-session.overrideAttrs (_: {
+          prePatch = ''
+            sed -i "s/-O '\*',eDP-1/-O DP-2/" gamescope-session
+          '';
+      });
+    })
+];
+    
+    jovian = {
+      steam.enable = true;
+      steamos.useSteamOSConfig = false;
+      hardware.has.amd.gpu = true;
+    };
+    
     programs.steam = {
       enable = true;
       remotePlay.openFirewall = true;
@@ -54,7 +74,7 @@ in {
     };
 
     # Hack to add -steamos3 to steam arguments
-    services.displayManager.sessionPackages = [ gamescopeSessionFile ];
+    # services.displayManager.sessionPackages = [ gamescopeSessionFile ];
 
     environment.systemPackages = with pkgs; [
       # heroic
@@ -69,12 +89,27 @@ in {
         # withWaylandGLFW = true;
         jdks = with pkgs; [
           jdk21
-          graalvm-ce
+          # graalvmPackages.graalvm-ce
         ];
       })
       limo
-      unstable.rimsort
     ];
+
+    services.sunshine = {
+      enable = true;
+      capSysAdmin = true;
+      openFirewall = true;
+    };
+
+    # Virtual display for streaming sunshine
+    boot.kernelParams = ["video=DP-1:3840x2160R@60D"];
+    hardware.display.edid.packages = [
+      (pkgs.runCommand "edid-custom" { } ''
+                  mkdir -p $out/lib/firmware/edid
+                  cp ${../../src/custom1.bin} $out/lib/firmware/edid/custom1.bin
+      '')
+    ];
+    hardware.display.outputs."DP-1".edid = "custom1.bin";
 
     # virtualisation.waydroid.enable = true;
 
