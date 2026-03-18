@@ -20,7 +20,7 @@
   hyprland.enable = false;
   desktops.sway.enable = false;
   games.enable = true;
-  games.df.enable = true;
+  games.df.enable = false;
   services.minecraft.ryzenshine.enable = true;
   # users.becca.enable = true;
 
@@ -51,6 +51,11 @@
     godot-mono
     blender-hip
   ];
+
+  services.greetd.settings.initial_session = {
+    command = "${pkgs.niri-stable}/bin/niri-session";
+    user = "logan";
+  };
 
   # For VMWare for school
   virtualisation.vmware.host.enable = true;
@@ -125,11 +130,11 @@
     scheduler = "scx_lavd";
   };
 
-  fileSystems."/mnt/slow2" = {
-    device = "/dev/disk/by-uuid/1265c8be-73fd-4002-a404-109101bab17b";
-    fsType = "btrfs";
-    options = ["compress=zstd" "noatime" "x-gvfs-show" "nofail"];
-  };
+  # fileSystems."/mnt/slow2" = {
+  #   device = "/dev/disk/by-uuid/1265c8be-73fd-4002-a404-109101bab17b";
+  #   fsType = "btrfs";
+  #   options = ["compress=zstd" "noatime" "x-gvfs-show" "nofail"];
+  # };
 
   ###################################################################################################
   # Hardware Config
@@ -149,6 +154,7 @@
       devices = ["nodev"];
       useOSProber = true;
       efiSupport = true;
+      configurationLimit = 5;
     };
   };
 
@@ -289,25 +295,25 @@
       #     };
       #   };
       # };
-      HDD = {
-        device = "/dev/sda";
-        type = "disk";
-        content = {
-          type = "gpt";
-          partitions = {
-            SLOW = {
-              name = "SLOW";
-              size = "100%";
-              content = {
-                type = "btrfs";
-                extraArgs = ["-f" "-L" "SLOW"];
-                mountpoint = "/mnt/slow";
-                mountOptions = ["compress=zstd" "noatime" "x-gvfs-show" "nofail"];
-              };
-            };
-          };
-        };
-      };
+      # HDD = {
+      #   device = "/dev/sda";
+      #   type = "disk";
+      #   content = {
+      #     type = "gpt";
+      #     partitions = {
+      #       SLOW = {
+      #         name = "SLOW";
+      #         size = "100%";
+      #         content = {
+      #           type = "btrfs";
+      #           extraArgs = ["-f" "-L" "SLOW"];
+      #           mountpoint = "/mnt/slow";
+      #           mountOptions = ["compress=zstd" "noatime" "x-gvfs-show" "nofail"];
+      #         };
+      #       };
+      #     };
+      #   };
+      # };
     };
   };
 

@@ -153,6 +153,8 @@
         "DP-2" = {
           enable = false;
         };
+        # Virtual display for streaming
+        "DP-1".enable = false;
         "HDMI-A-1" = {
           mode.width = 1920;
           mode.height = 1080;

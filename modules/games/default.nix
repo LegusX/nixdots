@@ -6,6 +6,9 @@
   inputs,
   ...
 }:let
+  gamescope-git = pkgs.callPackage ./gamescope.nix { };
+
+  ## all garbage
   cfg = config.programs.steam;
   gamescopeCfg = config.programs.gamescope;
 
@@ -31,7 +34,7 @@ in {
   imports = [
     ./minecraft.nix
     ./df.nix
-    inputs.jovian.nixosModules.default
+    # inputs.jovian.nixosModules.default
   ];
 
   options = {
@@ -52,11 +55,11 @@ in {
     })
 ];
     
-    jovian = {
-      steam.enable = true;
-      steamos.useSteamOSConfig = false;
-      hardware.has.amd.gpu = true;
-    };
+    # jovian = {
+    #   steam.enable = true;
+    #   steamos.useSteamOSConfig = false;
+    #   hardware.has.amd.gpu = true;
+    # };
     
     programs.steam = {
       enable = true;
@@ -73,6 +76,10 @@ in {
       };
     };
 
+    programs.gamescope = {
+      enable = true;
+      capSysNice = false;
+    };
     # Hack to add -steamos3 to steam arguments
     # services.displayManager.sessionPackages = [ gamescopeSessionFile ];
 
@@ -99,6 +106,30 @@ in {
       enable = true;
       capSysAdmin = true;
       openFirewall = true;
+      settings = {
+        capture = "kms";
+      };
+      applications = {
+        env = {
+          PATH = "$(PATH):$(HOME)/.local/bin";
+        };
+        apps = [
+          {
+            name = "4k steam";
+            prep-cmd = [
+              {
+                do = "sudo -u logan setsid /home/logan/.config/nixos-config/src/sunshine.sh start";
+                undo = "sudo -u logan setsid /home/logan/.config/nixos-config/src/sunshine.sh stop";
+              }
+            ];
+            # detached = [
+            #   "sleep 10 && sudo -u logan setsid steam steam://open/bigpicture"
+            # ];
+            image-path = "steam.png";
+            cmd = "sudo -u logan WAYLAND_DISPLAY=wayland-1 XDG_RUNTIME_DIR=/run/user/1000 gamescope -e -W 3840 -H 2160 --fullscreen --expose-wayland -- steam -gamepadui";
+          }
+        ];
+      };
     };
 
     # Virtual display for streaming sunshine

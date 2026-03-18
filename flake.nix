@@ -72,8 +72,8 @@
     ashen.flake = false;
 
     # Jovian Steam
-    jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
-    jovian.inputs.nixpkgs.follows = "nixpkgs";
+    # jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
+    # jovian.inputs.nixpkgs.follows = "nixpkgs";
     #
     # Patched steam?
     # jovian.url = "github:LegusX/Jovian-NixOS";
@@ -98,7 +98,7 @@
     dioxus,
     freerdp,
     ashen,
-    jovian,
+    # jovian,
     ...
   } @ inputs: let
     inherit (self) outputs;
