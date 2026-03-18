@@ -14,7 +14,7 @@
 
   hyprland.enable = lib.mkDefault false;
   desktops.gnome.enable = lib.mkDefault false;
-  desktops.sway.enable = lib.mkDefault true;
+  desktops.sway.enable = lib.mkDefault false;
   desktops.niri.enable = lib.mkDefault true;
 
   # Networking
