@@ -12,7 +12,7 @@
   # imports = lib.mkIf (osConfig.networking.hostname != "oraclevps") [
   #   ./theme.nix
   # ];
-  imports = [] ++ lib.optionals (osConfig.networking.hostName != "oraclevps") [./theme.nix];
+  imports = [] ++ lib.optionals (osConfig.networking.hostName != "oraclevps" && osConfig.networking.hostName != "meshy") [./theme.nix];
 
   nixpkgs = {
     # You can add overlays here
