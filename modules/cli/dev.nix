@@ -12,6 +12,5 @@
   environment.systemPackages = with pkgs; [
     devenv
     direnv
-    inputs.dioxus.packages."${pkgs.system}".dioxus-cli
   ];
 }
