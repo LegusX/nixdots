@@ -171,6 +171,17 @@
           # stylix.nixosModules.stylix
         ];
       };
+      meshy = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/meshy.nix
+          # {scheme = ./src/clouds_theme.yaml;}
+          sops-nix.nixosModules.sops
+          # base16.nixosModule
+          disko.nixosModules.disko
+          # stylix.nixosModules.stylix
+        ];
+      };
     };
   };
 }
