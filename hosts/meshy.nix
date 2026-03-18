@@ -10,7 +10,7 @@
     imports = [
       (modulesPath + "/installer/scan/not-detected.nix")
       inputs.home-manager.nixosModules.home-manager
-      ../users/logan.nix
+      ../users/logan
       ../modules/cli/default.nix
     ];
 
