@@ -60,7 +60,7 @@
         device = "/dev/disk/by-uuid/19731e86-c60d-4a19-b3a2-d5e5e3f74be6";
         fsType = "btrfs";
         options = ["compress=zstd" "noatime" "x-gvfs-show" "nofail"];
-      }
+      };
     };
 
     swapDevices = [
