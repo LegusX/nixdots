@@ -32,7 +32,6 @@
     '').overrideAttrs (_: { passthru.providedSessions = [ "steam" ]; });
 in {
   imports = [
-    ./minecraft.nix
     ./df.nix
     # inputs.jovian.nixosModules.default
   ];

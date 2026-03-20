@@ -21,14 +21,7 @@
   desktops.sway.enable = false;
   games.enable = true;
   games.df.enable = false;
-  services.minecraft.ryzenshine.enable = true;
-  # users.becca.enable = true;
 
-  # Jellyfin
-  services.jellyfin = {
-    enable = true;
-    openFirewall = true;
-  };
   environment.systemPackages = with pkgs; [
     jellyfin
     jellyfin-web

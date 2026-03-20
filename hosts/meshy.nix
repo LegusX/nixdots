@@ -12,6 +12,7 @@
       inputs.home-manager.nixosModules.home-manager
       ../users/logan
       ../modules/cli/default.nix
+      ../modules/games/minecraft.nix
     ];
 
     boot.loader.systemd-boot.enable = true;
@@ -26,6 +27,12 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE1oHkRdSwpahozBf0cr1huRkipnnghPJnmv+5gmrQGB logan@ryzenshine"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPFQUc4k8kzC/yS1VZWU+aBok6U7p4wW8WhEWLkw0r+r logan@loganthinkbook"
     ];
+
+    
+    services.jellyfin = {
+      enable = true;
+      openFirewall = true;
+    };
 
     # Hardware config
 
@@ -44,11 +51,16 @@
         fsType = "vfat";
         options = ["fmask=0077" "dmask=0077"];
       };
-      "/mnt/slowblk" = {
+      "/mnt/slow2tb" = {
         device = "/dev/disk/by-uuid/1265c8be-73fd-4002-a404-109101bab17b";
         fsType = "btrfs";
         options = ["compress=zstd" "noatime" "x-gvfs-show" "nofail"];
       };
+      "/mnt/slow1tb" = {
+        device = "/dev/disk/by-uuid/19731e86-c60d-4a19-b3a2-d5e5e3f74be6";
+        fsType = "btrfs";
+        options = ["compress=zstd" "noatime" "x-gvfs-show" "nofail"];
+      }
     };
 
     swapDevices = [

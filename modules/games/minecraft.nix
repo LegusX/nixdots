@@ -17,7 +17,7 @@
     users.groups.minecraft = {};
     networking.firewall.allowedTCPPorts = [25565 25566];
 
-    systemd.services.minecraft-ryzenshine = lib.mkIf config.services.minecraft.ryzenshine.enable {
+    systemd.services.minecraft-ryzenshine = {
       enable = true;
       wants = ["network.target"];
       after = ["network.target"];
@@ -34,7 +34,7 @@
         StandardInput = "null";
       };
     };
-    systemd.services.minecraft-raspberry = lib.mkIf config.services.minecraft.ryzenshine.enable {
+    systemd.services.minecraft-raspberry = {
       enable = true;
       wants = ["network.target"];
       after = ["network.target"];
@@ -51,8 +51,8 @@
         StandardInput = "null";
       };
     };
-    systemd.services.minecraft-family = lib.mkIf config.services.minecraft.family.enable {
-      enable = true;
+    systemd.services.minecraft-family = {
+      enable = false;
       wants = ["network.target"];
       after = ["network.target"];
       wantedBy = ["multi-user.target"];
