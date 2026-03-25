@@ -34,16 +34,16 @@
         StandardInput = "null";
       };
     };
-    systemd.services.minecraft-raspberry = {
+    systemd.services.minecraft-homestead = {
       enable = true;
       wants = ["network.target"];
       after = ["network.target"];
       wantedBy = ["multi-user.target"];
-      description = "Raspberry Minecraft server";
+      description = "Homestead Minecraft server";
       serviceConfig = {
         User = "minecraft";
-        WorkingDirectory = "/opt/minecraft/raspberry";
-        ExecStart = "${pkgs.bash}/bin/bash run.sh";
+        WorkingDirectory = "/opt/minecraft/homestead";
+        ExecStart = "${pkgs.jdk21}/bin/java -jar server.jar nogui";
 
         Restart = "always";
         RestartSec = "30";
