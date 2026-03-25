@@ -46,7 +46,7 @@
       serviceConfig = {
         User = "minecraft";
         WorkingDirectory = "/opt/minecraft/homestead";
-        ExecStart = "${pkgs.bash}/bin/bash start.sh";
+        ExecStart = "${pkgs.jdk21}/bin/java -Xmx4G -jar server.jar nogui";
 
         Restart = "always";
         RestartSec = "30";
