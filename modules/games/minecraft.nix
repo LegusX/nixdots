@@ -40,10 +40,13 @@
       after = ["network.target"];
       wantedBy = ["multi-user.target"];
       description = "Homestead Minecraft server";
+      environment = {
+        JAVA = "${pkgs.jdk21}/bin/java";
+      };
       serviceConfig = {
         User = "minecraft";
         WorkingDirectory = "/opt/minecraft/homestead";
-        ExecStart = "JAVA=${pkgs.jdk21}/bin/java ${pkgs.bash}/bin/bash start.sh";
+        ExecStart = "${pkgs.bash}/bin/bash start.sh";
 
         Restart = "always";
         RestartSec = "30";
