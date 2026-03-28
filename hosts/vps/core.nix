@@ -11,10 +11,11 @@
     inputs.home-manager.nixosModules.home-manager
     ./mealie.nix
     ./nextcloud.nix 
-    ./actual.nix
+    # ./actual.nix
+    ../../modules/games/minecraft.nix
     # ./matrix.nix
-    ./mattermost.nix
-    ./revolt.nix
+    # ./mattermost.nix
+    # ./revolt.nix
     ../../users
     ../../modules/cli
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -37,6 +38,7 @@
   };
 
   networking.firewall.allowedTCPPorts = [80 443];
+  services.minecraft.homestead.enable = true;
 
   services.nginx.enable = true;
 

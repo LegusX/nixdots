@@ -6,7 +6,7 @@
 }: {
   options = {
     services.minecraft.ryzenshine.enable = lib.mkEnableOption "Enable ryzenshine minecraft server";
-    services.minecraft.family.enable = lib.mkEnableOption "Enable family minecraft server";
+    services.minecraft.homestead.enable = lib.mkEnableOption "Enable homestead minecraft server";
   };
 
   config = {
@@ -17,7 +17,7 @@
     users.groups.minecraft = {};
     networking.firewall.allowedTCPPorts = [25565 25566];
 
-    systemd.services.minecraft-ryzenshine = {
+    systemd.services.minecraft-ryzenshine = lib.mkIf config.services.minecraft.ryzenshine.enable {
       enable = true;
       wants = ["network.target"];
       after = ["network.target"];
@@ -34,7 +34,7 @@
         StandardInput = "null";
       };
     };
-    systemd.services.minecraft-homestead = {
+    systemd.services.minecraft-homestead = lib.mkIf config.services.minecraft.homestead.enable {
       enable = true;
       wants = ["network.target"];
       after = ["network.target"];
