@@ -10,7 +10,7 @@
   imports = [
     inputs.home-manager.nixosModules.home-manager
     ./mealie.nix
-    ./nextcloud.nix 
+    # ./nextcloud.nix 
     # ./actual.nix
     ../../modules/games/minecraft.nix
     # ./matrix.nix
