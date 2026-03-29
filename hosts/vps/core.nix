@@ -9,7 +9,7 @@
 }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    ./mealie.nix
+    # ./mealie.nix
     # ./nextcloud.nix 
     # ./actual.nix
     ../../modules/games/minecraft.nix
