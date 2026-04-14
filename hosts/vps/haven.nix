@@ -62,7 +62,7 @@
     }
   ];
   networking.firewall.allowedUDPPorts = [ 3478 ];
-  networking.firewall.allowedTCPPorts = [ 3478 5349]
+  networking.firewall.allowedTCPPorts = [ 3478 5349];
 
   users.users.turnserver.extraGroups = ["acme"]; # Ensure coturn can read acme cert
 }
