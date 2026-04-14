@@ -2,16 +2,21 @@
 {
 
   virtualisation.podman = {
-    enable = true;
+    # enable = true;
     defaultNetwork.settings.dns_enabled = true;
   };
 
+  virtualisation.docker = {
+    enable = true;
+  };
+
   virtualisation.oci-containers = {
+    backend = "docker";
     containers.haven = {
       autoStart = true;
       image = "ghcr.io/ancsemi/haven:latest";
       ports = ["3000:3000"];
-      pull = "newer";
+      # pull = "new";
       environmentFiles = [
         config.sops.templates."haven.env".path
       ];
