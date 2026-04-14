@@ -16,6 +16,7 @@
     # ./matrix.nix
     # ./mattermost.nix
     # ./revolt.nix
+    ./haven.nix
     ../../users
     ../../modules/cli
     (modulesPath + "/profiles/qemu-guest.nix")
