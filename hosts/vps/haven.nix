@@ -1,5 +1,6 @@
 {inputs,outputs,pkgs,config,lib,...}:
 {
+
   virtualisation.podman = {
     enable = true;
     defaultNetwork.settings.dns_enabled = true;
@@ -23,6 +24,8 @@
       proxyPass = "http://127.0.0.1:3000";
     };
   };
+
+  sops.secrets.haven-coturn = {};
 
   services.nginx.virtualHosts."turn.legusx.dev" = {
     enableACME = true;
