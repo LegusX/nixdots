@@ -24,7 +24,10 @@
     };
   };
 
-  sops.secrets.haven-coturn = {};
+  sops.secrets.haven-coturn = {
+    owner = "turnserver";
+    group = "turnserver";
+  };
   sops.templates."haven.env".content = ''
     TURN_URL=turn:turn.legusx.dev
     TURN_SECRET=${config.sops.placeholder.haven-coturn}
