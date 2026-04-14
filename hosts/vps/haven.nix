@@ -1,6 +1,6 @@
 {inputs,outputs,pkgs,config,lib,...}:
 {
-  virutalisation.podman = {
+  virtualisation.podman = {
     enable = true;
     defaultNetwork.settings.dns_enabled = true;
   };
