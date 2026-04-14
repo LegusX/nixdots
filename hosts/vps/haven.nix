@@ -12,10 +12,9 @@
       image = "ghcr.io/ancsemi/haven:latest";
       ports = ["3000:3000"];
       pull = "newer";
-      environment = {
-        TURN_URL="turn:turn.legusx.dev";
-        TURN_SECRET = "${lib.readFile config.sops.secrets.haven-coturn.path}";
-      };
+      environmentFiles = [
+        config.sops.templates."haven.env".path
+      ];
     };
   };
 
@@ -26,6 +25,10 @@
   };
 
   sops.secrets.haven-coturn = {};
+  sops.templates."haven.env".content = ''
+    TURN_URL=turn:turn.legusx.dev
+    TURN_SECRET=${config.sops.placeholder.haven-coturn}
+  '';
 
   services.nginx.virtualHosts."turn.legusx.dev" = {
     enableACME = true;
