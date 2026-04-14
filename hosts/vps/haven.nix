@@ -1,4 +1,4 @@
-{inputs,outputs,pkgs,config,lib}:
+{inputs,outputs,pkgs,config,lib,...}:
 {
   virutalisation.podman = {
     enable = true;
