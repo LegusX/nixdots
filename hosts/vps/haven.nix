@@ -2,16 +2,16 @@
 {
 
   virtualisation.podman = {
-    # enable = true;
+    enable = true;
     defaultNetwork.settings.dns_enabled = true;
   };
 
   virtualisation.docker = {
-    enable = true;
+    # enable = true;
   };
 
   virtualisation.oci-containers = {
-    backend = "docker";
+    # backend = "docker";
     containers.haven = {
       autoStart = true;
       image = "ghcr.io/ancsemi/haven:latest";
@@ -24,6 +24,8 @@
   };
 
   services.nginx.virtualHosts."haven.legusx.dev" = {
+    enableACME = true;
+    forceSSL = true;
     locations."/" = {
       proxyPass = "http://127.0.0.1:3000";
     };
@@ -34,6 +36,7 @@
     group = "turnserver";
   };
   sops.templates."haven.env".content = ''
+    FORCE_HTTP=true
     TURN_URL=turn:turn.legusx.dev
     TURN_SECRET=${config.sops.placeholder.haven-coturn}
   '';
