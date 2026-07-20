@@ -14,6 +14,7 @@
     ../modules
     ../users
     # ../modules/desktops/winapps.nix
+    ../modules/games/minecraft.nix
   ];
 
   # desktops.gnome.enable = false;
@@ -22,6 +23,17 @@
   games.enable = true;
   games.df.enable = false;
 
+  services.minecraft.aero.enable = true;
+
+  nixpkgs.overlays = [
+    (self: super: {
+      haven-desktop = super.callPackage ../modules/haven2.nix {
+      };
+    })
+  ];
+
+  nixpkgs.config.rocmSupport = true; # For blender
+  
   environment.systemPackages = with pkgs; [
     jellyfin
     jellyfin-web
@@ -40,9 +52,9 @@
     swappy
     grim
     slurp
-    ollama-rocm
     godot-mono
-    blender-hip
+    blender
+    haven-desktop
   ];
 
   services.greetd.settings.initial_session = {

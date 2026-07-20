@@ -13,6 +13,7 @@
       ../users/logan
       ../modules/cli/default.nix
       ../modules/games/minecraft.nix
+      ../modules/vpn.nix
     ];
 
     services.minecraft.ryzenshine.enable = true;
@@ -30,10 +31,24 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPFQUc4k8kzC/yS1VZWU+aBok6U7p4wW8WhEWLkw0r+r logan@loganthinkbook"
     ];
 
-    
+    vpn.enable = true;
     services.jellyfin = {
       enable = true;
       openFirewall = true;
+    };
+
+    services.qbittorrent = {
+      enable = true;
+      openFirewall = true;
+      serverConfig = {
+        LegalNotice.Accepted = true;
+        Preferences = {
+          WebUI = {
+            AlternativeUIEnabled = true;
+            RootFolder = "${pkgs.vuetorrent}/share/vuetorrent";
+          };
+        };
+      };
     };
 
     # Hardware config
