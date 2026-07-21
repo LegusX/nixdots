@@ -66,6 +66,44 @@
       };
     };
 
+    services.samba = {
+      enable = true;
+      securityType = "user";
+      openFirewall = true;
+      settings = {
+        global = {
+          "workgroup" = "WORKGROUP";
+          "server string" = "smbnix";
+          "netbios name" = "smbnix";
+          "security" = "user";
+          "hosts allow" = "192.168.50. 127.0.0.1 localhost";
+          "hosts deny" = "0.0.0.0/0";
+          "guest account" = "nobody";
+          "map to guest" = "bad user";
+        };
+        "downloads" = {
+          "path" = "/mnt/slow2tb/Downloads";
+          "browseable" = "yes";
+          "read only" = "yes";
+          "guest ok" = "yes";
+          "create mask" = "0644";
+          "directory mask" = "0755";
+          "force user" = "username";
+          "force group" = "groupname";
+        };
+      };
+    };
+
+    services.samba-wsdd = {
+      enable = true;
+      openFirewall = true;
+    };
+
+    networking.firewall = {
+      enable = true;
+      allowPing = true;
+    };
+
     # Hardware config
 
     boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
