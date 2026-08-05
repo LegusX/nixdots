@@ -39,19 +39,14 @@
       openFirewall = true;
     };
 
-    services.sonarr = {
-      enable = true;
-      openFirewall = true;
-    };
-
-    services.radarr = {
-      enable = true;
-      openFirewall = true;
-    };
-
-    services.overseerr = {
-      openFirewall = true;
-      enable = true;
+    users ={
+      groups.media = {};
+      users.jellyfin = {
+        extraGroups = ["media"];
+      };
+      users.qbittorrent = {
+        extraGroups = ["media"];
+      };
     };
 
     services.qbittorrent = {
@@ -86,12 +81,12 @@
         "downloads" = {
           "path" = "/mnt/slow2tb/Downloads";
           "browseable" = "yes";
-          "read only" = "yes";
-          "guest ok" = "yes";
-          "create mask" = "0644";
-          "directory mask" = "0755";
-          "force user" = "username";
-          "force group" = "groupname";
+          "writable" = "yes";
+          "public" = "yes";
+          "create mask" = "0777";
+          "directory mask" = "0777";
+          "guest ok" = "no";
+          "valid users" = "logan";
         };
       };
     };
