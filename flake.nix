@@ -78,6 +78,9 @@
     # Patched steam?
     # jovian.url = "github:LegusX/Jovian-NixOS";
     # jovian.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Minecraft through nix
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
   };
   
 
@@ -98,6 +101,7 @@
     dioxus,
     freerdp,
     ashen,
+    nix-minecraft,
     # jovian,
     ...
   } @ inputs: let
@@ -164,6 +168,7 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./hosts/vps/core.nix
+          nix-minecraft.nixosModules.minecraft-servers
           # {scheme = ./src/clouds_theme.yaml;}
           sops-nix.nixosModules.sops
           # base16.nixosModule

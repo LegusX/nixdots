@@ -6,17 +6,24 @@
   modulesPath,
   lib,
   ...
-}: {
+}:
+  let
+    inherit (inputs.nix-minecraft.lib) collectFilesAt;
+    modpack = pkgs.fetchModrinthModpack {
+      # url = "https://cdn.modrinth.com/data/x308hQIU/versions/q4P5coPI/Isabel%27s%20Aeroscapes-1.0.7.mrpack";
+      src = ../../src/minecraft/Leaguecraft.mrpack;
+      packHash = "sha256-gNsvYdN5XqbuPaRe8323kb3MwdhvZfk0Aha6Dd7/HKg=";
+      side = "server";
+    };
+    mcVersion = modpack.manifest.dependencies.minecraft;
+    neoforgeVersion = modpack.manifest.dependencies.neoforge;
+    serverVersion = lib.replaceStrings [ "." ] [ "_" ] "neoforge-${mcVersion}";
+  in
+  {
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    # ./mealie.nix
-    # ./nextcloud.nix 
-    # ./actual.nix
-    ../../modules/games/minecraft.nix
-    # ./matrix.nix
-    # ./mattermost.nix
-    # ./revolt.nix
     ./haven.nix
+    inputs.nix-minecraft.nixosModules.minecraft-servers
     ../../users
     ../../modules/cli
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -29,9 +36,6 @@
 
   networking.hostName = "oraclevps";
 
-  services.tailscale = {
-    enable = true;
-  };
   networking.nftables.enable = true;
   networking.firewall = {
     enable = true;
@@ -42,7 +46,7 @@
     "TS_DEBUG_FIREWALL_MODE=nftables"
   ];
   systemd.network.wait-online.enable = false;
-  boot.initrd.systemd.network.wait-online = false;
+  boot.initrd.systemd.network.wait-online.enable = false;
 
   sops = {
     defaultSopsFile = ../../secrets.yaml;
@@ -54,7 +58,39 @@
   };
 
   networking.firewall.allowedTCPPorts = [80 443];
-  services.minecraft.homestead.enable = true;
+
+  nixpkgs.overlays = [inputs.nix-minecraft.overlay];
+  services.minecraft-servers.eula = true;
+  services.minecraft-servers.enable = true;
+  services.minecraft-servers.servers.leaguecraft = {
+    enable = true;
+    autoStart = true;
+    enableReload = true;
+    openFirewall = true;
+    
+    package = pkgs.neoforgeServers.${serverVersion};
+    symlinks = collectFilesAt modpack "mods";# // collectFilesAt ../../src/minecraft/lom "mods";
+    files = {
+      "config" = "${modpack}/config";
+    };
+
+    operators = {
+      "LegusX" = "b128a779-618e-4909-bb98-3ef4b1153823";
+    };
+
+    serverProperties = {
+      allow-flight = true;
+      white-list = true;
+      difficulty = "hard";
+      gamemode = "survival";
+      max-players = 10;
+      motd = "Leaguecraft";
+      level-seed = "league of minecraft";
+      spawn-protection = 0;
+    };
+
+    jvmOpts = "-Xms12G -Xmx12G -XX:+UseZGC";
+  };
 
   services.nginx.enable = true;
 
