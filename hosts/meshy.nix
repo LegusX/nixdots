@@ -13,6 +13,7 @@
       ../users/logan
       ../modules/cli/default.nix
       ../modules/games/minecraft.nix
+      ../modules/vpn.nix
     ];
 
     services.minecraft.ryzenshine.enable = true;
@@ -30,10 +31,77 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPFQUc4k8kzC/yS1VZWU+aBok6U7p4wW8WhEWLkw0r+r logan@loganthinkbook"
     ];
 
-    
+    vpn.enable = true;
     services.jellyfin = {
       enable = true;
       openFirewall = true;
+    };
+
+    services.sonarr = {
+      enable = true;
+      openFirewall = true;
+    };
+
+    services.radarr = {
+      enable = true;
+      openFirewall = true;
+    };
+
+    services.overseerr = {
+      openFirewall = true;
+      enable = true;
+    };
+
+    services.qbittorrent = {
+      enable = true;
+      openFirewall = true;
+      serverConfig = {
+        LegalNotice.Accepted = true;
+        Preferences = {
+          WebUI = {
+            AlternativeUIEnabled = true;
+            RootFolder = "${pkgs.vuetorrent}/share/vuetorrent";
+          };
+        };
+      };
+    };
+
+    services.samba = {
+      enable = true;
+      securityType = "user";
+      openFirewall = true;
+      settings = {
+        global = {
+          "workgroup" = "WORKGROUP";
+          "server string" = "smbnix";
+          "netbios name" = "smbnix";
+          "security" = "user";
+          "hosts allow" = "192.168.50. 127.0.0.1 localhost";
+          "hosts deny" = "0.0.0.0/0";
+          "guest account" = "nobody";
+          "map to guest" = "bad user";
+        };
+        "downloads" = {
+          "path" = "/mnt/slow2tb/Downloads";
+          "browseable" = "yes";
+          "read only" = "yes";
+          "guest ok" = "yes";
+          "create mask" = "0644";
+          "directory mask" = "0755";
+          "force user" = "username";
+          "force group" = "groupname";
+        };
+      };
+    };
+
+    services.samba-wsdd = {
+      enable = true;
+      openFirewall = true;
+    };
+
+    networking.firewall = {
+      enable = true;
+      allowPing = true;
     };
 
     # Hardware config

@@ -40,7 +40,6 @@
 
   environment.systemPackages = with pkgs; [
     unstable.firefox
-    librewolf
     qbittorrent
     signal-desktop
     kicad

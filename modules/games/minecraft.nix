@@ -7,6 +7,7 @@
   options = {
     services.minecraft.ryzenshine.enable = lib.mkEnableOption "Enable ryzenshine minecraft server";
     services.minecraft.homestead.enable = lib.mkEnableOption "Enable homestead minecraft server";
+    services.minecraft.aero.enable = lib.mkEnableOption  "Enable aero minecraft server";
   };
 
   config = {
@@ -71,5 +72,26 @@
         StandardInput = "null";
       };
     };
+    systemd.services.minecraft-aero = lib.mkIf config.services.minecraft.aero.enable {
+      enable = true;
+      wants = ["network.target"];
+      after = ["network.target"];
+      wantedBy = ["multi-user.target"];
+      description = "Aero Minecraft server";
+      environment = {
+        JAVA = "${pkgs.jdk21}/bin/java";
+      };
+      serviceConfig = {
+        User = "minecraft";
+        WorkingDirectory = "/opt/minecraft/aero";
+        ExecStart = "${pkgs.bash}/bin/bash run.sh";
+
+        Restart = "always";
+        RestartSec = "30";
+
+        StandardInput = "null";
+      };
+    };
+    
   };
 }

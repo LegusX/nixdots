@@ -61,6 +61,9 @@ in {
     # };
     
     programs.steam = {
+      package = pkgs.steam.override {
+        extraArgs = "-system-composer";
+      };
       enable = true;
       remotePlay.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
