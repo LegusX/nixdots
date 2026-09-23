@@ -23,7 +23,8 @@
   games.enable = true;
   games.df.enable = false;
 
-  services.minecraft.aero.enable = true;
+  services.minecraft.aero.enable = false;
+  # services.minecraft.leaguecraft.enable = true;
 
   nixpkgs.overlays = [
     (self: super: {
@@ -108,17 +109,7 @@
     enable = true;
     enable32Bit = true;
   };
-
-  # Attempts at local ai hosting
-  services.ollama = {
-    enable = true;
-    acceleration = "rocm";
-    loadModels = ["llama3.1:8b" "qwen2.5-coder:1.5b-base" "nomic-embed-text:latest"];
-    environmentVariables = {
-      HCC_AMDGPU_TARGET = "gfx1031";
-    };
-    rocmOverrideGfx = "10.3.0";
-  };
+  hardware.amdgpu.opencl.enable = true;
 
   # Theming
   stylix = {

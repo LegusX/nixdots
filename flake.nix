@@ -152,6 +152,7 @@
           chaotic.nixosModules.nyx-overlay
           chaotic.nixosModules.nyx-registry
           nix-flatpak.nixosModules.nix-flatpak
+          nix-minecraft.nixosModules.minecraft-servers
           # niri.nixosModules.niri
         ];
       };
@@ -181,6 +182,7 @@
         modules = [
           ./hosts/meshy.nix
           # {scheme = ./src/clouds_theme.yaml;}
+          nix-minecraft.nixosModules.minecraft-servers
           sops-nix.nixosModules.sops
           # base16.nixosModule
           disko.nixosModules.disko

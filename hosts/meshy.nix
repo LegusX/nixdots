@@ -17,6 +17,8 @@
     ];
 
     services.minecraft.ryzenshine.enable = true;
+    services.minecraft.leaguecraft.enable = true;
+    services.minecraft-servers.dataDir = /mnt/slow2tb/minecraft/;
 
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
