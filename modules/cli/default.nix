@@ -62,6 +62,7 @@
     sops
     usbutils
     pciutils
+    ghostty.terminfo
   ];
 
   programs.nh = {

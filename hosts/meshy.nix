@@ -15,11 +15,9 @@
       ../modules/games/minecraft.nix
       ../modules/vpn.nix
     ];
-
-    services.minecraft.ryzenshine.enable = true;
+    services.minecraft.ryzenshine.enable = false;
     services.minecraft.leaguecraft.enable = true;
-    services.minecraft-servers.dataDir = /mnt/slow2tb/minecraft/;
-
+    
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
     time.timeZone = "America/New_York";
@@ -33,7 +31,9 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPFQUc4k8kzC/yS1VZWU+aBok6U7p4wW8WhEWLkw0r+r logan@loganthinkbook"
     ];
 
-    vpn.enable = true;
+    services.tailscale.enable = true;
+    
+    vpn.enable = config.services.qbittorrent.enable;
     services.jellyfin = {
       enable = true;
       openFirewall = true;
@@ -62,6 +62,12 @@
         };
       };
     };
+
+    # users.users.qbittorrent = {
+    #   group = "qbittorrent";
+    #   isNormalUser = true;
+    # };
+    # users.groups.qbittorrent = {};
 
     services.samba = {
       enable = true;
@@ -125,6 +131,11 @@
       };
       "/mnt/slow1tb" = {
         device = "/dev/disk/by-uuid/19731e86-c60d-4a19-b3a2-d5e5e3f74be6";
+        fsType = "btrfs";
+        options = ["compress=zstd" "noatime" "x-gvfs-show" "nofail"];
+      };
+      "/mnt/fast" = {
+        device = "/dev/disk/by-uuid/bbe19cee-f1e8-41d2-b388-04ab0578a865";
         fsType = "btrfs";
         options = ["compress=zstd" "noatime" "x-gvfs-show" "nofail"];
       };

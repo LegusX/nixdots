@@ -10,7 +10,7 @@
     modpack = pkgs.fetchModrinthModpack {
       # url = "https://cdn.modrinth.com/data/x308hQIU/versions/q4P5coPI/Isabel%27s%20Aeroscapes-1.0.7.mrpack";
       src = ../../src/minecraft/Leaguecraft.mrpack;
-      packHash = "sha256-gNsvYdN5XqbuPaRe8323kb3MwdhvZfk0Aha6Dd7/HKg=";
+      packHash = "sha256-5bW2j9m8BI6BAJc8KdEwfH2Mt174WweYRf+9rwC6hvE=";
       side = "server";
     };
     mcVersion = modpack.manifest.dependencies.minecraft;
@@ -107,38 +107,59 @@
         StandardInput = "null";
       };
     };
+    systemd.services.minecraft-leaguecraft = lib.mkIf config.services.minecraft.leaguecraft.enable {
+      enable = true;
+      wants = ["network.target"];
+      after = ["network.target"];
+      wantedBy = ["multi-user.target"];
+      description = "Leaguecraft Server";
+      environment = {
+        JAVA = "${pkgs.jdk25}/bin/java";
+      };
+      serviceConfig = {
+        User = "minecraft";
+        WorkingDirectory = "/mnt/fast/srv/leaguecraft";
+        ExecStart = "${pkgs.bash}/bin/bash run.sh";
+
+        Restart = "always";
+        RestartSec = "30";
+
+        StandardInput = "null";
+      };
+    };
     
-  nixpkgs.overlays = [inputs.nix-minecraft.overlay];
-  services.minecraft-servers.eula = true;
-  services.minecraft-servers.enable = true;
-  services.minecraft-servers.servers.leaguecraft = {
-    enable = config.services.minecraft.leaguecraft.enable;
-    autoStart = true;
-    enableReload = true;
-    openFirewall = true;
+  # nixpkgs.overlays = [inputs.nix-minecraft.overlay];
+  # services.minecraft-servers.eula = true;
+  # services.minecraft-servers.dataDir = "/mnt/slow2tb/minecraft";
+  # services.minecraft-servers.enable = true;
+  # services.minecraft-servers.servers.leaguecraft = {
+  #   enable = config.services.minecraft.leaguecraft.enable;
+  #   autoStart = true;
+  #   enableReload = true;
+  #   openFirewall = true;
     
-    package = pkgs.neoforgeServers.${serverVersion};
-    symlinks = collectFilesAt modpack "mods" // collectFilesAt ../../src/minecraft "mods";
-    files = {
-      "config" = "${modpack}/config";
-    };
+  #   package = pkgs.neoforgeServers.${serverVersion};
+  #   symlinks = collectFilesAt modpack "mods"; # // collectFilesAt ../../src/minecraft "mods";
+  #   files = {
+  #     "config" = "${modpack}/config";
+  #   };
 
-    operators = {
-      "LegusX" = "b128a779-618e-4909-bb98-3ef4b1153823";
-    };
+  #   operators = {
+  #     "LegusX" = "b128a779-618e-4909-bb98-3ef4b1153823";
+  #   };
 
-    serverProperties = {
-      allow-flight = true;
-      white-list = true;
-      difficulty = "hard";
-      gamemode = "survival";
-      max-players = 10;
-      motd = "Leaguecraft";
-      level-seed = "league of minecraft";
-      spawn-protection = 0;
-    };
+  #   serverProperties = {
+  #     allow-flight = true;
+  #     white-list = true;
+  #     difficulty = "hard";
+  #     gamemode = "survival";
+  #     max-players = 10;
+  #     motd = "Leaguecraft";
+  #     level-seed = "league of minecraft";
+  #     spawn-protection = 0;
+  #   };
 
-    jvmOpts = "-Xms12G -Xmx12G -XX:+UseZGC";
-  };
+  #   jvmOpts = "-Xms8G -Xmx8G -XX:+UseZGC";
+  # };
   };
 }
